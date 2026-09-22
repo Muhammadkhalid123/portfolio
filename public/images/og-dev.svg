@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" height="100%">
+  <defs>
+    <linearGradient id="og-d-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#05101a"/>
+      <stop offset="50%" stop-color="#081d2e"/>
+      <stop offset="100%" stop-color="#02080d"/>
+    </linearGradient>
+    <linearGradient id="text-grad-d" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#og-d-bg)" />
+
+  <rect x="80" y="80" width="80" height="60" rx="16" fill="#0c2e42" stroke="#06b6d4" stroke-width="2" />
+  <text x="120" y="118" fill="#22d3ee" font-family="monospace" font-weight="bold" font-size="20" text-anchor="middle">DEV://</text>
+
+  <text x="80" y="240" fill="#ffffff" font-family="sans-serif" font-weight="900" font-size="56">Muhammad Khalid</text>
+  <text x="80" y="310" fill="url(#text-grad-d)" font-family="sans-serif" font-weight="800" font-size="38">Full Stack Developer &amp; Deployment Engineer</text>
+  <text x="80" y="380" fill="#94a3b8" font-family="sans-serif" font-size="22">Docker • GitHub Actions CI/CD • AWS EC2 • Nginx • FastAPI • Next.js 14</text>
+</svg>

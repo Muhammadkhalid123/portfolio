@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" height="100%">
+  <defs>
+    <linearGradient id="og-p-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090a0f"/>
+      <stop offset="50%" stop-color="#121422"/>
+      <stop offset="100%" stop-color="#06070b"/>
+    </linearGradient>
+    <linearGradient id="text-grad-p" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="50%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#og-p-bg)" />
+
+  <g opacity="0.08" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="126" x2="1200" y2="126"/>
+    <line x1="0" y1="252" x2="1200" y2="252"/>
+    <line x1="0" y1="378" x2="1200" y2="378"/>
+    <line x1="0" y1="504" x2="1200" y2="504"/>
+    <line x1="240" y1="0" x2="240" y2="630"/>
+    <line x1="480" y1="0" x2="480" y2="630"/>
+    <line x1="720" y1="0" x2="720" y2="630"/>
+    <line x1="960" y1="0" x2="960" y2="630"/>
+  </g>
+
+  <!-- Content -->
+  <rect x="80" y="80" width="60" height="60" rx="16" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" />
+  <text x="110" y="118" fill="#818cf8" font-family="monospace" font-weight="bold" font-size="24" text-anchor="middle">MK</text>
+
+  <text x="80" y="240" fill="#ffffff" font-family="sans-serif" font-weight="900" font-size="56">Muhammad Khalid</text>
+  <text x="80" y="310" fill="url(#text-grad-p)" font-family="sans-serif" font-weight="800" font-size="38">Full Stack Developer &amp; AI Engineer</text>
+  <text x="80" y="380" fill="#94a3b8" font-family="sans-serif" font-size="22">Next.js 14 • Python • RAG Systems • Docker • AWS EC2 CI/CD</text>
+
+  <!-- Tags -->
+  <rect x="80" y="460" width="220" height="44" rx="22" fill="#1e1b4b" stroke="#6366f1" />
+  <text x="190" y="488" fill="#c7d2fe" font-family="sans-serif" font-weight="bold" font-size="16" text-anchor="middle">/ (Personal)</text>
+
+  <rect x="320" y="460" width="220" height="44" rx="22" fill="#082f49" stroke="#06b6d4" />
+  <text x="430" y="488" fill="#bae6fd" font-family="sans-serif" font-weight="bold" font-size="16" text-anchor="middle">/dev (DevOps Brand)</text>
+
+  <rect x="560" y="460" width="220" height="44" rx="22" fill="#3b0764" stroke="#a855f7" />
+  <text x="670" y="488" fill="#e9d5ff" font-family="sans-serif" font-weight="bold" font-size="16" text-anchor="middle">/ai (AI Engineer Brand)</text>
+</svg>
