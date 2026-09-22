@@ -37,89 +37,85 @@ export interface Profile {
 export const profile: Profile = {
   name: "Muhammad Khalid",
   shortName: "Khalid",
-  title: "Full Stack Developer & AI Engineer",
-  subtitle: "Specializing in Next.js, Python, RAG architectures, Docker, and AWS automated deployments.",
-  location: "Remote / Available Globally",
+  title: "AI & Automation Engineering",
+  subtitle: "Full-stack AI apps (Next.js & FastAPI), RAG chatbots, multi-tenant conversational platforms, summarization, gTTS, and automated bots.",
+  location: "Available Worldwide / Remote",
   email: "khalid.dev.engineer@gmail.com",
   github: "https://github.com/Muhammadkhalid123",
-  linkedin: "https://linkedin.com/in/muhammad-khalid",
+  linkedin: "https://www.linkedin.com/in/muhammad-khalid-627344247/",
   twitter: "https://twitter.com",
   resumeUrl: "/resume.pdf",
-  availability: "Available for Full-time Roles & High-Impact Contracts",
+  availability: "Available for Projects & Contracts",
   bio: {
     personal: [
-      "I am a versatile software engineer with a deep passion for building high-scale full-stack applications, intelligent AI/ML systems, and automated cloud deployments.",
-      "My engineering philosophy centers on end-to-end craftsmanship: writing clean, typed application code, integrating state-of-the-art AI models, and packaging the solution into hardened, self-healing Docker containers hosted on AWS.",
-      "Whether developing multi-tenant web platforms or fine-tuning transformer pipelines, I prioritize reliability, speed, and clean architectural design."
+      "We specialize in engineering practical AI systems, RAG chatbots, and autonomous automation bots that solve real-world problems.",
+      "Our work spans full-stack web applications (Next.js, TypeScript, Python/FastAPI), production AI features (RAG retrieval, multi-tenant chatbot platforms, document summarizers, gTTS), and end-to-end data/crawler pipelines.",
+      "We focus on creating production-ready architectures that hold up under real-world usage, combining intuitive web frontends with high-performance Python inference services."
     ],
     dev: [
-      "Specialized in architecting modern full-stack web applications and resilient backend microservices using Next.js 14, TypeScript, Python, and FastAPI.",
-      "Expertise in designing automated CI/CD deployment pipelines on AWS EC2, containerizing workloads with multi-stage Docker builds, and configuring secure Nginx reverse proxies with SSL termination.",
-      "Dedicated to zero-downtime releases, scalable database schema design with PostgreSQL/Prisma, and performant asynchronous queue management."
+      "We build full-stack web applications and AI services using Next.js, TypeScript, Python, and FastAPI.",
+      "We design clean, typed architectures with PostgreSQL, structured REST and streaming APIs, and background job queues with Redis and Celery.",
+      "Every project we engineer is containerized with Docker and built for reliability, security, and scalability."
     ],
     ai: [
-      "Focused on engineering practical, production-grade Artificial Intelligence and Natural Language Processing systems.",
-      "Hands-on experience developing Retrieval-Augmented Generation (RAG) architectures with hybrid vector search (Qdrant), cross-encoder reranking, and hallucination guardrails.",
-      "Skilled in transformer model integration (Hugging Face, BART, T5), neural speech synthesis (Coqui TTS, Whisper), and LLM orchestration with LangChain."
+      "We build practical AI features and automation bots that solve real workflow problems and hold up in production.",
+      "Our focus is on Retrieval-Augmented Generation (RAG) chatbots, multi-tenant conversational platforms with strict data isolation, document summarization using transformer models (BART/T5), lightweight speech synthesis with Google's gTTS, and lead-generation web crawlers.",
+      "Instead of just calling black-box APIs or writing Jupyter notebooks, we wrap models and bots into fast, asynchronous FastAPI microservices with clean frontend interfaces."
     ]
   },
   stats: [
     {
-      value: "99.9%",
-      label: "Deployment Uptime",
-      description: "Automated rolling Docker deployments with health checks"
-    },
-    {
-      value: "10+",
-      label: "Full Stack & AI Projects",
-      description: "From concept to production-grade deployment"
-    },
-    {
-      value: "<120MB",
-      label: "Docker Image Sizes",
-      description: "Optimized multi-stage standalone builds"
+      value: "6+",
+      label: "AI & Automation Systems",
+      description: "RAG chatbots, multi-tenant bots, NLP & automated pipelines"
     },
     {
       value: "100%",
-      label: "TypeScript & Typed APIs",
-      description: "Strict end-to-end type safety across the stack"
+      label: "Production-Ready",
+      description: "End-to-end ownership from architecture to live deployment"
+    },
+    {
+      value: "24/7",
+      label: "Autonomous Workflows",
+      description: "Automated background task dispatching & data collection"
     }
   ],
   timeline: [
     {
-      year: "2024 - Present",
-      title: "Full-Stack AI & Cloud Engineer",
-      role: "Independent Consultant & Systems Architect",
+      year: "2024 – Present",
+      title: "RAG Chatbots & AI Systems",
+      role: "AI & Automation Engineering",
       category: "ai",
-      description: "Designing end-to-end web applications, custom RAG enterprise knowledge engines, and automated CI/CD deployment infrastructure on AWS EC2.",
+      description: "Engineering conversational AI chatbots, multi-tenant architectures, and NLP automation tools.",
       achievements: [
-        "Architected multi-persona portfolio and microservice platforms containerized with Docker and Nginx",
-        "Built domain-specific document summarization and neural TTS synthesis pipelines",
-        "Implemented automated zero-downtime GitHub Actions deployment workflows targeting AWS"
+        "Built RAG-based intelligent chatbot with vector chunking and grounded source citations",
+        "Architected multi-tenant chatbot platform with isolated tenant knowledge bases and custom prompts",
+        "Engineered automated lead-generation crawler bot with Playwright and BeautifulSoup",
+        "Developed lightweight web-based Text-to-Speech system powered by Python and Google gTTS"
       ]
     },
     {
-      year: "2023 - 2024",
-      title: "Full-Stack & Backend Developer",
-      role: "Software Engineer",
+      year: "2023 – 2024",
+      title: "Full-Stack & Automation Engineering",
+      role: "Engineering Projects",
       category: "dev",
-      description: "Developed scalable web applications, REST APIs, and asynchronous automation suites.",
+      description: "Developed web applications, background marketing automation tooling, and database-backed services.",
       achievements: [
-        "Engineered SMM automation suite with asynchronous Celery and Redis task queues",
-        "Created enterprise CRM platform featuring interactive Kanban pipeline and role-based permissions",
-        "Standardized Docker Compose local development and production container environments"
+        "Built SMM automation platform using asynchronous task queues (Celery/Redis)",
+        "Shipped AI text summarization tool using fine-tuned Hugging Face transformer models",
+        "Built CRM with interactive Kanban pipeline and role-based permissions using Prisma and PostgreSQL"
       ]
     },
     {
-      year: "2022 - 2023",
-      title: "AI/ML & NLP Foundations",
-      role: "Machine Learning Researcher & Developer",
+      year: "2022 – 2023",
+      title: "Foundations & ML Exploration",
+      role: "Core Technical Foundations",
       category: "milestone",
-      description: "Explored deep learning architectures, acoustic modeling for speech synthesis, and transformer-based text processing.",
+      description: "Core Python development, full-stack fundamentals, deep learning concepts, and web automation.",
       achievements: [
-        "Implemented custom PyTorch neural vocoders and text summarization models",
-        "Constructed vector embedding ingestion pipelines for semantic information retrieval",
-        "Published open-source utilities and modular Python packages"
+        "Built scraping scripts, bots, and initial full-stack prototypes",
+        "Explored transformer models and speech synthesis algorithms",
+        "Standardized Docker Compose environments for reproducible deployments"
       ]
     }
   ]

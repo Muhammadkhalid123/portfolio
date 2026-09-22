@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "cyan" | "purple" | "amber";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "cyan" | "purple" | "amber" | "liquid-glass";
   size?: "sm" | "md" | "lg";
   external?: boolean;
   children: React.ReactNode;
@@ -13,23 +13,24 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", href, external, children, disabled, ...props }, ref) => {
     const sizeClasses = {
-      sm: "px-3 py-1.5 text-xs font-medium rounded-lg gap-1.5",
-      md: "px-4 py-2 text-sm font-medium rounded-xl gap-2",
-      lg: "px-6 py-3 text-base font-semibold rounded-xl gap-2.5",
+      sm: "px-3.5 py-1.5 text-xs font-semibold rounded-xl gap-1.5",
+      md: "px-4.5 py-2.5 text-sm font-semibold rounded-2xl gap-2",
+      lg: "px-6 py-3 text-sm sm:text-base font-bold rounded-2xl gap-2.5",
     };
 
     const variantClasses = {
-      primary: "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/35 active:scale-[0.98]",
-      secondary: "bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 border border-slate-700/80 hover:border-slate-600 active:scale-[0.98]",
-      outline: "border border-slate-700 hover:border-slate-500 bg-transparent text-slate-200 hover:bg-slate-800/50 active:scale-[0.98]",
-      ghost: "text-slate-300 hover:text-white hover:bg-slate-800/50",
-      cyan: "bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/25 active:scale-[0.98]",
-      purple: "bg-gradient-to-r from-purple-500 via-fuchsia-600 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white shadow-lg shadow-purple-500/25 active:scale-[0.98]",
-      amber: "bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 font-bold shadow-lg shadow-amber-500/25 active:scale-[0.98]",
+      primary: "bg-[#800020] hover:bg-[#6d0a20] text-[#FCFAF4] border border-[#800020] shadow-[0_8px_25px_rgba(128,0,32,0.45)] active:scale-[0.98] font-bold",
+      secondary: "bg-[#010101] text-[#FCFAF4] hover:bg-[#800020] hover:text-[#FCFAF4] border border-[#010101] shadow-[0_4px_20px_rgba(1,1,1,0.25)] active:scale-[0.98] font-bold",
+      "liquid-glass": "liquid-glass text-[#FCFAF4] hover:text-white active:scale-[0.98]",
+      outline: "border-2 border-[#010101] hover:border-[#800020] bg-transparent text-[#010101] hover:bg-[#800020] hover:text-[#FCFAF4] backdrop-blur-md active:scale-[0.98] font-bold",
+      ghost: "text-[#010101] hover:text-[#800020] hover:bg-[#800020]/10 font-bold",
+      cyan: "bg-[#800020] hover:bg-[#6d0a20] text-[#FCFAF4] border border-[#800020] shadow-[0_8px_25px_rgba(128,0,32,0.45)] active:scale-[0.98] font-bold",
+      purple: "bg-[#800020] hover:bg-[#6d0a20] text-[#FCFAF4] border border-[#800020] shadow-[0_8px_25px_rgba(128,0,32,0.45)] active:scale-[0.98] font-bold",
+      amber: "bg-[#010101] hover:bg-[#800020] text-[#FCFAF4] border border-[#010101] shadow-[0_8px_25px_rgba(128,0,32,0.45)] active:scale-[0.98] font-bold",
     };
 
     const baseClass = cn(
-      "inline-flex items-center justify-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 disabled:opacity-50 disabled:pointer-events-none cursor-pointer",
+      "inline-flex items-center justify-center transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 disabled:opacity-50 disabled:pointer-events-none cursor-pointer",
       sizeClasses[size],
       variantClasses[variant],
       className

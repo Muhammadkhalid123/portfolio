@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-multi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f24"/>
+      <stop offset="50%" stop-color="#111c3d"/>
+      <stop offset="100%" stop-color="#030612"/>
+    </linearGradient>
+    <linearGradient id="tenant-a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+    <linearGradient id="tenant-b" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="core-gateway" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#800020"/>
+      <stop offset="100%" stop-color="#b92144"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg-multi)" />
+
+  <!-- Architecture Main Frame -->
+  <rect x="120" y="60" width="560" height="315" rx="16" fill="#0d142d" stroke="#253569" stroke-width="2" />
+  <rect x="120" y="60" width="560" height="38" rx="16" fill="#17234d" />
+  <circle cx="148" cy="79" r="5" fill="#f43f5e"/>
+  <circle cx="164" cy="79" r="5" fill="#f59e0b"/>
+  <circle cx="180" cy="79" r="5" fill="#10b981"/>
+  <text x="400" y="84" fill="#93c5fd" font-family="monospace" font-size="12" text-anchor="middle">multi_tenant_orchestrator.py</text>
+
+  <!-- Tenant A Box -->
+  <rect x="150" y="120" width="150" height="100" rx="10" fill="url(#tenant-a)" stroke="#6366f1" stroke-width="1.5" />
+  <text x="225" y="145" fill="#a5b4fc" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">Tenant Organization 1</text>
+  <rect x="165" y="158" width="120" height="22" rx="4" fill="#0f172a" />
+  <text x="225" y="173" fill="#cbd5e1" font-family="monospace" font-size="9" text-anchor="middle">Workspace: Support-Bot</text>
+  <rect x="165" y="185" width="120" height="22" rx="4" fill="#0f172a" />
+  <text x="225" y="200" fill="#cbd5e1" font-family="monospace" font-size="9" text-anchor="middle">KB: /tenants/org_1/docs</text>
+
+  <!-- Tenant B Box -->
+  <rect x="150" y="240" width="150" height="100" rx="10" fill="url(#tenant-b)" stroke="#06b6d4" stroke-width="1.5" />
+  <text x="225" y="265" fill="#67e8f9" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">Tenant Organization 2</text>
+  <rect x="165" y="278" width="120" height="22" rx="4" fill="#0f172a" />
+  <text x="225" y="293" fill="#cbd5e1" font-family="monospace" font-size="9" text-anchor="middle">Workspace: Sales-Agent</text>
+  <rect x="165" y="305" width="120" height="22" rx="4" fill="#0f172a" />
+  <text x="225" y="320" fill="#cbd5e1" font-family="monospace" font-size="9" text-anchor="middle">KB: /tenants/org_2/docs</text>
+
+  <!-- Routing arrows -->
+  <path d="M 300 170 L 370 215" stroke="#a5b4fc" stroke-width="2" stroke-dasharray="4" fill="none" />
+  <path d="M 300 290 L 370 245" stroke="#67e8f9" stroke-width="2" stroke-dasharray="4" fill="none" />
+
+  <!-- Multi-Tenant Gateway -->
+  <rect x="370" y="195" width="130" height="70" rx="12" fill="url(#core-gateway)" />
+  <text x="435" y="225" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">Tenant Gateway</text>
+  <text x="435" y="242" fill="#fed7aa" font-family="monospace" font-size="9" text-anchor="middle">Auth &amp; Isolation Filter</text>
+
+  <!-- Output Arrow -->
+  <path d="M 500 230 L 535 230" stroke="#f43f5e" stroke-width="2" fill="none" />
+
+  <!-- LLM & DB Isolation Store -->
+  <rect x="535" y="160" width="125" height="140" rx="10" fill="#131e3d" stroke="#3b82f6" stroke-width="1.5" />
+  <text x="597" y="185" fill="#93c5fd" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">Segregated Engine</text>
+  <rect x="545" y="198" width="105" height="26" rx="5" fill="#1e293b" />
+  <text x="597" y="215" fill="#e2e8f0" font-family="monospace" font-size="9" text-anchor="middle">Isolated DB Vectors</text>
+  <rect x="545" y="232" width="105" height="26" rx="5" fill="#1e293b" />
+  <text x="597" y="249" fill="#e2e8f0" font-family="monospace" font-size="9" text-anchor="middle">Custom Prompts</text>
+  <rect x="545" y="266" width="105" height="24" rx="5" fill="#1e293b" />
+  <text x="597" y="282" fill="#38bdf8" font-family="monospace" font-size="8" text-anchor="middle">LLM Inference</text>
+
+  <!-- Title & Tech -->
+  <text x="400" y="405" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="15" text-anchor="middle">Multi-Tenant AI Chatbot Platform</text>
+  <text x="400" y="425" fill="#93c5fd" font-family="monospace" font-size="11" text-anchor="middle">HTML • JavaScript • Python • Multi-Tenancy • LLM APIs</text>
+</svg>

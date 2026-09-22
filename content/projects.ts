@@ -12,6 +12,7 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
+  technicalNote?: string;
   longDescription?: string;
   tags: PersonaTag[];
   techStack: string[];
@@ -26,195 +27,207 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "smm-automation",
-    title: "SMM Automation Suite",
-    description: "Automated social media marketing engine orchestrating content scheduling, analytics reporting, and programmatic engagement across platforms.",
-    longDescription: "A high-performance full-stack automation platform built to streamline multi-channel social media marketing workflows. Features real-time schedule queues, rate-limited programmatic API dispatchers, webhooks listener architecture, and rich metric analytics dashboard.",
-    tags: ["dev"],
-    techStack: ["Python", "FastAPI", "TypeScript", "Next.js", "PostgreSQL", "Redis", "Celery", "Docker"],
-    image: "/images/projects/smm-automation.svg",
-    repoUrl: "https://github.com/Muhammadkhalid123/SMM-Automation",
-    liveUrl: "https://smm-demo.khalid.dev",
+    slug: "my-rag-based-chatbot",
+    title: "RAG-Based Intelligent Chatbot",
+    description: "An intelligent conversational chatbot powered by Retrieval-Augmented Generation (RAG). Ingests custom documentation and knowledge sources to generate grounded, hallucination-resistant responses with citations.",
+    technicalNote: "Uses dense vector similarity retrieval over partitioned document embeddings paired with prompt grounding to deliver accurate context-aware responses.",
+    longDescription: "A Retrieval-Augmented Generation (RAG) chatbot system built to query technical documentation, manuals, and custom knowledge bases. Features an interactive web interface and an asynchronous Python backend inference pipeline that parses raw documents into vector embeddings and feeds contextual chunks into LLM prompt windows with exact source attribution.",
+    tags: ["ai", "dev"],
+    techStack: ["HTML", "JavaScript", "Python", "FastAPI", "LangChain", "Vector RAG", "Tailwind CSS"],
+    image: "/images/projects/my-rag-based-chatbot.svg",
+    repoUrl: "https://github.com/Muhammadkhalid123/my-rag-based-chatbot",
     featured: true,
     highlights: [
-      "Distributed asynchronous task scheduling using Redis and Celery worker pools",
-      "OAuth2 multi-tenant authentication integration across social networks",
-      "Dynamic data aggregation pipeline computing real-time engagement ROI metrics",
-      "Modular microservice design prepared for horizontal container autoscaling"
+      "Document ingestion and text chunking pipeline for custom knowledge bases",
+      "Vector similarity retrieval grounding LLM responses with source references",
+      "Clean responsive web interface with real-time streaming conversational responses",
+      "Modular Python backend supporting interchangeable LLM and embedding providers"
     ],
     architecture: [
-      "Next.js App Router front-end with responsive interactive analytics charts",
-      "FastAPI REST API layer with Pydantic validation & strict type safety",
-      "PostgreSQL persistence with SQLAlchemy ORM and Alembic migrations",
-      "Background worker cluster with Redis message broker for resilient queue dispatch"
+      "HTML5 & JavaScript dynamic chat interface with markdown formatting and citation drawers",
+      "FastAPI server exposing REST and streaming endpoints for query processing",
+      "LangChain retrieval pipeline connecting vector search to contextual LLM prompts",
+      "Vector storage maintaining document embeddings for fast cosine similarity lookups"
+    ]
+  },
+  {
+    slug: "multi-tenant-chatbot",
+    title: "Multi-Tenant AI Chatbot Platform",
+    description: "A scalable AI chatbot architecture supporting multi-tenancy, enabling isolated organization workspaces, custom system prompts, and tenant-specific knowledge bases.",
+    technicalNote: "Engineered multi-tenant data isolation at the database and retrieval level to ensure zero cross-tenant data leakage while sharing core LLM infrastructure.",
+    longDescription: "A production-ready chatbot platform engineered with multi-tenant architecture. Allows multiple organizations or departments to manage independent chatbot instances, customized persona prompts, separate access controls, and segregated knowledge silos under a unified backend infrastructure.",
+    tags: ["ai", "dev"],
+    techStack: ["HTML", "JavaScript", "Python", "FastAPI", "PostgreSQL", "Multi-Tenancy", "LLM APIs"],
+    image: "/images/projects/multi-tenant-chatbot.svg",
+    repoUrl: "https://github.com/Muhammadkhalid123/Multi-Tenant-Chatbot",
+    featured: true,
+    highlights: [
+      "Strict tenant isolation and workspace partitioning for enterprise data privacy",
+      "Customizable bot personas, system directives, and dedicated knowledge repositories",
+      "Token tracking, rate limiting, and session management per organization",
+      "Modern web front-end with tenant branding and analytics overview"
+    ],
+    architecture: [
+      "HTML/JS frontend with tenant-aware routing and authenticated bot widget",
+      "FastAPI API gateway enforcing tenant validation, rate limits, and authentication",
+      "Isolated relational schema and vector collections partitioned by tenant ID",
+      "Centralized LLM prompt orchestration layer with dynamic context injection"
     ]
   },
   {
     slug: "text-summarizer",
     title: "AI Text Summarizer & Synthesizer",
-    description: "Transformer-based NLP system that ingests long-form documents, extracts key arguments, and synthesizes multi-tier summaries with customizable abstractive modes.",
-    longDescription: "An advanced natural language processing application combining Hugging Face transformer models and LangChain to distill massive technical whitepapers, financial reports, and articles into concise, actionable summaries. Supports extractive, abstractive, and bullet-point briefing formats.",
+    description: "Takes long documents and produces summaries at different lengths — quick skim vs. detailed. Built on transformer models (BART/T5) with a FastAPI backend so the summarization runs as its own service.",
+    technicalNote: "Wrapped Hugging Face BART/T5 models in a standalone FastAPI service to keep heavy model inference decoupled from the frontend.",
+    longDescription: "A natural language processing application that summarizes long-form documents into concise briefings. Users can toggle between concise bullet summaries and detailed abstractive overviews. Heavy transformer computation is encapsulated in a dedicated FastAPI service with token tracking.",
     tags: ["ai"],
-    techStack: ["Python", "PyTorch", "Hugging Face", "Transformers", "FastAPI", "React", "Tailwind CSS"],
+    techStack: ["Python", "PyTorch", "Hugging Face", "FastAPI", "React", "Tailwind CSS"],
     image: "/images/projects/text-summarizer.svg",
     repoUrl: "https://github.com/Muhammadkhalid123/text-summarizer",
-    liveUrl: "https://summarizer-demo.khalid.dev",
     featured: true,
     highlights: [
-      "Fine-tuned BART/T5 models optimized for domain-specific abstractive text summarization",
-      "Chunked attention processing to handle ultra-long documents without token limit overflows",
-      "Real-time streaming generation using Server-Sent Events (SSE)",
-      "Interactive UI with readability scores, key concept extraction, and multi-format export"
+      "Abstractive summarization using fine-tuned BART and T5 transformer architectures",
+      "FastAPI inference backend handling chunked tokenization for longer inputs",
+      "Interactive frontend showing side-by-side comparison of source text and generated summary",
+      "Lightweight containerization enabling deployment on modest compute instances"
     ],
     architecture: [
-      "PyTorch inference pipeline with quantized weights for rapid low-latency CPU/GPU execution",
-      "FastAPI backend with streaming endpoints and token telemetry logging",
-      "LangChain text chunking and recursive summarization map-reduce strategy",
-      "Next.js / React reactive interface with live typing animation and summary comparison"
+      "React front-end with clean typography and summary length controls",
+      "FastAPI API layer receiving document payloads and managing inference requests",
+      "Hugging Face pipeline tokenizing text and running forward passes through transformer weights",
+      "Structured JSON responses containing synthesized text and metadata"
     ]
   },
   {
     slug: "simple-tts-system",
-    title: "Neural TTS & Voice Synthesis",
-    description: "Low-latency neural text-to-speech synthesis pipeline generating natural speech audio from arbitrary text with pitch modulation and audio export.",
-    longDescription: "A deep learning acoustic modeling and vocoder pipeline designed for expressive, natural text-to-speech generation. Features phoneme mapping, acoustic feature extraction, waveform generation, and an interactive audio studio dashboard.",
+    title: "Lightweight Web Text-to-Speech (gTTS)",
+    description: "Lightweight web-based Text-to-Speech system built with Python using Google's gTTS. Converts text inputs into clear, natural voice audio with browser playback and export.",
+    technicalNote: "Leverages Google's gTTS engine integrated with an asynchronous web layer to generate and stream audio blobs directly to the HTML5 Audio API.",
+    longDescription: "A lightweight, responsive web-based Text-to-Speech (TTS) application developed using Python and Google's gTTS library. Converts user-submitted text into smooth, clear spoken audio in real time with audio file download and in-browser playback controls.",
     tags: ["ai"],
-    techStack: ["Python", "PyTorch", "Coqui TTS", "FastAPI", "Web Audio API", "Docker", "FFmpeg"],
+    techStack: ["Python", "Google gTTS", "FastAPI", "HTML5 Audio", "JavaScript", "Docker"],
     image: "/images/projects/simple-tts-system.svg",
     repoUrl: "https://github.com/Muhammadkhalid123/simple-tts-system",
-    liveUrl: "https://tts-demo.khalid.dev",
     featured: true,
     highlights: [
-      "End-to-end neural acoustic model paired with high-fidelity neural vocoder",
-      "Sub-200ms first-chunk audio streaming playback via Web Audio API",
-      "Multi-speaker voice embedding switching and pitch/speed control",
-      "Integrated audio normalizer and spectrogram visualizer"
+      "Real-time speech synthesis using Google's gTTS engine",
+      "Lightweight web interface with live audio waveform and playback controls",
+      "Instant MP3 generation and audio download streaming",
+      "Asynchronous Python web server optimized for fast audio file serving"
     ],
     architecture: [
-      "PyTorch neural synthesis engine containerized with ONNX runtime acceleration",
-      "Asynchronous FastAPI streaming bridge converting audio chunks to Opus/MP3 streams",
-      "Browser Web Audio API pipeline with HTML5 canvas real-time frequency visualizer",
-      "Dockerized microservice environment with pre-cached model weights"
+      "Interactive web interface featuring text area and HTML5 audio player controls",
+      "FastAPI / Python endpoint converting text payloads to audio buffers via gTTS",
+      "In-memory audio caching and streaming response delivery",
+      "Dockerized lightweight service ready for instant container deployment"
+    ]
+  },
+  {
+    slug: "smm-automation",
+    title: "Social Media Marketing Automation",
+    description: "Schedules and posts social content automatically, with analytics tracking built in. Used Celery + Redis for the background job queue since posting has to happen on a schedule independent of the web app being open.",
+    technicalNote: "Used Celery + Redis for the background job queue so scheduled posts dispatch reliably in the background without blocking web requests.",
+    longDescription: "An automation tool built to manage and schedule multi-channel social media posts. The application features a Next.js front-end for drafting and calendar planning, a FastAPI backend for handling logic, and an asynchronous Celery worker pool with Redis to trigger and dispatch posts on a timetable.",
+    tags: ["ai", "dev"],
+    techStack: ["Python", "FastAPI", "TypeScript", "Next.js", "PostgreSQL", "Redis", "Celery", "Docker"],
+    image: "/images/projects/smm-automation.svg",
+    repoUrl: "https://github.com/Muhammadkhalid123/SMM-Automation",
+    featured: true,
+    highlights: [
+      "Asynchronous background task queue powered by Celery and Redis",
+      "PostgreSQL database storing schedule entries, authentication tokens, and campaign metadata",
+      "FastAPI backend with Pydantic validation for structured API endpoints",
+      "Containerized with Docker Compose for local development and server deployment"
+    ],
+    architecture: [
+      "Next.js App Router user interface for scheduling calendar and campaign management",
+      "FastAPI REST API handling authentication, CRUD operations, and worker queue dispatches",
+      "Redis broker managing pending jobs and timing events",
+      "Celery workers executing background network requests independently of user sessions"
+    ]
+  },
+  {
+    slug: "leads-generating-bot",
+    title: "Automated Lead-Generation Bot",
+    description: "An automated bot for scraping, filtering, and qualifying sales leads and business contact info into structured datasets for outreach pipelines.",
+    technicalNote: "Implemented automated anti-blocking rate limiters, headless browser automation, and data normalization pipelines to build clean prospect databases.",
+    longDescription: "An intelligent Python-based lead-generation and prospecting automation tool. Designed to crawl targeted public directories and platforms, extract verified business contacts, filter prospective leads by custom qualification criteria, and export clean, structured datasets ready for CRM integration.",
+    tags: ["ai", "dev"],
+    techStack: ["Python", "FastAPI", "Playwright", "BeautifulSoup", "Pandas", "PostgreSQL", "Docker"],
+    image: "/images/projects/leads-generating-bot.svg",
+    repoUrl: "https://github.com/Muhammadkhalid123/leads-generating-bot",
+    featured: true,
+    highlights: [
+      "Automated extraction of business contact details, emails, and company metadata",
+      "Custom lead filtering, scoring, and duplicate elimination heuristics",
+      "Automated export to structured CSV, JSON, and direct CRM sync",
+      "Robust error handling with retry logic and dynamic proxy/rate-limiting support"
+    ],
+    architecture: [
+      "Web crawler & headless browser scraping engine powered by Python",
+      "Data validation and cleaning pipeline parsing unstructured HTML with BeautifulSoup",
+      "FastAPI service orchestrating search parameters and export jobs",
+      "Structured relational storage in PostgreSQL for prospect deduplication"
     ]
   },
   {
     slug: "enterprise-crm",
     title: "Enterprise CRM & Pipeline Manager",
-    description: "Full-stack customer relationship management platform featuring visual kanban sales pipelines, contact activity feeds, and role-based access control.",
-    longDescription: "An end-to-end CRM solution architected for modern business teams. Provides real-time deal stage tracking, activity timelines, automated email sequence triggers, granular RBAC permissions, and comprehensive revenue forecasting analytics.",
+    description: "A CRM with a visual kanban-style sales pipeline and role-based permissions, so different users see different things. Built with Prisma + PostgreSQL for the data layer and Zod for validation end to end.",
+    technicalNote: "Combined Prisma ORM with strict Zod schema validation to ensure type safety from the UI inputs all the way to PostgreSQL.",
+    longDescription: "A full-stack customer relationship management web application designed for team pipeline tracking. Features drag-and-drop deal progression, contact interaction histories, role-based access control (Admin, Manager, Rep), and structured data export.",
     tags: ["dev"],
     techStack: ["TypeScript", "Next.js 14", "React", "Node.js", "PostgreSQL", "Prisma", "Tailwind CSS", "Zod"],
     image: "/images/projects/crm.svg",
     repoUrl: "https://github.com/Muhammadkhalid123/CRM",
-    liveUrl: "https://crm-demo.khalid.dev",
     featured: false,
     highlights: [
-      "Interactive drag-and-drop deal board with optimistic UI state updates",
-      "Strict type-safe database schemas with Prisma ORM and automated migrations",
-      "JWT and session-based authentication with role-based permission tiers (Admin, Manager, Rep)",
-      "Exportable CSV/PDF reports with dynamic query filtering and aggregation"
+      "Kanban deal board with real-time stage updates and activity tracking",
+      "Relational database schema modeled in PostgreSQL with Prisma migrations",
+      "Role-based authorization restricting sensitive deal financials to managers/admins",
+      "End-to-end type safety using TypeScript and Zod validation"
     ],
     architecture: [
-      "Next.js App Router full-stack architecture with React Server Components (RSC)",
-      "Server Actions with Zod schema validation for secure atomic mutation handling",
-      "PostgreSQL relational schema optimized with indexed foreign keys and join tables",
-      "Tailwind CSS design system styled with custom dark mode and accessible color tokens"
+      "Next.js App Router front-end with server components and responsive layouts",
+      "Server Actions handling mutations with Zod input validation",
+      "Prisma client executing indexed queries and relational joins on PostgreSQL",
+      "Tailwind CSS component styling with clean dark and light mode support"
     ]
   },
   {
     slug: "ec2-docker-cicd",
-    title: "AWS EC2 Automated CI/CD & Docker Pipeline",
-    description: "Production infrastructure featuring automated GitHub Actions CI/CD, multi-stage Docker containerization, AWS EC2 provisioning, and Nginx reverse proxy with SSL.",
-    longDescription: "A rock-solid DevOps deployment pipeline built from the ground up to support zero-downtime containerized application releases. Includes automated lint/test workflows, container registry publishing on GHCR, automated SSH deployment hooks, Nginx reverse proxy with SSL termination, and resource monitoring.",
-    // TODO: replace with real project if specific repo is added
+    title: "AWS EC2 CI/CD & Docker Pipeline",
+    description: "This is the actual deployment infrastructure this portfolio runs on: GitHub Actions builds a Docker image, ships it to EC2, and Nginx handles SSL and routing. Built to achieve seamless zero-downtime container swaps on a minimal EC2 box.",
+    technicalNote: "The key challenge was achieving zero-downtime container swaps on a small t3.micro EC2 instance without paying for an expensive AWS Application Load Balancer.",
+    longDescription: "The production DevOps deployment pipeline powering this portfolio website. On every push to main, GitHub Actions runs lint and type validation, builds a minimal multi-stage Docker image (<120MB), and pushes it to GHCR. An SSH deploy script triggers a container pull and restart on AWS EC2 behind an Nginx reverse proxy with automated Let's Encrypt SSL.",
     tags: ["dev", "devops"],
-    techStack: ["Docker", "GitHub Actions", "AWS EC2", "Nginx", "Linux (Ubuntu)", "Bash", "Let's Encrypt", "GHCR"],
+    techStack: ["Docker", "GitHub Actions", "AWS EC2", "Nginx", "Linux", "Bash", "Let's Encrypt"],
     image: "/images/projects/ec2-docker-cicd.svg",
-    repoUrl: "https://github.com/Muhammadkhalid123",
+    repoUrl: "https://github.com/Muhammadkhalid123/portfolio",
     liveUrl: "https://khalid.dev",
-    featured: true,
-    highlights: [
-      "Zero-downtime rolling container deployments triggered automatically on git push to main",
-      "Multi-stage Docker builds reducing production container size to under 120MB",
-      "Nginx reverse proxy with automated Let's Encrypt SSL renewal, Gzip compression, and security headers",
-      "Automated healthchecks with automatic rollback on service degradation"
-    ],
-    architecture: [
-      "GitHub Actions workflow for continuous integration (lint, typecheck, build validation)",
-      "Docker multi-stage builder packaging Next.js standalone server into a slim Alpine image",
-      "Automated SSH trigger executing docker-compose pull and atomic container swaps on AWS EC2",
-      "Nginx edge proxy enforcing HSTS, CSP headers, rate-limiting, and micro-caching"
-    ],
-    deployment: {
-      platform: "AWS EC2 (t3.micro, Ubuntu 22.04 LTS)",
-      containerization: "Docker & Docker Compose (Multi-stage node:20-alpine)",
-      ciCd: "GitHub Actions (.github/workflows/deploy.yml) -> GHCR",
-      proxy: "Nginx 1.25 Reverse Proxy + Certbot SSL",
-      details: [
-        "Repository push to 'main' triggers automated CI matrix test and typecheck",
-        "Docker image built and pushed to GitHub Container Registry (ghcr.io) tagged with commit SHA",
-        "EC2 instance receives deployment trigger via secure SSH authentication key",
-        "Nginx forwards public port 80/443 traffic to upstream Next.js container on localhost:3000"
-      ]
-    }
-  },
-  {
-    slug: "rag-knowledge-engine",
-    title: "RAG Enterprise Knowledge Engine",
-    description: "Retrieval-Augmented Generation platform indexing private corporate documentation with vector embeddings, hybrid semantic search, and hallucination guardrails.",
-    longDescription: "An enterprise-grade RAG solution allowing teams to chat with complex internal documentation with pinpoint source citations. Incorporates dense vector similarity search, BM25 keyword filtering, reranking models, and conversational memory buffers.",
-    tags: ["ai", "dev"],
-    techStack: ["Python", "LangChain", "Qdrant", "OpenAI / Claude API", "FastAPI", "Next.js", "TypeScript", "Tailwind CSS"],
-    image: "/images/projects/rag-knowledge-engine.svg",
-    repoUrl: "https://github.com/Muhammadkhalid123",
-    liveUrl: "https://rag-demo.khalid.dev",
-    featured: true,
-    highlights: [
-      "Hybrid search combining dense vector embeddings with sparse BM25 text indices",
-      "FlashRank cross-encoder reranking boosting precision on top-5 retrieval context",
-      "Citation grounding verifying source document spans to minimize LLM hallucinations",
-      "Real-time vector ingestion pipeline supporting PDF, DOCX, Markdown, and URL crawls"
-    ],
-    architecture: [
-      "FastAPI asynchronous backend with vector embedding pipelines and LangChain integration",
-      "Qdrant vector database instance optimized for cosine distance search and payload filters",
-      "Next.js client interface with interactive source reference popups and chat history",
-      "Dockerized microservice stack with decoupled worker nodes for document embedding"
-    ]
-  },
-  {
-    slug: "microservice-infra",
-    title: "Dockerized Microservice Cloud Architecture",
-    description: "Multi-container microservice infrastructure with centralized API gateway, internal DNS discovery, Redis caching layer, and automated monitoring telemetry.",
-    longDescription: "A comprehensive reference architecture for deploying decoupled microservice applications in isolated Docker networks. Features an Nginx API Gateway routing traffic between auth, data, and background services, backed by Redis caching and Prometheus telemetry.",
-    // TODO: replace with real project if specific repo is added
-    tags: ["dev", "devops"],
-    techStack: ["Docker Compose", "Nginx", "Redis", "PostgreSQL", "Prometheus", "Grafana", "Bash", "Linux"],
-    image: "/images/projects/microservice-infra.svg",
-    repoUrl: "https://github.com/Muhammadkhalid123",
-    liveUrl: "https://infra-demo.khalid.dev",
     featured: false,
     highlights: [
-      "Centralized reverse proxy API gateway handling SSL termination and path-based routing",
-      "Isolated container networks ensuring secure database and cache segregation",
-      "Prometheus metrics scraping with Grafana dashboards for CPU, memory, and network I/O monitoring",
-      "Graceful service recovery with auto-restart policies and persistent named volume backups"
+      "Automated CI/CD with GitHub Actions: linting, typechecking, and container build",
+      "Multi-stage Dockerfile producing a slim Alpine production image (<120MB)",
+      "Automated SSH deploy script executing docker compose up on AWS EC2",
+      "Hardened Nginx reverse proxy with gzip compression, security headers, and SSL"
     ],
     architecture: [
-      "Docker Compose network orchestration with dedicated frontend, backend, and database subnets",
-      "Nginx edge proxy dispatching /api/auth, /api/data, and / metrics endpoints",
-      "Redis distributed cache layer with LRU eviction and replication readiness",
-      "Prometheus + Node Exporter metrics collection daemon"
+      "GitHub Actions CI runner validating code and publishing images to GitHub Container Registry",
+      "AWS EC2 Ubuntu instance running Docker Engine and Docker Compose",
+      "Nginx reverse proxy routing port 80/443 traffic to the internal Next.js container",
+      "Let's Encrypt Certbot renewing SSL certificates automatically"
     ],
     deployment: {
-      platform: "AWS EC2 / DigitalOcean Droplet (Linux Ubuntu)",
-      containerization: "Docker Compose with multi-service bridge networking",
-      ciCd: "GitHub Actions automated build and registry publishing",
-      proxy: "Nginx Gateway with rate limiting & upstream load-balancing",
+      platform: "AWS EC2 (Ubuntu 22.04 LTS, t3.micro)",
+      containerization: "Docker & Docker Compose (Multi-stage node:20-alpine)",
+      ciCd: "GitHub Actions (.github/workflows/deploy.yml) -> GHCR",
+      proxy: "Nginx 1.25 Reverse Proxy + Let's Encrypt SSL",
       details: [
-        "Declarative docker-compose.yml defining 6 interdependent service containers",
-        "Environment variable injection via encrypted .env production profiles",
-        "Automated log rotation preventing disk exhaustion on small instances"
+        "Pushing to 'main' triggers automated linting, strict typecheck, and container build",
+        "Image published to ghcr.io tagged with commit SHA",
+        "EC2 instance receives deployment trigger over secure SSH key",
+        "Nginx forwards public port 443 HTTPS traffic to localhost:3000"
       ]
     }
   }

@@ -2,21 +2,14 @@
 
 import React, { useState } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import {
   GitBranch,
   Terminal,
   Server,
   Shield,
-  ArrowRight,
-  CheckCircle2,
-  Lock,
-  Cpu,
-  RefreshCw,
   Box,
-  Layers,
-  Code2,
+  ArrowRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,11 +17,8 @@ export interface PipelineStep {
   id: string;
   step: string;
   title: string;
-  category: string;
   icon: React.ElementType;
-  description: string;
   codeSnippet: string;
-  badge: string;
 }
 
 export function DeploymentStack({ persona = "dev" }: { persona?: "personal" | "dev" | "ai" }) {
@@ -38,23 +28,17 @@ export function DeploymentStack({ persona = "dev" }: { persona?: "personal" | "d
     {
       id: "git",
       step: "01",
-      title: "Git Push to Main",
-      category: "Source Control",
+      title: "Push to main",
       icon: GitBranch,
-      description: "Code commit and pull request merge to the 'main' branch automatically activates GitHub Actions webhooks.",
-      badge: "Webhook Trigger",
       codeSnippet: `git add .
-git commit -m "feat(infra): zero-downtime deployment release"
+git commit -m "feat: ship update"
 git push origin main`,
     },
     {
       id: "ci",
       step: "02",
-      title: "GitHub Actions CI",
-      category: "Continuous Integration",
+      title: "GitHub Actions",
       icon: Terminal,
-      description: "Automated workflow executes linting (ESLint), strict TypeScript typechecks, and test suites.",
-      badge: "CI Verification",
       codeSnippet: `jobs:
   validate-and-build:
     runs-on: ubuntu-latest
@@ -67,11 +51,8 @@ git push origin main`,
     {
       id: "docker",
       step: "03",
-      title: "Docker Multi-Stage",
-      category: "Containerization",
+      title: "Docker build",
       icon: Box,
-      description: "Builds a minimal standalone production container using Node 20 Alpine (<120MB) and publishes to GHCR.",
-      badge: "ghcr.io image",
       codeSnippet: `FROM node:20-alpine AS runner
 WORKDIR /app
 COPY --from=builder /app/.next/standalone ./
@@ -82,11 +63,8 @@ CMD ["node", "server.js"]`,
     {
       id: "ec2",
       step: "04",
-      title: "AWS EC2 Rollout",
-      category: "Cloud Hosting",
+      title: "EC2 deploy",
       icon: Server,
-      description: "Actions runner establishes an authenticated SSH session into the AWS EC2 instance and triggers docker-compose pull.",
-      badge: "AWS EC2 t3.micro",
       codeSnippet: `ssh -i $SSH_PRIVATE_KEY $SSH_USER@$SSH_HOST << 'EOF'
   cd /var/www/portfolio
   docker compose pull
@@ -96,11 +74,8 @@ EOF`,
     {
       id: "nginx",
       step: "05",
-      title: "Nginx Reverse Proxy",
-      category: "Edge Routing & SSL",
+      title: "Nginx (SSL)",
       icon: Shield,
-      description: "Nginx terminates SSL via Let's Encrypt Certbot, applies gzip compression and security headers, routing to port 3000.",
-      badge: "SSL / Port 443",
       codeSnippet: `server {
   listen 443 ssl http2;
   server_name khalid.dev;
@@ -114,149 +89,79 @@ EOF`,
   ];
 
   const current = steps[activeStep];
-  const CurrentIcon = current.icon;
 
   return (
-    <section id="deployment" className="py-24 relative overflow-hidden bg-[#070b14]">
-      {/* Background cyber grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.04] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="deployment" className="py-24 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           badge="DevOps Architecture"
           badgeVariant="devops"
-          title="Automated Cloud"
-          highlightedTitle="Deployment Pipeline"
-          gradientClass="from-cyan-400 via-blue-400 to-emerald-400"
-          description="A production-grade, zero-downtime CI/CD deployment stack running on AWS EC2 behind a hardened Nginx reverse proxy."
+          title="How It Gets to"
+          highlightedTitle="Production"
+          gradientClass="from-[#800020] via-[#b92144] to-[#800020]"
+          description="A clean, automated deployment pipeline from local git commit to live AWS EC2 instance."
         />
 
-        {/* Pipeline Step Interactive Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-10">
-          {steps.map((s, index) => {
-            const StepIcon = s.icon;
-            const isSelected = activeStep === index;
+        {/* Clean Linear Pipeline Diagram */}
+        <div className="p-3.5 sm:p-5 rounded-3xl liquid-glass mb-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3">
+            {steps.map((s, index) => {
+              const StepIcon = s.icon;
+              const isSelected = activeStep === index;
 
-            return (
-              <button
-                key={s.id}
-                onClick={() => setActiveStep(index)}
-                className={cn(
-                  "p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between group",
-                  isSelected
-                    ? "bg-cyan-950/70 border-cyan-400/80 shadow-[0_0_25px_rgba(6,182,212,0.2)] text-white"
-                    : "bg-slate-900/50 hover:bg-slate-900/90 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700"
-                )}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className={cn(
-                    "text-xs font-mono font-bold",
-                    isSelected ? "text-cyan-300" : "text-slate-500"
-                  )}>
-                    {s.step}
-                  </span>
-                  <div className={cn(
-                    "p-1.5 rounded-lg border",
-                    isSelected
-                      ? "bg-cyan-900/50 border-cyan-500/40 text-cyan-300"
-                      : "bg-slate-800 border-slate-700 text-slate-400 group-hover:text-slate-200"
-                  )}>
-                    <StepIcon className="w-4 h-4" />
-                  </div>
-                </div>
+              return (
+                <React.Fragment key={s.id}>
+                  <button
+                    onClick={() => setActiveStep(index)}
+                    className={cn(
+                      "flex-1 w-full p-3.5 rounded-2xl border text-center transition-all duration-300 cursor-pointer flex items-center justify-center gap-2.5",
+                      isSelected
+                        ? "bg-[#800020] border-[#f0a3b3]/50 text-[#FCFAF4] shadow-[0_4px_25px_rgba(128,0,32,0.4),inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl font-bold"
+                        : "liquid-glass-pill-dark text-[#FCFAF4]/70 hover:text-[#FCFAF4] hover:bg-[#800020]/20"
+                    )}
+                  >
+                    <StepIcon className={cn("w-4 h-4", isSelected ? "text-[#FCFAF4]" : "text-[#FCFAF4]/60")} />
+                    <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">
+                      {s.title}
+                    </span>
+                  </button>
 
-                <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-slate-100 group-hover:text-white line-clamp-1">
-                    {s.title}
-                  </h4>
-                  <span className="text-[11px] text-slate-400">
-                    {s.category}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Active Step Deep-Dive Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          {/* Left Column: Details & Benefits (5 cols) */}
-          <div className="lg:col-span-5 p-7 rounded-2xl bg-slate-900/70 border border-slate-800 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <Badge variant="dev" size="sm">
-                  {current.badge}
-                </Badge>
-                <span className="text-xs font-mono text-slate-500">Step {current.step} of 05</span>
-              </div>
-
-              <h3 className="text-2xl font-extrabold text-white mb-3 flex items-center gap-3">
-                <CurrentIcon className="w-6 h-6 text-cyan-400" />
-                <span>{current.title}</span>
-              </h3>
-
-              <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                {current.description}
-              </p>
-
-              <div className="space-y-2.5">
-                <div className="flex items-center gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Fully automated on git commit triggers</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Isolated environment variables via secrets</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Rolling container deployment with zero downtime</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
-              <span className="font-mono">Status: Automated & Tested</span>
-              <div className="flex items-center gap-1.5 text-emerald-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Healthy</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Code Snippet / Config Viewer (7 cols) */}
-          <div className="lg:col-span-7 rounded-2xl bg-[#090e18] border border-slate-800/90 overflow-hidden flex flex-col">
-            {/* Terminal Header */}
-            <div className="px-4 py-3 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-                <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                <span className="ml-2 text-xs font-mono text-slate-400">
-                  {current.id === "git"
-                    ? "terminal ~ git-push"
-                    : current.id === "ci"
-                    ? ".github/workflows/deploy.yml"
-                    : current.id === "docker"
-                    ? "docker/Dockerfile"
-                    : current.id === "ec2"
-                    ? "deploy-hook.sh (EC2 SSH)"
-                    : "docker/nginx.conf"}
-                </span>
-              </div>
-              <Badge variant="outline" size="sm" className="font-mono text-[10px]">
-                production ready
-              </Badge>
-            </div>
-
-            {/* Code Block */}
-            <div className="p-5 font-mono text-xs text-cyan-200 overflow-x-auto flex-1 leading-relaxed bg-[#060a12]">
-              <pre>
-                <code>{current.codeSnippet}</code>
-              </pre>
-            </div>
+                  {index < steps.length - 1 && (
+                    <ArrowRight className="hidden md:block w-4 h-4 text-[#800020]/60 shrink-0" />
+                  )}
+                </React.Fragment>
+              );
+            })}
           </div>
         </div>
+
+        {/* Code Snippet Viewer */}
+        <div className="rounded-3xl liquid-glass overflow-hidden mb-6">
+          <div className="px-5 py-3 bg-white/[0.04] border-b border-white/10 flex items-center justify-between backdrop-blur-xl">
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shadow-[0_0_8px_rgba(244,63,94,0.5)]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+              <span className="ml-2 text-xs font-mono text-[#FCFAF4]">
+                {current.title} — configuration
+              </span>
+            </div>
+            <span className="text-[11px] font-mono text-[#f0a3b3] font-semibold px-2.5 py-0.5 rounded-full bg-[#800020]/20 border border-[#800020]/40">
+              Step {current.step} / 05
+            </span>
+          </div>
+
+          <div className="p-6 font-mono text-xs text-[#FCFAF4] overflow-x-auto bg-black/40 leading-relaxed backdrop-blur-xl">
+            <pre>
+              <code>{current.codeSnippet}</code>
+            </pre>
+          </div>
+        </div>
+
+        {/* Direct One-Sentence Statement */}
+        <p className="text-center text-sm text-[#010101]/80 font-medium">
+          This is the actual pipeline behind every project on this site — including this portfolio.
+        </p>
       </div>
     </section>
   );

@@ -18,7 +18,7 @@ export function SectionHeading({
   badgeVariant = "default",
   title,
   highlightedTitle,
-  gradientClass = "from-indigo-400 to-purple-400",
+  gradientClass = "from-[#800020] via-[#b92144] to-[#800020]",
   description,
   align = "center",
   className,
@@ -36,7 +36,7 @@ export function SectionHeading({
           {badge}
         </Badge>
       )}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+      <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-[-0.035em] text-[#010101] mb-4 leading-[1.15]">
         {title}{" "}
         {highlightedTitle && (
           <span className={cn("bg-gradient-to-r bg-clip-text text-transparent", gradientClass)}>
@@ -45,7 +45,7 @@ export function SectionHeading({
         )}
       </h2>
       {description && (
-        <p className="max-w-2xl text-base sm:text-lg text-slate-400 font-normal leading-relaxed">
+        <p className="max-w-2xl text-base sm:text-lg text-[#010101]/80 font-normal leading-relaxed tracking-[-0.01em]">
           {description}
         </p>
       )}

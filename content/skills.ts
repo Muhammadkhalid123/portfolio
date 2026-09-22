@@ -2,16 +2,14 @@ import { PersonaTag } from "./projects";
 
 export interface Skill {
   name: string;
-  category: "devops" | "fullstack" | "ai" | "databases_tools";
-  level: number; // 1-100
+  category: "devops" | "fullstack" | "ai";
   tags: PersonaTag[];
   featured?: boolean;
-  iconName?: string;
-  description?: string;
+  note?: string;
 }
 
 export interface SkillCategory {
-  key: "devops" | "fullstack" | "ai" | "databases_tools";
+  key: "devops" | "fullstack" | "ai";
   title: string;
   description: string;
   badge: string;
@@ -19,65 +17,54 @@ export interface SkillCategory {
 }
 
 export const skillCategories: Record<string, SkillCategory> = {
-  devops: {
-    key: "devops",
-    title: "DevOps & Cloud Infrastructure",
-    description: "Automated container builds, CI/CD orchestration, reverse proxy configurations, and AWS EC2 hosting.",
-    badge: "Infrastructure",
-    personaTag: "devops",
-  },
   fullstack: {
     key: "fullstack",
-    title: "Full-Stack Web Engineering",
-    description: "Modern, high-performance web applications, server components, reactive frontends, and typed REST/tRPC APIs.",
+    title: "Full-Stack Development",
+    description: "Tools and frameworks we reach for when building web applications and backend APIs.",
     badge: "Core Stack",
     personaTag: "dev",
   },
   ai: {
     key: "ai",
-    title: "AI, RAG & Neural Models",
-    description: "Retrieval-Augmented Generation, LLM fine-tuning, neural text-to-speech audio, and vector search systems.",
-    badge: "Machine Learning",
+    title: "AI & Automation",
+    description: "Architectures we use for RAG chatbots, multi-tenant bot systems, NLP summarization, and automation bots.",
+    badge: "AI Systems",
     personaTag: "ai",
   },
-  databases_tools: {
-    key: "databases_tools",
-    title: "Databases, Caching & Tooling",
-    description: "Relational persistence, vector databases, high-speed memory caching, and developer toolchains.",
-    badge: "Data & Tools",
-    personaTag: "dev",
+  devops: {
+    key: "devops",
+    title: "DevOps & Cloud",
+    description: "How we containerize, test, and deploy applications to production servers.",
+    badge: "Infrastructure",
+    personaTag: "devops",
   },
 };
 
 export const skills: Skill[] = [
-  // DevOps & Cloud
-  { name: "Docker & Compose", category: "devops", level: 94, tags: ["dev", "devops"], featured: true, description: "Multi-stage builds, Alpine optimizations, bridge networks" },
-  { name: "GitHub Actions CI/CD", category: "devops", level: 92, tags: ["dev", "devops"], featured: true, description: "Automated test suites, GHCR publishing, SSH EC2 rollouts" },
-  { name: "AWS (EC2, S3, IAM)", category: "devops", level: 88, tags: ["dev", "devops"], featured: true, description: "Instance provisioning, security groups, Elastic IPs" },
-  { name: "Nginx Reverse Proxy", category: "devops", level: 90, tags: ["dev", "devops"], featured: true, description: "SSL/TLS termination, rate limiting, gzip, security headers" },
-  { name: "Linux / Bash Scripting", category: "devops", level: 89, tags: ["dev", "devops"], featured: true, description: "Server administration, cron scheduling, automation scripts" },
-  { name: "Zero-Downtime Rollouts", category: "devops", level: 86, tags: ["dev", "devops"], featured: false, description: "Atomic container swap, health check verifications" },
+  // Full-Stack
+  { name: "Next.js", category: "fullstack", tags: ["dev"], featured: true, note: "App Router, Server Components & Server Actions" },
+  { name: "TypeScript", category: "fullstack", tags: ["dev"], featured: true, note: "Strict end-to-end typing across frontend and backend" },
+  { name: "React", category: "fullstack", tags: ["dev"], featured: true, note: "Hooks, clean component state, optimistic UI" },
+  { name: "Python", category: "fullstack", tags: ["dev", "ai"], featured: true, note: "AsyncIO, data processing, model integrations & bots" },
+  { name: "FastAPI", category: "fullstack", tags: ["dev", "ai"], featured: true, note: "Pydantic validation, streaming endpoints, typed REST APIs" },
+  { name: "HTML5 / JavaScript", category: "fullstack", tags: ["dev", "ai"], featured: true, note: "Semantic UI, DOM manipulation, responsive web interfaces" },
+  { name: "Tailwind CSS", category: "fullstack", tags: ["dev"], featured: true, note: "Responsive UI layouts, dark mode tokens" },
+  { name: "PostgreSQL", category: "fullstack", tags: ["dev"], featured: true, note: "Relational schema design, indexes, migrations" },
+  { name: "Prisma", category: "fullstack", tags: ["dev"], featured: false, note: "Type-safe database ORM and migrations" },
 
-  // Full Stack
-  { name: "TypeScript / JavaScript", category: "fullstack", level: 96, tags: ["dev"], featured: true, description: "Strict typing, generics, modern ESNext patterns" },
-  { name: "Next.js 14 (App Router)", category: "fullstack", level: 95, tags: ["dev"], featured: true, description: "RSC, Server Actions, dynamic routes, SSG/SSR" },
-  { name: "React 18", category: "fullstack", level: 94, tags: ["dev"], featured: true, description: "Hooks, custom state architecture, optimistic updates" },
-  { name: "Python", category: "fullstack", level: 93, tags: ["dev", "ai"], featured: true, description: "AsyncIO, OOP, data processing, model integrations" },
-  { name: "FastAPI", category: "fullstack", level: 92, tags: ["dev", "ai"], featured: true, description: "Pydantic data validation, OpenAPI specs, SSE streaming" },
-  { name: "Node.js", category: "fullstack", level: 90, tags: ["dev"], featured: false, description: "Express, microservices, asynchronous I/O" },
-  { name: "Tailwind CSS", category: "fullstack", level: 96, tags: ["dev"], featured: true, description: "Responsive layouts, custom design tokens, dark modes" },
+  // AI & ML & Automation
+  { name: "RAG Architectures", category: "ai", tags: ["ai"], featured: true, note: "Vector similarity search, document chunking & grounded citations" },
+  { name: "Multi-Tenant Bot Architecture", category: "ai", tags: ["ai", "dev"], featured: true, note: "Isolated workspace environments, partitioned vector stores & auth" },
+  { name: "LangChain & LLM APIs", category: "ai", tags: ["ai"], featured: true, note: "Prompt chains, tool calling, document parsers & context assembly" },
+  { name: "Hugging Face Transformers", category: "ai", tags: ["ai"], featured: true, note: "BART and T5 models for abstractive and extractive text summarization" },
+  { name: "Google gTTS & Web Audio", category: "ai", tags: ["ai"], featured: true, note: "Lightweight text-to-speech audio streaming and in-browser playback" },
+  { name: "Web Scraping & Lead Bots", category: "ai", tags: ["ai", "dev"], featured: true, note: "Playwright, BeautifulSoup, and automated data extraction pipelines" },
+  { name: "Social Media Automation", category: "ai", tags: ["ai", "dev"], featured: false, note: "Celery & Redis asynchronous background dispatch queues" },
 
-  // AI & ML
-  { name: "RAG Architectures", category: "ai", level: 94, tags: ["ai"], featured: true, description: "Dense vector retrieval, hybrid BM25 search, reranking" },
-  { name: "LangChain & LlamaIndex", category: "ai", level: 91, tags: ["ai"], featured: true, description: "Agent tool calling, conversational memory, document parsers" },
-  { name: "Hugging Face / Transformers", category: "ai", level: 89, tags: ["ai"], featured: true, description: "Text summarization, BART, T5, BERT embeddings" },
-  { name: "Neural TTS & Audio (Coqui/Whisper)", category: "ai", level: 88, tags: ["ai"], featured: true, description: "Acoustic vocoders, phoneme mapping, speech transcription" },
-  { name: "Vector DBs (Qdrant, Pinecone)", category: "ai", level: 90, tags: ["ai", "dev"], featured: true, description: "Cosine similarity, payload filtering, index optimization" },
-  { name: "Prompt Engineering & Guardrails", category: "ai", level: 93, tags: ["ai"], featured: false, description: "Structured JSON outputs, few-shot prompting, safety checks" },
-
-  // Databases & Tools
-  { name: "PostgreSQL & Prisma", category: "databases_tools", level: 92, tags: ["dev"], featured: true, description: "Relational modeling, indexing, ACID transactions, migrations" },
-  { name: "Redis", category: "databases_tools", level: 89, tags: ["dev"], featured: true, description: "Task queues, pub/sub, distributed caching, session storage" },
-  { name: "Git / GitHub Workflow", category: "databases_tools", level: 95, tags: ["dev", "devops", "ai"], featured: true, description: "Branching strategies, PR reviews, release tagging" },
-  { name: "REST & WebSockets", category: "databases_tools", level: 91, tags: ["dev", "ai"], featured: false, description: "Real-time communication, bi-directional event streaming" },
+  // DevOps / Cloud
+  { name: "Docker & Compose", category: "devops", tags: ["dev", "devops"], featured: true, note: "Multi-stage builds, containerized deployment across our project portfolio" },
+  { name: "GitHub Actions CI/CD", category: "devops", tags: ["dev", "devops"], featured: true, note: "Automated lint, typecheck, build validation, and SSH deploy triggers" },
+  { name: "AWS EC2", category: "devops", tags: ["dev", "devops"], featured: true, note: "Ubuntu instances, Elastic IPs, Security Groups" },
+  { name: "Nginx", category: "devops", tags: ["dev", "devops"], featured: true, note: "Reverse proxy, Let's Encrypt SSL termination, Gzip & security headers" },
+  { name: "Linux / Bash", category: "devops", tags: ["dev", "devops"], featured: true, note: "Server maintenance, shell automation, environment configuration" },
 ];

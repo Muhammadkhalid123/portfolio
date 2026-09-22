@@ -59,7 +59,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         success: true,
-        message: "Your message has been received successfully. I will be in touch shortly!",
+        message: "Your message has been received successfully. We will be in touch shortly!",
       },
       { status: 200 }
     );

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-rag-chat" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e0720"/>
+      <stop offset="50%" stop-color="#180c38"/>
+      <stop offset="100%" stop-color="#04020a"/>
+    </linearGradient>
+    <linearGradient id="bubble-user" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#800020"/>
+      <stop offset="100%" stop-color="#b92144"/>
+    </linearGradient>
+    <linearGradient id="bubble-ai" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2a1650"/>
+      <stop offset="100%" stop-color="#3d1d78"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg-rag-chat)" />
+
+  <!-- Terminal Window Frame -->
+  <rect x="150" y="65" width="500" height="310" rx="16" fill="#140a28" stroke="#4c228a" stroke-width="2" />
+  <rect x="150" y="65" width="500" height="42" rx="16" fill="#221045" />
+  <circle cx="180" cy="86" r="5" fill="#f43f5e"/>
+  <circle cx="196" cy="86" r="5" fill="#f59e0b"/>
+  <circle cx="212" cy="86" r="5" fill="#10b981"/>
+  <text x="400" y="91" fill="#e9d5ff" font-family="monospace" font-size="12" text-anchor="middle">my-rag-based-chatbot // index.html</text>
+
+  <!-- Chat Messages -->
+  <!-- User Message -->
+  <rect x="360" y="125" width="260" height="42" rx="12" fill="url(#bubble-user)" />
+  <text x="375" y="151" fill="#ffffff" font-family="sans-serif" font-size="12">What does Section 4 of the manual state?</text>
+
+  <!-- Retrieval / RAG Step Indicator -->
+  <rect x="180" y="180" width="340" height="34" rx="8" fill="#1f0e3d" stroke="#a855f7" stroke-width="1" stroke-dasharray="4" />
+  <circle cx="200" cy="197" r="4" fill="#06b6d4" />
+  <text x="215" y="201" fill="#67e8f9" font-family="monospace" font-size="10">RAG Ingestion: Retrieved 3 vector chunks (Qdrant)</text>
+
+  <!-- Bot Response with Citation -->
+  <rect x="180" y="225" width="410" height="68" rx="12" fill="url(#bubble-ai)" stroke="#6b21a8" stroke-width="1" />
+  <text x="198" y="250" fill="#f3e8ff" font-family="sans-serif" font-size="12">According to [Doc 4.2], system failovers trigger</text>
+  <text x="198" y="268" fill="#f3e8ff" font-family="sans-serif" font-size="12">redundant nodes automatically within 250ms.</text>
+  <rect x="198" y="275" width="105" height="14" rx="4" fill="#800020" />
+  <text x="250" y="285" fill="#ffffff" font-family="monospace" font-size="9" text-anchor="middle">Source: Manual_v2.pdf</text>
+
+  <!-- Input Field -->
+  <rect x="175" y="310" width="450" height="42" rx="10" fill="#0c051a" stroke="#4c228a" stroke-width="1.5" />
+  <text x="195" y="336" fill="#a855f7" font-family="monospace" font-size="12">Type a prompt to query knowledge base...</text>
+  <rect x="580" y="318" width="35" height="26" rx="6" fill="#800020" />
+  <polygon points="593,327 603,331 593,335" fill="#ffffff" />
+
+  <!-- Subtitle -->
+  <text x="400" y="405" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="15" text-anchor="middle">RAG-Based Intelligent Conversational Assistant</text>
+  <text x="400" y="425" fill="#c084fc" font-family="monospace" font-size="11" text-anchor="middle">HTML • JavaScript • Python • LangChain • Vector RAG</text>
+</svg>

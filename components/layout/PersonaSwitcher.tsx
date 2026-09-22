@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { personas } from "@/content/personas";
 import { Terminal, Sparkles, UserCheck } from "lucide-react";
 
 export function PersonaSwitcher({ currentPersona }: { currentPersona?: "personal" | "dev" | "ai" }) {
@@ -25,8 +24,8 @@ export function PersonaSwitcher({ currentPersona }: { currentPersona?: "personal
       label: "Personal",
       shortLabel: "Overview",
       icon: UserCheck,
-      activeClass: "bg-indigo-600/90 text-white shadow-md shadow-indigo-500/20 border-indigo-400/40",
-      dotColor: "bg-amber-400",
+      activeClass: "bg-[#800020] text-[#FCFAF4] shadow-[0_4px_20px_rgba(128,0,32,0.4),inset_0_1px_0_rgba(255,255,255,0.4)] border-[#f0a3b3]/50",
+      dotColor: "bg-[#FCFAF4]",
     },
     {
       key: "dev" as const,
@@ -34,8 +33,8 @@ export function PersonaSwitcher({ currentPersona }: { currentPersona?: "personal
       label: "Dev & DevOps",
       shortLabel: "DevOps",
       icon: Terminal,
-      activeClass: "bg-cyan-600/90 text-white shadow-md shadow-cyan-500/20 border-cyan-400/40",
-      dotColor: "bg-cyan-400",
+      activeClass: "bg-[#800020] text-[#FCFAF4] shadow-[0_4px_20px_rgba(128,0,32,0.4),inset_0_1px_0_rgba(255,255,255,0.4)] border-[#f0a3b3]/50",
+      dotColor: "bg-[#FCFAF4]",
     },
     {
       key: "ai" as const,
@@ -43,17 +42,17 @@ export function PersonaSwitcher({ currentPersona }: { currentPersona?: "personal
       label: "AI Engineer",
       shortLabel: "AI / RAG",
       icon: Sparkles,
-      activeClass: "bg-purple-600/90 text-white shadow-md shadow-purple-500/20 border-purple-400/40",
-      dotColor: "bg-fuchsia-400",
+      activeClass: "bg-[#800020] text-[#FCFAF4] shadow-[0_4px_20px_rgba(128,0,32,0.4),inset_0_1px_0_rgba(255,255,255,0.4)] border-[#f0a3b3]/50",
+      dotColor: "bg-[#FCFAF4]",
     },
   ];
 
   return (
-    <div className="inline-flex items-center p-1 rounded-full bg-slate-900/85 border border-slate-700/70 backdrop-blur-md shadow-inner">
-      <span className="hidden xl:inline-block px-2.5 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-        Persona:
+    <div className="inline-flex items-center p-1.5 rounded-full liquid-glass-pill backdrop-blur-2xl">
+      <span className="hidden xl:inline-block px-3 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+        Track:
       </span>
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1.5">
         {switcherItems.map((item) => {
           const isActive = activeKey === item.key;
           const Icon = item.icon;
@@ -64,10 +63,10 @@ export function PersonaSwitcher({ currentPersona }: { currentPersona?: "personal
               href={item.route}
               aria-current={isActive ? "page" : undefined}
               className={cn(
-                "group relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 text-xs font-medium rounded-full transition-all duration-200",
+                "group relative inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-300",
                 isActive
-                  ? cn("border", item.activeClass)
-                  : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
+                  ? cn("border backdrop-blur-md", item.activeClass)
+                  : "text-slate-400 hover:text-slate-100 hover:bg-white/5 border border-transparent"
               )}
             >
               <Icon className={cn("w-3.5 h-3.5", isActive ? "text-white" : "text-slate-400 group-hover:text-slate-200")} />
