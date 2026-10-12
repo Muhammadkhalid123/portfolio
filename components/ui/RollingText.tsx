@@ -69,7 +69,7 @@ export function CenterRollingHeadline({
                 "inline-block will-change-transform transform-gpu",
                 wordObj.isGradient &&
                   (wordObj.gradientClass ||
-                    "bg-gradient-to-r from-[#800020] via-[#9c1534] to-[#800020] bg-clip-text text-transparent")
+                    "bg-gradient-to-r from-[#0F0F0F] via-[#009b7d] to-[#00FFD0] bg-clip-text text-transparent")
               )}
               variants={{
                 hidden: {
@@ -88,7 +88,7 @@ export function CenterRollingHeadline({
                   transition: {
                     duration,
                     delay,
-                    ease: [0.215, 0.61, 0.355, 1], // Smooth rolling cubic bezier
+                    ease: [0.2, 0.715, 0.205, 0.99], // Butter smooth cubic bezier
                   },
                 },
               }}
@@ -153,7 +153,7 @@ export function RollingParagraph({
                   transition: {
                     duration,
                     delay,
-                    ease: [0.215, 0.61, 0.355, 1],
+                    ease: [0.2, 0.715, 0.205, 0.99],
                   },
                 },
               }}

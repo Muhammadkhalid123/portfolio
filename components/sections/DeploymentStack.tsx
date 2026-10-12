@@ -98,7 +98,7 @@ EOF`,
           badgeVariant="devops"
           title="How It Gets to"
           highlightedTitle="Production"
-          gradientClass="from-[#800020] via-[#b92144] to-[#800020]"
+          gradientClass="from-[#0F0F0F] via-[#009b7d] to-[#00FFD0]"
           description="A clean, automated deployment pipeline from local git commit to live AWS EC2 instance."
         />
 
@@ -114,20 +114,20 @@ EOF`,
                   <button
                     onClick={() => setActiveStep(index)}
                     className={cn(
-                      "flex-1 w-full p-3.5 rounded-2xl border text-center transition-all duration-300 cursor-pointer flex items-center justify-center gap-2.5",
+                      "flex-1 w-full p-3.5 rounded-2xl border text-center transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5",
                       isSelected
-                        ? "bg-[#800020] border-[#f0a3b3]/50 text-[#FCFAF4] shadow-[0_4px_25px_rgba(128,0,32,0.4),inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl font-bold"
-                        : "liquid-glass-pill-dark text-[#FCFAF4]/70 hover:text-[#FCFAF4] hover:bg-[#800020]/20"
+                        ? "bg-[#0F0F0F] border-[#00FFD0]/70 text-[#FAFAFA] shadow-[0_4px_25px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl font-bold"
+                        : "liquid-glass-pill-dark text-[#FAFAFA]/70 hover:text-[#00FFD0] hover:bg-[#00FFD0]/10"
                     )}
                   >
-                    <StepIcon className={cn("w-4 h-4", isSelected ? "text-[#FCFAF4]" : "text-[#FCFAF4]/60")} />
+                    <StepIcon className={cn("w-4 h-4", isSelected ? "text-[#00FFD0]" : "text-[#FAFAFA]/60")} />
                     <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">
                       {s.title}
                     </span>
                   </button>
 
                   {index < steps.length - 1 && (
-                    <ArrowRight className="hidden md:block w-4 h-4 text-[#800020]/60 shrink-0" />
+                    <ArrowRight className="hidden md:block w-4 h-4 text-[#00FFD0]/60 shrink-0" />
                   )}
                 </React.Fragment>
               );
@@ -141,17 +141,17 @@ EOF`,
             <div className="flex items-center gap-2">
               <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shadow-[0_0_8px_rgba(244,63,94,0.5)]" />
               <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-              <span className="ml-2 text-xs font-mono text-[#FCFAF4]">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#00FFD0] shadow-[0_0_8px_rgba(0,255,208,0.6)]" />
+              <span className="ml-2 text-xs font-mono text-[#FAFAFA]">
                 {current.title} — configuration
               </span>
             </div>
-            <span className="text-[11px] font-mono text-[#f0a3b3] font-semibold px-2.5 py-0.5 rounded-full bg-[#800020]/20 border border-[#800020]/40">
+            <span className="text-[11px] font-mono text-[#00FFD0] font-semibold px-2.5 py-0.5 rounded-full bg-[#00FFD0]/15 border border-[#00FFD0]/40">
               Step {current.step} / 05
             </span>
           </div>
 
-          <div className="p-6 font-mono text-xs text-[#FCFAF4] overflow-x-auto bg-black/40 leading-relaxed backdrop-blur-xl">
+          <div className="p-6 font-mono text-xs text-[#FAFAFA] overflow-x-auto bg-black/50 leading-relaxed backdrop-blur-xl">
             <pre>
               <code>{current.codeSnippet}</code>
             </pre>
@@ -159,7 +159,7 @@ EOF`,
         </div>
 
         {/* Direct One-Sentence Statement */}
-        <p className="text-center text-sm text-[#010101]/80 font-medium">
+        <p className="text-center text-sm text-[#808080] font-medium">
           This is the actual pipeline behind every project on this site — including this portfolio.
         </p>
       </div>

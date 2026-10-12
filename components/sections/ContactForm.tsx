@@ -69,7 +69,7 @@ export function ContactForm({ persona = "ai" }: ContactFormProps) {
           badgeVariant="ai"
           title="Let's Build Something"
           highlightedTitle="Together"
-          gradientClass="from-[#800020] via-[#b92144] to-[#800020]"
+          gradientClass="from-[#0F0F0F] via-[#009b7d] to-[#00FFD0]"
           description="Have an AI project, an automation challenge, or a custom system to build? Send a message directly."
         />
 
@@ -77,48 +77,48 @@ export function ContactForm({ persona = "ai" }: ContactFormProps) {
           {/* Left Column: Direct Info & Value Props */}
           <div className="lg:col-span-5 p-8 sm:p-9 rounded-3xl liquid-glass flex flex-col justify-between h-full space-y-8">
             <div>
-              <h3 className="text-xl font-bold text-[#FCFAF4] mb-2">
+              <h3 className="text-xl font-bold text-[#FAFAFA] mb-2">
                 Engineering Consultation
               </h3>
-              <p className="text-sm text-[#FCFAF4]/80 leading-relaxed mb-6">
+              <p className="text-sm text-[#808080] leading-relaxed mb-6">
                 We are actively discussing new AI projects, high-impact consulting contracts, and autonomous automation pipelines.
               </p>
 
               <div className="space-y-4">
-                <div className="flex items-center gap-3.5 p-4 rounded-2xl liquid-glass-pill-dark text-[#FCFAF4]">
-                  <div className="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                <div className="flex items-center gap-3.5 p-4 rounded-2xl liquid-glass-pill-dark text-[#FAFAFA]">
+                  <div className="p-2.5 rounded-xl bg-[#00FFD0]/15 text-[#00FFD0] border border-[#00FFD0]/30">
                     <Clock className="w-4 h-4" />
                   </div>
                   <div className="flex-1">
-                    <span className="text-[11px] text-[#FCFAF4]/60 block font-medium">Response SLA</span>
-                    <span className="text-xs sm:text-sm font-semibold text-emerald-300">Within 24 Hours</span>
+                    <span className="text-[11px] text-[#808080] block font-medium">Response SLA</span>
+                    <span className="text-xs sm:text-sm font-semibold text-[#00FFD0]">Within 24 Hours</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3.5 p-4 rounded-2xl liquid-glass-pill-dark text-[#FCFAF4]">
-                  <div className="p-2.5 rounded-xl bg-[#800020]/20 text-[#f0a3b3] border border-[#800020]/40">
+                <div className="flex items-center gap-3.5 p-4 rounded-2xl liquid-glass-pill-dark text-[#FAFAFA]">
+                  <div className="p-2.5 rounded-xl bg-[#00FFD0]/15 text-[#00FFD0] border border-[#00FFD0]/30">
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div className="flex-1">
-                    <span className="text-[11px] text-[#FCFAF4]/60 block font-medium">Data Privacy &amp; NDA</span>
-                    <span className="text-xs sm:text-sm font-semibold text-[#FCFAF4]">Strict Client Confidentiality</span>
+                    <span className="text-[11px] text-[#808080] block font-medium">Data Privacy &amp; NDA</span>
+                    <span className="text-xs sm:text-sm font-semibold text-[#FAFAFA]">Strict Client Confidentiality</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3.5 p-4 rounded-2xl liquid-glass-pill-dark text-[#FCFAF4]">
-                  <div className="p-2.5 rounded-xl bg-[#800020]/20 text-[#f0a3b3] border border-[#800020]/40">
+                <div className="flex items-center gap-3.5 p-4 rounded-2xl liquid-glass-pill-dark text-[#FAFAFA]">
+                  <div className="p-2.5 rounded-xl bg-[#00FFD0]/15 text-[#00FFD0] border border-[#00FFD0]/30">
                     <Sparkles className="w-4 h-4" />
                   </div>
                   <div className="flex-1">
-                    <span className="text-[11px] text-[#FCFAF4]/60 block font-medium">Architecture Review</span>
-                    <span className="text-xs sm:text-sm font-semibold text-[#FCFAF4]">Free Feasibility &amp; Specs Session</span>
+                    <span className="text-[11px] text-[#808080] block font-medium">Architecture Review</span>
+                    <span className="text-xs sm:text-sm font-semibold text-[#FAFAFA]">Free Feasibility &amp; Specs Session</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-black/40 border border-white/10 text-xs text-[#FCFAF4]/70 leading-relaxed">
-              <span className="text-[#f0a3b3] font-semibold block mb-1">Direct Routing:</span>
+            <div className="p-4 rounded-2xl bg-black/50 border border-white/10 text-xs text-[#808080] leading-relaxed">
+              <span className="text-[#00FFD0] font-semibold block mb-1">Direct Routing:</span>
               Your submission triggers an automated priority alert in our engineering workspace.
             </div>
           </div>
@@ -127,13 +127,13 @@ export function ContactForm({ persona = "ai" }: ContactFormProps) {
           <div className="lg:col-span-7 p-8 sm:p-9 rounded-3xl liquid-glass">
             {status === "success" ? (
               <div className="p-8 text-center flex flex-col items-center justify-center space-y-4">
-                <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 flex items-center justify-center shadow-lg">
+                <div className="w-14 h-14 rounded-full bg-[#00FFD0]/20 border border-[#00FFD0]/40 text-[#00FFD0] flex items-center justify-center shadow-lg shadow-[#00FFD0]/20">
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#FCFAF4]">
+                <h3 className="text-2xl font-bold text-[#FAFAFA]">
                   Message Transmitted Successfully!
                 </h3>
-                <p className="text-sm text-[#FCFAF4]/80 max-w-md">
+                <p className="text-sm text-[#808080] max-w-md">
                   Thank you for reaching out. Your inquiry has been received and we will reply within 24 hours.
                 </p>
                 <Button
@@ -149,8 +149,8 @@ export function ContactForm({ persona = "ai" }: ContactFormProps) {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-[#FCFAF4]/90 mb-1.5">
-                      Your Name <span className="text-[#f0a3b3]">*</span>
+                    <label className="block text-xs font-semibold text-[#FAFAFA]/90 mb-1.5">
+                      Your Name <span className="text-[#00FFD0]">*</span>
                     </label>
                     <input
                       type="text"
@@ -158,13 +158,13 @@ export function ContactForm({ persona = "ai" }: ContactFormProps) {
                       placeholder="Jane Doe"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FCFAF4] placeholder-[#FCFAF4]/40 focus:outline-none focus:border-[#800020] transition-all"
+                      className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FAFAFA] placeholder-white/30 focus:outline-none focus:border-[#00FFD0] transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-[#FCFAF4]/90 mb-1.5">
-                      Email Address <span className="text-[#f0a3b3]">*</span>
+                    <label className="block text-xs font-semibold text-[#FAFAFA]/90 mb-1.5">
+                      Email Address <span className="text-[#00FFD0]">*</span>
                     </label>
                     <input
                       type="email"
@@ -172,14 +172,14 @@ export function ContactForm({ persona = "ai" }: ContactFormProps) {
                       placeholder="jane@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FCFAF4] placeholder-[#FCFAF4]/40 focus:outline-none focus:border-[#800020] transition-all"
+                      className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FAFAFA] placeholder-white/30 focus:outline-none focus:border-[#00FFD0] transition-all"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-[#FCFAF4]/90 mb-1.5">
+                    <label className="block text-xs font-semibold text-[#FAFAFA]/90 mb-1.5">
                       Subject
                     </label>
                     <input
@@ -187,18 +187,18 @@ export function ContactForm({ persona = "ai" }: ContactFormProps) {
                       placeholder="AI Project / Automation Consultation"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FCFAF4] placeholder-[#FCFAF4]/40 focus:outline-none focus:border-[#800020] transition-all"
+                      className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FAFAFA] placeholder-white/30 focus:outline-none focus:border-[#00FFD0] transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-[#FCFAF4]/90 mb-1.5">
+                    <label className="block text-xs font-semibold text-[#FAFAFA]/90 mb-1.5">
                       Area of Interest
                     </label>
                     <select
                       value={formData.track}
                       onChange={(e) => setFormData({ ...formData, track: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-2xl bg-[#010101] border border-white/20 text-sm text-[#FCFAF4] focus:outline-none focus:border-[#800020] backdrop-blur-md transition-all"
+                      className="w-full px-4 py-2.5 rounded-2xl bg-[#0F0F0F] border border-white/20 text-sm text-[#FAFAFA] focus:outline-none focus:border-[#00FFD0] backdrop-blur-md transition-all"
                     >
                       <option value="AI & RAG Systems">RAG &amp; Intelligent Chatbots</option>
                       <option value="Multi-Tenant Chatbots">Multi-Tenant Bot Architecture</option>
@@ -210,8 +210,8 @@ export function ContactForm({ persona = "ai" }: ContactFormProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#FCFAF4]/90 mb-1.5">
-                    Message <span className="text-[#f0a3b3]">*</span>
+                  <label className="block text-xs font-semibold text-[#FAFAFA]/90 mb-1.5">
+                    Message <span className="text-[#00FFD0]">*</span>
                   </label>
                   <textarea
                     rows={4}
@@ -219,7 +219,7 @@ export function ContactForm({ persona = "ai" }: ContactFormProps) {
                     placeholder="Tell us about your project, timeline, and requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FCFAF4] placeholder-[#FCFAF4]/40 focus:outline-none focus:border-[#800020] transition-all resize-none"
+                    className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FAFAFA] placeholder-white/30 focus:outline-none focus:border-[#00FFD0] transition-all resize-none"
                   />
                 </div>
 

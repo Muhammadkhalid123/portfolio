@@ -15,7 +15,7 @@ export function About({ persona = "ai" }: { persona?: "personal" | "dev" | "ai" 
           badgeVariant="ai"
           title="How We Build &"
           highlightedTitle="Deliver AI"
-          gradientClass="from-[#800020] via-[#b92144] to-[#800020]"
+          gradientClass="from-[#0F0F0F] via-[#009b7d] to-[#00FFD0]"
           description="A direct look at where we focus, what we build, and how we deliver practical, production-ready AI systems."
         />
 
@@ -29,7 +29,7 @@ export function About({ persona = "ai" }: { persona?: "personal" | "dev" | "ai" 
                 return (
                   <p
                     key={idx}
-                    className="text-lg sm:text-xl font-semibold text-[#FCFAF4] leading-snug tracking-[-0.015em] pb-5 border-b border-white/10"
+                    className="text-lg sm:text-xl font-semibold text-[#FAFAFA] leading-snug tracking-[-0.015em] pb-5 border-b border-white/10"
                   >
                     {para}
                   </p>
@@ -39,9 +39,9 @@ export function About({ persona = "ai" }: { persona?: "personal" | "dev" | "ai" 
                 return (
                   <div
                     key={idx}
-                    className="p-4.5 sm:p-5 rounded-2xl border-l-2 border-[#800020] bg-[#800020]/15 text-[#fbe4e8] text-sm sm:text-[15px] leading-relaxed backdrop-blur-md"
+                    className="p-4.5 sm:p-5 rounded-2xl border-l-2 border-[#00FFD0] bg-[#00FFD0]/10 text-[#FAFAFA] text-sm sm:text-[15px] leading-relaxed backdrop-blur-md font-serif italic"
                   >
-                    <p className="font-normal italic">
+                    <p className="font-normal">
                       &ldquo;{para}&rdquo;
                     </p>
                   </div>
@@ -50,7 +50,7 @@ export function About({ persona = "ai" }: { persona?: "personal" | "dev" | "ai" 
               return (
                 <p
                   key={idx}
-                  className="text-sm sm:text-base text-[#FCFAF4]/85 leading-[1.8] font-normal tracking-[-0.01em]"
+                  className="text-sm sm:text-base text-[#FAFAFA]/85 leading-[1.8] font-normal tracking-[-0.01em]"
                 >
                   {para}
                 </p>
@@ -58,13 +58,13 @@ export function About({ persona = "ai" }: { persona?: "personal" | "dev" | "ai" 
             })}
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#FCFAF4]/70">
+          <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#FAFAFA]/70">
             <span className="flex items-center gap-2">
-              <Globe className="w-4 h-4 text-[#800020]" />
-              <span className="font-medium text-[#FCFAF4]">{profile.location}</span>
+              <Globe className="w-4 h-4 text-[#00FFD0]" />
+              <span className="font-medium text-[#FAFAFA]">{profile.location}</span>
             </span>
-            <span className="flex items-center gap-2 text-emerald-400">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <span className="flex items-center gap-2 text-[#00FFD0]">
+              <ShieldCheck className="w-4 h-4 text-[#00FFD0]" />
               <span className="font-medium">{profile.availability}</span>
             </span>
           </div>
@@ -77,13 +77,13 @@ export function About({ persona = "ai" }: { persona?: "personal" | "dev" | "ai" 
               key={idx}
               className="p-6 rounded-3xl liquid-glass text-center flex flex-col items-center justify-center group hover:scale-[1.02] transition-all duration-300"
             >
-              <span className="text-3xl sm:text-4xl font-extrabold mb-1 font-mono tracking-tight text-[#800020] drop-shadow-[0_0_12px_rgba(128,0,32,0.4)]">
+              <span className="text-3xl sm:text-4xl font-extrabold mb-1 font-mono tracking-tight text-[#00FFD0] drop-shadow-[0_0_12px_rgba(0,255,208,0.35)]">
                 {stat.value}
               </span>
-              <span className="text-sm font-semibold text-[#FCFAF4] mb-1">
+              <span className="text-sm font-semibold text-[#FAFAFA] mb-1">
                 {stat.label}
               </span>
-              <span className="text-xs text-[#FCFAF4]/70 leading-normal">
+              <span className="text-xs text-[#808080] leading-normal">
                 {stat.description}
               </span>
             </div>

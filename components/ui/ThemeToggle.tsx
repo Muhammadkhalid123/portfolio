@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -14,9 +14,9 @@ export function ThemeToggle() {
       setTheme(savedTheme);
       document.documentElement.classList.toggle("dark", savedTheme === "dark");
     } else {
-      // Default to dark mode for developer / AI aesthetic
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
+      // Default to light mode matching Butter Video clean aesthetic
+      setTheme("light");
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 
@@ -33,7 +33,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="w-9 h-9 rounded-xl bg-slate-800/50 border border-slate-700/60 animate-pulse" />
+      <div className="w-9 h-9 rounded-2xl bg-[#0F0F0F]/10 border border-[#0F0F0F]/10 animate-pulse" />
     );
   }
 
@@ -41,12 +41,12 @@ export function ThemeToggle() {
     <button
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      className="p-2 rounded-2xl bg-[#010101] hover:bg-[#800020] border border-[#800020]/40 text-[#FCFAF4] transition-all duration-200"
+      className="p-2.5 rounded-2xl bg-[#0F0F0F] hover:bg-[#181818] border border-white/15 hover:border-[#00FFD0]/60 text-[#FAFAFA] transition-all duration-200 cursor-pointer shadow-sm"
     >
       {theme === "dark" ? (
-        <Sun className="w-4 h-4 text-[#f0a3b3]" />
+        <Sun className="w-4 h-4 text-[#00FFD0]" />
       ) : (
-        <Moon className="w-4 h-4 text-[#f0a3b3]" />
+        <Moon className="w-4 h-4 text-[#00FFD0]" />
       )}
     </button>
   );

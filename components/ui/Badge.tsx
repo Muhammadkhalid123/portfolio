@@ -16,25 +16,25 @@ export function Badge({
   ...props
 }: BadgeProps) {
   const sizeClasses = {
-    sm: "px-2.5 py-0.5 text-[11px] font-semibold tracking-wide",
-    md: "px-3 py-1 text-xs font-semibold tracking-wide",
+    sm: "px-2.5 py-0.5 text-[10px] font-semibold tracking-wide",
+    md: "px-3 py-1 text-[13px] font-semibold tracking-wide",
   };
 
   const variantClasses = {
-    default: "bg-[#010101]/80 text-[#FCFAF4] border border-[#010101]/20 backdrop-blur-md shadow-sm",
-    liquid: "liquid-glass-pill text-[#FCFAF4]",
-    dev: "bg-[#800020]/15 text-[#800020] border border-[#800020]/40 backdrop-blur-md shadow-[0_2px_10px_rgba(128,0,32,0.15),inset_0_1px_0_rgba(255,255,255,0.4)] font-semibold",
-    ai: "bg-[#800020]/15 text-[#800020] border border-[#800020]/40 backdrop-blur-md shadow-[0_2px_10px_rgba(128,0,32,0.15),inset_0_1px_0_rgba(255,255,255,0.4)] font-semibold",
-    devops: "bg-[#010101] text-[#FCFAF4] border border-[#800020]/40 backdrop-blur-md shadow-[0_2px_10px_rgba(1,1,1,0.2),inset_0_1px_0_rgba(255,255,255,0.2)] font-semibold",
-    personal: "bg-[#800020] text-[#FCFAF4] border border-[#f0a3b3]/40 backdrop-blur-md shadow-[0_2px_10px_rgba(128,0,32,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] font-semibold",
-    success: "bg-emerald-600/15 text-emerald-800 border border-emerald-500/30 backdrop-blur-md",
-    outline: "border border-[#010101]/30 text-[#010101] bg-white/40 backdrop-blur-sm",
+    default: "bg-[#0F0F0F] text-[#FAFAFA] border border-white/10 backdrop-blur-md shadow-sm",
+    liquid: "butter-pill text-[#0F0F0F]",
+    dev: "bg-[#0F0F0F] text-[#00FFD0] border border-[#00FFD0]/40 backdrop-blur-md shadow-[0_2px_10px_rgba(0,255,208,0.12)] font-semibold",
+    ai: "bg-[#0F0F0F] text-[#00FFD0] border border-[#00FFD0]/40 backdrop-blur-md shadow-[0_2px_10px_rgba(0,255,208,0.12)] font-semibold",
+    devops: "bg-[#0F0F0F] text-[#FAFAFA] border border-[#00FFD0]/40 backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.2)] font-semibold",
+    personal: "bg-[#0F0F0F] text-[#00FFD0] border border-[#00FFD0]/40 backdrop-blur-md shadow-[0_2px_10px_rgba(0,255,208,0.15)] font-semibold",
+    success: "bg-[#00FFD0]/15 text-[#009b7d] border border-[#00FFD0]/40 backdrop-blur-md font-semibold",
+    outline: "border border-[#0F0F0F]/20 text-[#0F0F0F] bg-white/60 backdrop-blur-sm",
   };
 
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full transition-all",
+        "inline-flex items-center rounded-full transition-all duration-200",
         sizeClasses[size],
         variantClasses[variant],
         className

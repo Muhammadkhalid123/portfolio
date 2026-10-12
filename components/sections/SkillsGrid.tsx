@@ -34,7 +34,7 @@ export function SkillsGrid({ persona = "ai" }: SkillsGridProps) {
           badgeVariant="ai"
           title="Technologies We"
           highlightedTitle="Actually Use"
-          gradientClass="from-[#800020] via-[#b92144] to-[#800020]"
+          gradientClass="from-[#0F0F0F] via-[#009b7d] to-[#00FFD0]"
           description="Grouped by what we reach for first when building AI systems, RAG pipelines, and automated bots."
         />
 
@@ -59,14 +59,14 @@ export function SkillsGrid({ persona = "ai" }: SkillsGridProps) {
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-3 pb-4 mb-5 border-b border-white/10">
-                  <div className="p-2.5 rounded-xl border border-[#800020]/40 bg-[#800020]/20 text-[#f0a3b3] backdrop-blur-md">
+                  <div className="p-2.5 rounded-xl border border-[#00FFD0]/40 bg-[#00FFD0]/15 text-[#00FFD0] backdrop-blur-md">
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-[#FCFAF4]">
+                    <h3 className="text-base font-bold text-[#FAFAFA]">
                       {cat.title}
                     </h3>
-                    <p className="text-[11px] text-[#FCFAF4]/70">
+                    <p className="text-[11px] text-[#808080]">
                       {cat.description}
                     </p>
                   </div>
@@ -77,15 +77,15 @@ export function SkillsGrid({ persona = "ai" }: SkillsGridProps) {
                   {categorySkills.map((skill, sIdx) => (
                     <div
                       key={sIdx}
-                      className="p-3.5 rounded-2xl liquid-glass-pill-dark hover:border-[#800020]/50 transition-colors"
+                      className="p-3.5 rounded-2xl liquid-glass-pill-dark hover:border-[#00FFD0]/50 transition-colors"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-semibold text-[#FCFAF4]">
+                        <span className="text-sm font-semibold text-[#FAFAFA]">
                           {skill.name}
                         </span>
                       </div>
                       {skill.note && (
-                        <p className="text-[11px] text-[#FCFAF4]/70 mt-1 leading-snug">
+                        <p className="text-[11px] text-[#808080] mt-1 leading-snug">
                           {skill.note}
                         </p>
                       )}

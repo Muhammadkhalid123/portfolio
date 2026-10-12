@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { generatePersonaMetadata } from "@/lib/theme";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
+import StyledComponentsRegistry from "@/components/ui/StyledComponentsRegistry";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -33,11 +34,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} ${outfit.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-[#FCFAF4] text-[#010101] font-sans antialiased selection:bg-[#800020]/25 selection:text-[#800020]">
-        <SmoothScrollProvider>
-          {children}
-        </SmoothScrollProvider>
+    <html
+      lang="en"
+      className={`${plusJakarta.variable} ${outfit.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="min-h-screen bg-[#FAFAFA] text-[#0F0F0F] font-sans antialiased selection:bg-[#00FFD0] selection:text-[#0F0F0F]">
+        <StyledComponentsRegistry>
+          <SmoothScrollProvider>
+            {children}
+          </SmoothScrollProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

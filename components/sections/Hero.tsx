@@ -19,33 +19,33 @@ export function Hero({ persona = "ai" }: HeroProps) {
     {
       text: "that deliver real results.",
       gradient: true,
-      gradientClass: "bg-gradient-to-r from-[#800020] via-[#b92144] to-[#800020] bg-clip-text text-transparent",
+      gradientClass: "bg-gradient-to-r from-[#0F0F0F] via-[#009b7d] to-[#00FFD0] bg-clip-text text-transparent",
     },
   ];
 
   return (
     <section id="top" className="relative min-h-[75vh] flex items-center justify-center pt-24 sm:pt-32 pb-16 overflow-hidden">
-      {/* Dynamic Ambient Glows */}
+      {/* Dynamic Ambient Electric Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#800020]/14 blur-[130px] rounded-full" />
-        <div className="absolute top-1/3 right-1/4 w-[450px] h-[300px] bg-[#b92144]/10 blur-[110px] rounded-full" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#00FFD0]/10 blur-[130px] rounded-full" />
+        <div className="absolute top-1/3 right-1/4 w-[450px] h-[300px] bg-[#00FFD0]/6 blur-[110px] rounded-full" />
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Top Tag & Status */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-pill mb-8 backdrop-blur-2xl">
-          <Sparkles className="w-4 h-4 text-[#800020]" />
-          <span className="text-xs font-semibold text-[#010101]">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full butter-pill mb-8 backdrop-blur-2xl">
+          <Sparkles className="w-4 h-4 text-[#00FFD0]" />
+          <span className="text-xs font-semibold text-[#0F0F0F]">
             {personaConfig.badgeText}
           </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-          <span className="text-[11px] text-emerald-700 font-medium">Available</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#00FFD0] animate-pulse" />
+          <span className="text-[11px] text-[#009b7d] font-semibold">Available</span>
         </div>
 
         {/* Hero Headline with Center-to-Edge Staggered Rolling Text Animation */}
         <CenterRollingHeadline
           items={headlineItems}
-          className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-[60px] font-black tracking-[-0.038em] text-[#010101] mb-6 leading-[1.14] max-w-4xl mx-auto"
+          className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-[60px] font-black tracking-[-0.038em] text-[#0F0F0F] mb-6 leading-[1.14] max-w-4xl mx-auto"
           staggerDelay={0.04}
           baseDelay={0.08}
           duration={0.7}
@@ -54,7 +54,7 @@ export function Hero({ persona = "ai" }: HeroProps) {
         {/* Subheadline with Rolling Paragraph Animation */}
         <RollingParagraph
           text={personaConfig.subheadline}
-          className="max-w-3xl mx-auto text-base sm:text-lg lg:text-xl text-[#010101]/80 font-normal leading-[1.7] tracking-[-0.01em] mb-10"
+          className="max-w-3xl mx-auto text-base sm:text-lg lg:text-xl text-[#808080] font-normal leading-[1.7] tracking-[-0.01em] mb-10"
           staggerDelay={0.02}
           baseDelay={0.28}
           duration={0.6}

@@ -13,13 +13,13 @@ export function Card({
   ...props
 }: CardProps) {
   const variantClasses = {
-    default: "bg-slate-900/70 border border-slate-800/80 backdrop-blur-md shadow-xl",
+    default: "bg-[#0F0F0F] border border-white/10 text-[#FAFAFA] backdrop-blur-md shadow-xl",
     glass: "liquid-glass",
     liquid: "liquid-glass",
     "liquid-dev": "liquid-glass-dev",
     "liquid-ai": "liquid-glass-ai",
     "liquid-personal": "liquid-glass-personal",
-    bordered: "bg-transparent border border-white/10 hover:border-white/20",
+    bordered: "bg-transparent border border-[#0F0F0F]/15 hover:border-[#00FFD0]/50",
     "glow-dev": "liquid-glass-dev",
     "glow-ai": "liquid-glass-ai",
     "glow-personal": "liquid-glass-personal",

@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Project, PersonaTag } from "@/content/projects";
 import { getProjectsByPersona } from "@/lib/getProjectsByPersona";
 import { ProjectCard } from "./ProjectCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 export interface ProjectsGridProps {
   persona?: "personal" | "dev" | "ai";
@@ -48,7 +50,7 @@ export function ProjectsGrid({ persona = "personal" }: ProjectsGridProps) {
           badgeVariant={persona === "dev" ? "dev" : persona === "ai" ? "ai" : "personal"}
           title="Featured"
           highlightedTitle="Projects & Systems"
-          gradientClass="from-[#800020] via-[#b92144] to-[#800020]"
+          gradientClass="from-[#0F0F0F] via-[#009b7d] to-[#00FFD0]"
           description={
             persona === "ai"
               ? "Production RAG chatbots, multi-tenant conversational platforms, document summarizers, and autonomous automation bots."
@@ -61,7 +63,7 @@ export function ProjectsGrid({ persona = "personal" }: ProjectsGridProps) {
         {/* Filter Tabs */}
         {filterTags.length > 1 && (
           <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
-            <div className="p-1.5 rounded-full liquid-glass-pill inline-flex flex-wrap items-center justify-center gap-1.5 backdrop-blur-2xl">
+            <div className="p-1.5 rounded-full butter-pill inline-flex flex-wrap items-center justify-center gap-1.5 backdrop-blur-2xl">
               {filterTags.map((filter) => {
                 const isSelected = activeTag === filter.tag;
 
@@ -70,10 +72,10 @@ export function ProjectsGrid({ persona = "personal" }: ProjectsGridProps) {
                     key={filter.tag}
                     onClick={() => setActiveTag(filter.tag)}
                     className={cn(
-                      "px-4 py-2 text-xs font-semibold rounded-full transition-all duration-300 cursor-pointer border",
+                      "px-4 py-2 text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer border",
                       isSelected
-                        ? "bg-[#800020] text-[#FCFAF4] border-[#f0a3b3]/50 shadow-[0_4px_20px_rgba(128,0,32,0.4),inset_0_1px_0_rgba(255,255,255,0.4)] font-bold"
-                        : "text-[#010101]/70 hover:text-[#800020] hover:bg-[#800020]/10 border-transparent"
+                        ? "bg-[#0F0F0F] text-[#FAFAFA] border-[#00FFD0]/70 shadow-[0_4px_20px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] font-bold"
+                        : "text-[#808080] hover:text-[#0F0F0F] hover:bg-[#0F0F0F]/5 border-transparent"
                     )}
                   >
                     {filter.label}
@@ -95,8 +97,19 @@ export function ProjectsGrid({ persona = "personal" }: ProjectsGridProps) {
           ))}
         </div>
 
+        {/* View All Projects Archive Link */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#0F0F0F] text-[#FAFAFA] hover:text-[#00FFD0] border border-white/15 hover:border-[#00FFD0]/60 text-xs sm:text-sm font-bold shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_25px_rgba(0,255,208,0.25)] transition-all group"
+          >
+            <span>Explore All Projects & Architecture Archive</span>
+            <ArrowRight className="w-4 h-4 text-[#00FFD0] group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+
         {filteredProjects.length === 0 && (
-          <div className="text-center py-16 p-8 rounded-2xl bg-slate-900/40 border border-slate-800 text-slate-400">
+          <div className="text-center py-16 p-8 rounded-2xl bg-[#0F0F0F]/60 border border-white/10 text-[#808080]">
             <p className="text-sm">No projects found for the selected category filter.</p>
           </div>
         )}
