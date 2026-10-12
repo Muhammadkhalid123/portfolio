@@ -45,39 +45,39 @@ export const profile: Profile = {
   linkedin: "https://www.linkedin.com/in/muhammad-khalid-627344247/",
   twitter: "https://twitter.com",
   resumeUrl: "/resume.pdf",
-  availability: "Available for Projects & Contracts",
+  availability: "Available for contracts from October 2026",
   bio: {
     personal: [
-      "We specialize in engineering practical AI systems, RAG chatbots, and autonomous automation bots that solve real-world problems.",
-      "Our work spans full-stack web applications (Next.js, TypeScript, Python/FastAPI), production AI features (RAG retrieval, multi-tenant chatbot platforms, document summarizers, gTTS), and end-to-end data/crawler pipelines.",
-      "We focus on creating production-ready architectures that hold up under real-world usage, combining intuitive web frontends with high-performance Python inference services."
+      "I'm Khalid. I build RAG chatbots, automation bots and the deployment pipelines behind them. I work alone, so you talk to the person who writes the code.",
+      "My work spans full-stack web applications (Next.js, TypeScript, Python/FastAPI), production AI features (RAG retrieval, multi-tenant chatbot platforms, document summarizers, gTTS), and autonomous data pipelines.",
+      "Every project here is containerized with Docker, tested, and deployed to live production environments."
     ],
     dev: [
-      "We build full-stack web applications and AI services using Next.js, TypeScript, Python, and FastAPI.",
-      "We design clean, typed architectures with PostgreSQL, structured REST and streaming APIs, and background job queues with Redis and Celery.",
-      "Every project we engineer is containerized with Docker and built for reliability, security, and scalability."
+      "I build full-stack web applications and backend services using Next.js, TypeScript, Python, and FastAPI.",
+      "I design clean, typed architectures with PostgreSQL, structured REST and streaming APIs, and background job queues with Redis and Celery.",
+      "Every project I engineer is containerized with Docker and built for reliability and maintainability."
     ],
     ai: [
-      "We build practical AI features and automation bots that solve real workflow problems and hold up in production.",
-      "Our focus is on Retrieval-Augmented Generation (RAG) chatbots, multi-tenant conversational platforms with strict data isolation, document summarization using transformer models (BART/T5), lightweight speech synthesis with Google's gTTS, and lead-generation web crawlers.",
-      "Instead of just calling black-box APIs or writing Jupyter notebooks, we wrap models and bots into fast, asynchronous FastAPI microservices with clean frontend interfaces."
+      "I build practical AI features and automation bots that solve real workflow problems in production.",
+      "My focus is on Retrieval-Augmented Generation (RAG) chatbots with source citations, multi-tenant conversational platforms, document summarization using transformer models, and autonomous web crawlers.",
+      "Instead of just calling black-box APIs, I wrap models and bots into fast, asynchronous FastAPI microservices with clean frontend interfaces."
     ]
   },
   stats: [
     {
-      value: "6+",
-      label: "AI & Automation Systems",
-      description: "RAG chatbots, multi-tenant bots, NLP & automated pipelines"
+      value: "8",
+      label: "Engineered Projects",
+      description: "RAG chatbots, multi-tenant platforms, NLP & automation"
+    },
+    {
+      value: "5-Step",
+      label: "Automated Pipeline",
+      description: "From git push to Docker, EC2, and Nginx SSL"
     },
     {
       value: "100%",
-      label: "Production-Ready",
-      description: "End-to-end ownership from architecture to live deployment"
-    },
-    {
-      value: "24/7",
-      label: "Autonomous Workflows",
-      description: "Automated background task dispatching & data collection"
+      label: "Direct Collaboration",
+      description: "No middlemen — you work directly with the engineer"
     }
   ],
   timeline: [

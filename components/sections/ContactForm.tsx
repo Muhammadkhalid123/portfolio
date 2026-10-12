@@ -1,257 +1,221 @@
 "use client";
 
 import React, { useState } from "react";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Button } from "@/components/ui/Button";
-import {
-  Send,
-  CheckCircle2,
-  AlertCircle,
-  Loader2,
-  Clock,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
+import { profile } from "@/content/profile";
+import { Check, Copy, ArrowUpRight, Send } from "lucide-react";
 
 export interface ContactFormProps {
   persona?: "personal" | "dev" | "ai";
 }
 
-export function ContactForm({ persona = "ai" }: ContactFormProps) {
-  const [formData, setFormData] = useState({
+export function ContactForm({ persona = "personal" }: ContactFormProps = {}) {
+  const [copied, setCopied] = useState(false);
+  const [selectedChip, setSelectedChip] = useState("RAG Chatbot");
+  const [formState, setFormState] = useState({
     name: "",
     email: "",
-    subject: "",
-    track: "AI & RAG Systems",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+  const chips = [
+    "RAG Chatbot",
+    "Multi-Tenant AI",
+    "Automation Bot",
+    "Full-Stack Dev",
+    "DevOps & Cloud",
+  ];
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(profile.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2400);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
-    setErrorMessage("");
+    setStatus("sending");
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formState,
+          projectType: selectedChip,
+        }),
       });
 
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || "Failed to send message. Please try again.");
+      if (res.ok) {
+        setStatus("sent");
+        setFormState({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
       }
-
-      setStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        track: "AI & RAG Systems",
-        message: "",
-      });
-    } catch (err: any) {
+    } catch {
       setStatus("error");
-      setErrorMessage(err.message || "Something went wrong. Please try again.");
     }
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          badge="Get in Touch"
-          badgeVariant="ai"
-          title="Let's Build Something"
-          highlightedTitle="Together"
-          gradientClass="from-[#0F0F0F] via-[#009b7d] to-[#00FFD0]"
-          description="Have an AI project, an automation challenge, or a custom system to build? Send a message directly."
-        />
+    <section
+      id="contact"
+      className="bg-[#211E1C] text-[#F9F8F6] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 border-b border-white/[0.08]"
+    >
+      <div className="max-w-7xl mx-auto">
+        <div className="pb-16 border-b border-white/[0.12]">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#718698] block mb-3">
+            06 / Contact
+          </span>
+          <h2 className="heading-h1 text-[#F9F8F6]">
+            Have an AI project in mind?
+          </h2>
+          <p className="text-base text-[#718698] mt-4 max-w-xl font-normal leading-relaxed">
+            I'm currently available for contracts and engineering projects. Let's discuss your requirements directly.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto items-start">
-          {/* Left Column: Direct Info & Value Props */}
-          <div className="lg:col-span-5 p-8 sm:p-9 rounded-3xl liquid-glass flex flex-col justify-between h-full space-y-8">
+        {/* Giant Clickable Email (Segerman Pattern) */}
+        <div className="py-16 sm:py-20 border-b border-white/[0.12]">
+          <span className="font-mono text-xs uppercase tracking-wider text-[#718698] block mb-4">
+            Direct Email Address
+          </span>
+          <div className="flex flex-wrap items-center gap-6">
+            <button
+              onClick={handleCopyEmail}
+              className="text-left group cursor-pointer"
+              aria-label="Copy email address"
+            >
+              <span className="display-title block text-[#F9F8F6] group-hover:text-[#A1FFCB] transition-colors break-all">
+                {profile.email}
+              </span>
+            </button>
+            <button
+              onClick={handleCopyEmail}
+              className="px-4 py-2 rounded-full border border-white/20 hover:border-[#A1FFCB] text-xs font-mono text-[#F9F8F6] hover:text-[#A1FFCB] transition-all flex items-center gap-2 cursor-pointer shrink-0"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-[#A1FFCB]" />
+                  <span className="text-[#A1FFCB]">Email copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5 text-[#718698]" />
+                  <span>Click to copy</span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Clean 3-Field Form */}
+        <div className="pt-16 max-w-2xl">
+          <span className="font-mono text-xs uppercase tracking-wider text-[#718698] block mb-6">
+            Or send a project message
+          </span>
+
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Project Type Chips */}
             <div>
-              <h3 className="text-xl font-bold text-[#FAFAFA] mb-2">
-                Engineering Consultation
-              </h3>
-              <p className="text-sm text-[#808080] leading-relaxed mb-6">
-                We are actively discussing new AI projects, high-impact consulting contracts, and autonomous automation pipelines.
-              </p>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-3.5 p-4 rounded-2xl liquid-glass-pill-dark text-[#FAFAFA]">
-                  <div className="p-2.5 rounded-xl bg-[#00FFD0]/15 text-[#00FFD0] border border-[#00FFD0]/30">
-                    <Clock className="w-4 h-4" />
-                  </div>
-                  <div className="flex-1">
-                    <span className="text-[11px] text-[#808080] block font-medium">Response SLA</span>
-                    <span className="text-xs sm:text-sm font-semibold text-[#00FFD0]">Within 24 Hours</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3.5 p-4 rounded-2xl liquid-glass-pill-dark text-[#FAFAFA]">
-                  <div className="p-2.5 rounded-xl bg-[#00FFD0]/15 text-[#00FFD0] border border-[#00FFD0]/30">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <div className="flex-1">
-                    <span className="text-[11px] text-[#808080] block font-medium">Data Privacy &amp; NDA</span>
-                    <span className="text-xs sm:text-sm font-semibold text-[#FAFAFA]">Strict Client Confidentiality</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3.5 p-4 rounded-2xl liquid-glass-pill-dark text-[#FAFAFA]">
-                  <div className="p-2.5 rounded-xl bg-[#00FFD0]/15 text-[#00FFD0] border border-[#00FFD0]/30">
-                    <Sparkles className="w-4 h-4" />
-                  </div>
-                  <div className="flex-1">
-                    <span className="text-[11px] text-[#808080] block font-medium">Architecture Review</span>
-                    <span className="text-xs sm:text-sm font-semibold text-[#FAFAFA]">Free Feasibility &amp; Specs Session</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-black/50 border border-white/10 text-xs text-[#808080] leading-relaxed">
-              <span className="text-[#00FFD0] font-semibold block mb-1">Direct Routing:</span>
-              Your submission triggers an automated priority alert in our engineering workspace.
-            </div>
-          </div>
-
-          {/* Right Column: Interactive Form */}
-          <div className="lg:col-span-7 p-8 sm:p-9 rounded-3xl liquid-glass">
-            {status === "success" ? (
-              <div className="p-8 text-center flex flex-col items-center justify-center space-y-4">
-                <div className="w-14 h-14 rounded-full bg-[#00FFD0]/20 border border-[#00FFD0]/40 text-[#00FFD0] flex items-center justify-center shadow-lg shadow-[#00FFD0]/20">
-                  <CheckCircle2 className="w-7 h-7" />
-                </div>
-                <h3 className="text-2xl font-bold text-[#FAFAFA]">
-                  Message Transmitted Successfully!
-                </h3>
-                <p className="text-sm text-[#808080] max-w-md">
-                  Thank you for reaching out. Your inquiry has been received and we will reply within 24 hours.
-                </p>
-                <Button
-                  onClick={() => setStatus("idle")}
-                  variant="secondary"
-                  size="sm"
-                  className="mt-4"
-                >
-                  Send Another Message
-                </Button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-[#FAFAFA]/90 mb-1.5">
-                      Your Name <span className="text-[#00FFD0]">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Jane Doe"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FAFAFA] placeholder-white/30 focus:outline-none focus:border-[#00FFD0] transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-[#FAFAFA]/90 mb-1.5">
-                      Email Address <span className="text-[#00FFD0]">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="jane@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FAFAFA] placeholder-white/30 focus:outline-none focus:border-[#00FFD0] transition-all"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-[#FAFAFA]/90 mb-1.5">
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="AI Project / Automation Consultation"
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FAFAFA] placeholder-white/30 focus:outline-none focus:border-[#00FFD0] transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-[#FAFAFA]/90 mb-1.5">
-                      Area of Interest
-                    </label>
-                    <select
-                      value={formData.track}
-                      onChange={(e) => setFormData({ ...formData, track: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-2xl bg-[#0F0F0F] border border-white/20 text-sm text-[#FAFAFA] focus:outline-none focus:border-[#00FFD0] backdrop-blur-md transition-all"
+              <label className="font-mono text-xs text-[#718698] block mb-3">
+                Project focus
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {chips.map((chip) => {
+                  const isSelected = selectedChip === chip;
+                  return (
+                    <button
+                      key={chip}
+                      type="button"
+                      onClick={() => setSelectedChip(chip)}
+                      className={`px-3.5 py-1.5 text-xs font-mono border transition-all cursor-pointer ${
+                        isSelected
+                          ? "bg-[#A1FFCB] text-[#211E1C] border-[#A1FFCB]"
+                          : "bg-transparent text-[#718698] border-white/15 hover:border-white/40 hover:text-[#F9F8F6]"
+                      }`}
                     >
-                      <option value="AI & RAG Systems">RAG &amp; Intelligent Chatbots</option>
-                      <option value="Multi-Tenant Chatbots">Multi-Tenant Bot Architecture</option>
-                      <option value="Lead Generation & Automation">Lead Gen &amp; Web Automation Bots</option>
-                      <option value="NLP & Text Summarization">NLP &amp; Text Summarization</option>
-                      <option value="Custom Project / Contract">Custom Project or Contract</option>
-                    </select>
-                  </div>
-                </div>
+                      {chip}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-[#FAFAFA]/90 mb-1.5">
-                    Message <span className="text-[#00FFD0]">*</span>
-                  </label>
-                  <textarea
-                    rows={4}
-                    required
-                    placeholder="Tell us about your project, timeline, and requirements..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-2xl liquid-glass-input text-sm text-[#FAFAFA] placeholder-white/30 focus:outline-none focus:border-[#00FFD0] transition-all resize-none"
-                  />
-                </div>
+            {/* Name */}
+            <div>
+              <label className="font-mono text-xs text-[#718698] block mb-2">
+                Your name
+              </label>
+              <input
+                type="text"
+                required
+                value={formState.name}
+                onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                placeholder="Jane Doe"
+                className="w-full bg-transparent border-b border-white/20 py-3 text-base text-[#F9F8F6] placeholder-[#718698]/50 focus:outline-none focus:border-[#A1FFCB] transition-colors"
+              />
+            </div>
 
-                {status === "error" && (
-                  <div className="p-3.5 rounded-2xl bg-rose-500/20 border border-rose-400/40 text-xs text-rose-200 flex items-center gap-2 backdrop-blur-md">
-                    <AlertCircle className="w-4 h-4 shrink-0" />
-                    <span>{errorMessage}</span>
-                  </div>
+            {/* Email */}
+            <div>
+              <label className="font-mono text-xs text-[#718698] block mb-2">
+                Your email
+              </label>
+              <input
+                type="email"
+                required
+                value={formState.email}
+                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                placeholder="jane@company.com"
+                className="w-full bg-transparent border-b border-white/20 py-3 text-base text-[#F9F8F6] placeholder-[#718698]/50 focus:outline-none focus:border-[#A1FFCB] transition-colors"
+              />
+            </div>
+
+            {/* Message */}
+            <div>
+              <label className="font-mono text-xs text-[#718698] block mb-2">
+                Project overview
+              </label>
+              <textarea
+                required
+                rows={4}
+                value={formState.message}
+                onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                placeholder="Describe your AI system, API, or automation requirements..."
+                className="w-full bg-transparent border-b border-white/20 py-3 text-base text-[#F9F8F6] placeholder-[#718698]/50 focus:outline-none focus:border-[#A1FFCB] transition-colors resize-none"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div>
+              <button
+                type="submit"
+                disabled={status === "sending" || status === "sent"}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#F9F8F6] text-[#211E1C] font-mono text-xs uppercase tracking-wider hover:bg-[#A1FFCB] transition-colors cursor-pointer"
+              >
+                {status === "sending" ? (
+                  <span>Sending message...</span>
+                ) : status === "sent" ? (
+                  <>
+                    <Check className="w-4 h-4 text-[#211E1C]" />
+                    <span>Message received</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send message</span>
+                    <Send className="w-3.5 h-3.5" />
+                  </>
                 )}
+              </button>
 
-                <Button
-                  type="submit"
-                  disabled={status === "loading"}
-                  size="lg"
-                  variant="primary"
-                  className="w-full"
-                >
-                  {status === "loading" ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Transmitting Message...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      <span>Send Message</span>
-                    </>
-                  )}
-                </Button>
-              </form>
-            )}
-          </div>
+              {status === "error" && (
+                <p className="font-mono text-xs text-rose-400 mt-3">
+                  Failed to send message. Please email directly at {profile.email}.
+                </p>
+              )}
+            </div>
+          </form>
         </div>
       </div>
     </section>

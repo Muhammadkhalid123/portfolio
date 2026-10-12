@@ -1,225 +1,229 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { PersonaSwitcher } from "./PersonaSwitcher";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { personas } from "@/content/personas";
-import { profile } from "@/content/profile";
-import { cn } from "@/lib/utils";
-import { Link000 } from "@/components/ui/skiper-ui/skiper40";
-import {
-  Terminal,
-  Sparkles,
-  Layers,
-  Github,
-  FileText,
-  ArrowUpRight,
-  Menu,
-  X,
-  Code2,
-  Server,
-  Milestone,
-  FolderGit2,
-  MessageSquare,
-  User,
-} from "lucide-react";
+import { initSoundPreference, isSoundEnabled, setSoundEnabled, playTick } from "@/lib/sound";
+
+type ThemeMode = "auto" | "light" | "dark";
 
 export interface HeaderProps {
-  persona?: "personal" | "dev" | "ai";
+  persona?: string;
 }
 
-export function Header({ persona = "personal" }: HeaderProps) {
-  const [scrolled, setScrolled] = useState(false);
+export function Header({ persona }: HeaderProps = {}) {
+  const [theme, setTheme] = useState<ThemeMode>("auto");
+  const [soundOn, setSoundOn] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [pkTime, setPkTime] = useState("--:--");
+  const [visitorTime, setVisitorTime] = useState("--:--");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const personaConfig = personas[persona] || personas.personal;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+    setMounted(true);
+    const soundPref = initSoundPreference();
+    setSoundOn(soundPref);
+
+    try {
+      const savedTheme = localStorage.getItem("khalid_theme") as ThemeMode | null;
+      if (savedTheme && ["auto", "light", "dark"].includes(savedTheme)) {
+        applyTheme(savedTheme);
+      } else {
+        applyTheme("auto");
+      }
+    } catch (e) {
+      applyTheme("auto");
+    }
+
+    const updateClocks = () => {
+      const now = new Date();
+      // PK time: GMT+5
+      const pkFormatted = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Karachi",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).format(now);
+      setPkTime(pkFormatted);
+
+      // Visitor local time
+      const visitorFormatted = new Intl.DateTimeFormat("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).format(now);
+      setVisitorTime(visitorFormatted);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    updateClocks();
+    const interval = setInterval(updateClocks, 10000);
+    return () => clearInterval(interval);
   }, []);
 
-  const isHomeTrack = pathname === "/" || pathname === "/dev" || pathname === "/ai";
+  const applyTheme = (mode: ThemeMode) => {
+    setTheme(mode);
+    try {
+      localStorage.setItem("khalid_theme", mode);
+    } catch (e) {}
 
-  const getSectionHref = (id: string) => {
-    return isHomeTrack ? `#${id}` : `/#${id}`;
+    const root = document.documentElement;
+    if (mode === "dark") {
+      root.setAttribute("data-theme", "dark");
+    } else if (mode === "light") {
+      root.removeAttribute("data-theme");
+    } else {
+      // auto
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (prefersDark) {
+        root.setAttribute("data-theme", "dark");
+      } else {
+        root.removeAttribute("data-theme");
+      }
+    }
   };
 
-  const navLinks = [
-    { label: "About", href: getSectionHref("about"), icon: User },
-    { label: "Skills", href: getSectionHref("skills"), icon: Code2 },
-    { label: "Architecture", href: getSectionHref("deployment"), icon: Server },
-    { label: "Journey", href: getSectionHref("timeline"), icon: Milestone },
-    { label: "Projects", href: "/projects", icon: FolderGit2 },
-    { label: "Contact", href: getSectionHref("contact"), icon: MessageSquare },
-  ];
+  const cycleTheme = () => {
+    playTick(2200, 0.02);
+    if (theme === "auto") applyTheme("light");
+    else if (theme === "light") applyTheme("dark");
+    else applyTheme("auto");
+  };
 
-  const logoDetails = {
-    personal: {
-      tag: "MK",
-      title: "Muhammad Khalid",
-      badge: "Full-Stack & AI",
-      badgeClass: "bg-[#0F0F0F] text-[#00FFD0] border-[#00FFD0]/40",
-      icon: Layers,
-    },
-    dev: {
-      tag: "DEV://",
-      title: "Khalid.dev",
-      badge: "DevOps & Full-Stack",
-      badgeClass: "bg-[#0F0F0F] text-[#00FFD0] border-[#00FFD0]/40",
-      icon: Terminal,
-    },
-    ai: {
-      tag: "AI://",
-      title: "Khalid.ai",
-      badge: "RAG & Voice Synthesis",
-      badgeClass: "bg-[#0F0F0F] text-[#00FFD0] border-[#00FFD0]/40",
-      icon: Sparkles,
-    },
-  }[persona];
+  const toggleSound = () => {
+    const next = !soundOn;
+    setSoundOn(next);
+    setSoundEnabled(next);
+    if (next) {
+      // play a short confirmation tick
+      setTimeout(() => playTick(2000, 0.025, 0.05), 10);
+    }
+  };
 
-  const LogoIcon = logoDetails.icon;
+  const themeLabel = theme === "auto" ? "A" : theme === "light" ? "L" : "D";
+  const soundLabel = soundOn ? "||" : "|";
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-[#FAFAFA]/90 dark:bg-[#0F0F0F]/90 backdrop-blur-2xl border-b border-[#0F0F0F]/10 dark:border-white/10 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.06)]"
-          : "bg-transparent py-4 sm:py-5"
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-3 lg:gap-4">
-          {/* Logo / Persona Wordmark */}
+    <header className="sticky top-0 z-50 w-full bg-[var(--paper)]/95 backdrop-blur-sm border-b border-[var(--rule)] transition-colors duration-300">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 h-14 flex items-center justify-between text-sm">
+        {/* Left: Site Brand */}
+        <div className="flex items-center gap-6 md:gap-8">
           <Link
-            href={personaConfig.route}
-            className="group flex items-center gap-2.5 sm:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00FFD0] rounded-2xl shrink-0"
+            href="/"
+            onClick={() => playTick(1400)}
+            className="font-bold text-[15px] tracking-tight hover:opacity-70 transition-opacity"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl flex items-center justify-center font-mono font-bold text-sm transition-all duration-300 group-hover:scale-105 border border-white/15 group-hover:border-[#00FFD0]/60 bg-[#0F0F0F] text-[#00FFD0] shadow-[0_0_15px_rgba(0,255,208,0.2)] backdrop-blur-xl">
-              <LogoIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#00FFD0]" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-[#0F0F0F] dark:text-[#FAFAFA] group-hover:text-[#009b7d] dark:group-hover:text-[#00FFD0] transition-colors tracking-tight flex items-center gap-1 text-sm sm:text-base">
-                {logoDetails.title}
-                <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity text-[#00FFD0]" />
-              </span>
-              <span
-                className={cn(
-                  "text-[10px] uppercase tracking-wider font-semibold border rounded-full px-2 py-0.2 w-max backdrop-blur-md hidden xs:inline-block",
-                  logoDetails.badgeClass
-                )}
-              >
-                {logoDetails.badge}
-              </span>
-            </div>
+            khalid.dev
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-5">
-            {navLinks.map((link) => (
-              <Link000
-                key={link.label}
-                href={link.href}
-                className="text-xs xl:text-sm font-semibold text-[#808080] hover:text-[#0F0F0F] dark:hover:text-[#FAFAFA] transition-colors py-1"
-              >
-                {link.label}
-              </Link000>
-            ))}
+          {/* Desktop Nav Links */}
+          <nav className="hidden sm:flex items-center gap-6 text-[14px]">
+            <a
+              href="#work"
+              onClick={() => playTick(1600)}
+              className="text-[var(--ink)] hover:opacity-60 transition-opacity"
+            >
+              Work
+            </a>
+            <a
+              href="#contact"
+              onClick={() => playTick(1600)}
+              className="text-[var(--ink)] hover:opacity-60 transition-opacity"
+            >
+              Contact
+            </a>
           </nav>
+        </div>
 
-          {/* Persona Switcher Center */}
-          <div className="hidden md:flex items-center justify-center">
-            <PersonaSwitcher currentPersona={persona} />
-          </div>
+        {/* Right Desktop: Theme, Sound, Clock */}
+        <div className="hidden sm:flex items-center gap-5 md:gap-6 mono text-[13px] text-[var(--ink)]">
+          <button
+            type="button"
+            onClick={cycleTheme}
+            aria-label={`Theme: ${theme}`}
+            className="hover:opacity-60 transition-opacity cursor-pointer select-none"
+          >
+            THEME[{mounted ? themeLabel : "A"}]
+          </button>
 
-          {/* Desktop Right Actions */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Profile"
-              className="p-2 sm:p-2.5 rounded-2xl bg-[#0F0F0F] text-[#FAFAFA] hover:text-[#00FFD0] hover:bg-[#181818] border border-white/15 hover:border-[#00FFD0]/60 transition-all duration-200"
-            >
-              <Github className="w-4 h-4" />
-            </a>
-            <ThemeToggle />
-            <a
-              href={profile.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-[#00FFD0] hover:bg-[#33FFDA] text-[#0F0F0F] border border-[#00FFD0] shadow-[0_4px_15px_rgba(0,255,208,0.35)] hover:shadow-[0_6px_20px_rgba(0,255,208,0.5)] transition-all duration-200"
-            >
-              <FileText className="w-3.5 h-3.5 text-[#0F0F0F]" />
-              <span className="hidden sm:inline">Resume</span>
-            </a>
+          <button
+            type="button"
+            onClick={toggleSound}
+            aria-label={`Sound: ${soundOn ? "on" : "off"}`}
+            className="hover:opacity-60 transition-opacity cursor-pointer select-none"
+          >
+            SOUND[{mounted ? soundLabel : "|"}]
+          </button>
 
-            {/* Mobile / Tablet Menu Trigger */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 sm:p-2.5 rounded-2xl bg-[#0F0F0F] text-[#FAFAFA] hover:text-[#00FFD0] hover:bg-[#181818] border border-white/15 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00FFD0]"
-              aria-label="Toggle Navigation Menu"
-            >
-              {mobileMenuOpen ? <X className="w-4 h-4 text-[#00FFD0]" /> : <Menu className="w-4 h-4" />}
-            </button>
+          <div
+            className="text-[var(--muted)] flex items-center gap-3 select-none"
+            aria-hidden="true"
+          >
+            <span>{mounted ? `${pkTime} GMT+5 PK` : "--:-- GMT+5 PK"}</span>
+            <span className="opacity-40">/</span>
+            <span>{mounted ? visitorTime : "--:--"}</span>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden mt-3 p-4 sm:p-5 rounded-3xl bg-[#0F0F0F]/95 border border-white/10 backdrop-blur-2xl shadow-2xl flex flex-col gap-4 animate-in fade-in slide-in-from-top-2 duration-200 text-[#FAFAFA]">
-            {/* Persona Switcher on mobile */}
-            <div className="flex md:hidden justify-center pb-3 border-b border-white/10">
-              <PersonaSwitcher currentPersona={persona} />
-            </div>
+        {/* Mobile Menu Button */}
+        <div className="sm:hidden flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => {
+              playTick(1600);
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
+            className="mono text-[13px] px-2 py-1 border border-[var(--rule)]"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? "[Close]" : "[Menu]"}
+          </button>
+        </div>
+      </div>
 
-            {/* Nav links grid */}
-            <nav className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {navLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-2 p-2.5 sm:p-3 rounded-2xl bg-white/5 border border-white/10 text-xs font-semibold text-[#FAFAFA]/85 hover:text-[#00FFD0] hover:border-[#00FFD0]/50 hover:bg-[#00FFD0]/10 transition-all"
-                  >
-                    <Icon className="w-3.5 h-3.5 text-[#00FFD0]" />
-                    <span>{link.label}</span>
-                  </Link>
-                );
-              })}
-            </nav>
+      {/* Mobile Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div className="sm:hidden w-full bg-[var(--paper)] border-b border-[var(--rule)] px-6 py-6 flex flex-col gap-5 text-base">
+          <a
+            href="#work"
+            onClick={() => {
+              playTick(1600);
+              setMobileMenuOpen(false);
+            }}
+            className="text-lg font-bold"
+          >
+            Work
+          </a>
+          <a
+            href="#contact"
+            onClick={() => {
+              playTick(1600);
+              setMobileMenuOpen(false);
+            }}
+            className="text-lg font-bold"
+          >
+            Contact
+          </a>
 
-            <div className="pt-3 border-t border-white/10 flex items-center justify-between gap-3 text-xs">
-              <a
-                href={profile.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-[#FAFAFA]/70 hover:text-[#00FFD0] transition-colors"
-              >
-                <Github className="w-4 h-4" />
-                <span>GitHub Profile</span>
-              </a>
-              <a
-                href={profile.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-xl bg-[#00FFD0] text-[#0F0F0F]"
-              >
-                <FileText className="w-3.5 h-3.5" />
-                <span>Resume</span>
-              </a>
+          <div className="pt-4 border-t border-[var(--rule)] flex flex-wrap gap-4 mono text-[13px]">
+            <button
+              type="button"
+              onClick={cycleTheme}
+              className="px-2 py-1 border border-[var(--rule)]"
+            >
+              THEME[{mounted ? themeLabel : "A"}]
+            </button>
+            <button
+              type="button"
+              onClick={toggleSound}
+              className="px-2 py-1 border border-[var(--rule)]"
+            >
+              SOUND[{mounted ? soundLabel : "|"}]
+            </button>
+            <div className="w-full text-[var(--muted)] pt-1">
+              {mounted ? `${pkTime} GMT+5 PK — You: ${visitorTime}` : "--:-- GMT+5 PK"}
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 }

@@ -12,11 +12,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        border: "var(--border)",
-        card: "var(--card)",
-        "card-foreground": "var(--card-foreground)",
+        charcoal: "#211E1C",
+        chalk: "#F9F8F6",
+        smoke: "#E0E0E0",
+        ink: "#2A281F",
+        slate: "#718698",
+        mint: "#A1FFCB",
         butter: {
           surface: "#EDEDED", // color-5
           dark: "#0F0F0F", // color-1 Text Primary

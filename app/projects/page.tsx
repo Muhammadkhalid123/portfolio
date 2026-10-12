@@ -2,7 +2,6 @@ import React from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { LiquidBackground } from "@/components/ui/LiquidBackground";
 import { ProjectsArchive } from "@/components/sections/ProjectsArchive";
 import { projects } from "@/content/projects";
 
@@ -19,13 +18,12 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#FAFAFA] dark:bg-[#0F0F0F] text-[#0F0F0F] dark:text-[#FAFAFA] relative">
-      <LiquidBackground persona="personal" />
-      <Header persona="personal" />
-      <main className="flex-1 relative z-10">
+    <div className="flex flex-col min-h-screen bg-[var(--paper)] text-[var(--ink)]">
+      <Header />
+      <main className="flex-1">
         <ProjectsArchive initialProjects={projects} />
       </main>
-      <Footer persona="personal" />
+      <Footer />
     </div>
   );
 }

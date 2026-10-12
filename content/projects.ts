@@ -60,6 +60,7 @@ export const projects: Project[] = [
     techStack: ["HTML", "JavaScript", "Python", "FastAPI", "PostgreSQL", "Multi-Tenancy", "LLM APIs"],
     image: "/images/projects/multi-tenant-chatbot.svg",
     repoUrl: "https://github.com/Muhammadkhalid123/Multi-Tenant-Chatbot",
+    liveUrl: "https://multi-tenant-chatbot-beta.vercel.app",
     featured: true,
     highlights: [
       "Strict tenant isolation and workspace partitioning for enterprise data privacy",
@@ -72,54 +73,6 @@ export const projects: Project[] = [
       "FastAPI API gateway enforcing tenant validation, rate limits, and authentication",
       "Isolated relational schema and vector collections partitioned by tenant ID",
       "Centralized LLM prompt orchestration layer with dynamic context injection"
-    ]
-  },
-  {
-    slug: "text-summarizer",
-    title: "AI Text Summarizer & Synthesizer",
-    description: "Takes long documents and produces summaries at different lengths — quick skim vs. detailed. Built on transformer models (BART/T5) with a FastAPI backend so the summarization runs as its own service.",
-    technicalNote: "Wrapped Hugging Face BART/T5 models in a standalone FastAPI service to keep heavy model inference decoupled from the frontend.",
-    longDescription: "A natural language processing application that summarizes long-form documents into concise briefings. Users can toggle between concise bullet summaries and detailed abstractive overviews. Heavy transformer computation is encapsulated in a dedicated FastAPI service with token tracking.",
-    tags: ["ai"],
-    techStack: ["Python", "PyTorch", "Hugging Face", "FastAPI", "React", "Tailwind CSS"],
-    image: "/images/projects/text-summarizer.svg",
-    repoUrl: "https://github.com/Muhammadkhalid123/text-summarizer",
-    featured: true,
-    highlights: [
-      "Abstractive summarization using fine-tuned BART and T5 transformer architectures",
-      "FastAPI inference backend handling chunked tokenization for longer inputs",
-      "Interactive frontend showing side-by-side comparison of source text and generated summary",
-      "Lightweight containerization enabling deployment on modest compute instances"
-    ],
-    architecture: [
-      "React front-end with clean typography and summary length controls",
-      "FastAPI API layer receiving document payloads and managing inference requests",
-      "Hugging Face pipeline tokenizing text and running forward passes through transformer weights",
-      "Structured JSON responses containing synthesized text and metadata"
-    ]
-  },
-  {
-    slug: "simple-tts-system",
-    title: "Lightweight Web Text-to-Speech (gTTS)",
-    description: "Lightweight web-based Text-to-Speech system built with Python using Google's gTTS. Converts text inputs into clear, natural voice audio with browser playback and export.",
-    technicalNote: "Leverages Google's gTTS engine integrated with an asynchronous web layer to generate and stream audio blobs directly to the HTML5 Audio API.",
-    longDescription: "A lightweight, responsive web-based Text-to-Speech (TTS) application developed using Python and Google's gTTS library. Converts user-submitted text into smooth, clear spoken audio in real time with audio file download and in-browser playback controls.",
-    tags: ["ai"],
-    techStack: ["Python", "Google gTTS", "FastAPI", "HTML5 Audio", "JavaScript", "Docker"],
-    image: "/images/projects/simple-tts-system.svg",
-    repoUrl: "https://github.com/Muhammadkhalid123/simple-tts-system",
-    featured: true,
-    highlights: [
-      "Real-time speech synthesis using Google's gTTS engine",
-      "Lightweight web interface with live audio waveform and playback controls",
-      "Instant MP3 generation and audio download streaming",
-      "Asynchronous Python web server optimized for fast audio file serving"
-    ],
-    architecture: [
-      "Interactive web interface featuring text area and HTML5 audio player controls",
-      "FastAPI / Python endpoint converting text payloads to audio buffers via gTTS",
-      "In-memory audio caching and streaming response delivery",
-      "Dockerized lightweight service ready for instant container deployment"
     ]
   },
   {
@@ -147,6 +100,154 @@ export const projects: Project[] = [
     ]
   },
   {
+    slug: "tecwrites",
+    title: "TecWrites — Modern Technical Editorial",
+    description: "A fast, content-driven editorial publication platform built with Next.js and TypeScript, designed with high typographic fidelity, MDX compilation, and responsive layout systems.",
+    technicalNote: "Engineered with static generation and ISR on Vercel for instant TTFB and zero layout shift reading experiences.",
+    longDescription: "TecWrites is a dedicated technical publication website designed for long-form engineering articles and developer tutorials. Built with modern React and TypeScript, it features syntax highlighting, clean typographic hierarchy, and responsive dark/light modes.",
+    tags: ["dev"],
+    techStack: ["TypeScript", "Next.js", "React", "MDX", "Tailwind CSS", "Vercel"],
+    image: "/images/projects/tecwrites.svg",
+    repoUrl: "https://github.com/Muhammadkhalid123/tecwrites",
+    liveUrl: "https://tecwrites.vercel.app",
+    featured: false,
+    highlights: [
+      "High-performance MDX content compilation pipeline",
+      "Typographically refined reading experience with responsive code blocks",
+      "Automated OpenGraph card generation for social sharing",
+      "Continuous deployment on Vercel Edge Network"
+    ],
+    architecture: [
+      "Next.js App Router with server-side generation",
+      "MDX parser converting markdown and code samples to React components",
+      "Tailwind typography plugin with customized design tokens",
+      "Vercel Edge CDN distribution"
+    ]
+  },
+  {
+    slug: "anime",
+    title: "Anime Discovery & Media Explorer",
+    description: "An interactive media exploration and discovery application featuring dynamic search, genre filtering, catalog browsing, and responsive detail drawers.",
+    technicalNote: "Integrates external media APIs with client-side caching and debounced searching to ensure stutter-free filtering.",
+    longDescription: "A web application created to browse and discover anime series, movies, and character details. Features an interactive card grid, instant search with debounced typing, modal details, and clean responsive mobile navigation.",
+    tags: ["dev"],
+    techStack: ["TypeScript", "Next.js", "React", "REST API", "Tailwind CSS", "Vercel"],
+    image: "/images/projects/anime.svg",
+    repoUrl: "https://github.com/Muhammadkhalid123/anime",
+    liveUrl: "https://anime-tau-khaki.vercel.app",
+    featured: false,
+    highlights: [
+      "Real-time debounced title search and genre categorization",
+      "Detailed view modal with episode listings and synopsis",
+      "Fully responsive grid adapting across mobile, tablet, and desktop",
+      "Optimized remote image loading via Next.js Image"
+    ],
+    architecture: [
+      "Next.js client components managing UI states and filters",
+      "REST API integration fetching live media catalogs",
+      "Tailwind CSS responsive design system",
+      "Vercel hosting with global edge caching"
+    ]
+  },
+  {
+    slug: "zgc-2",
+    title: "ZGC — High-Speed Astro Portal",
+    description: "A static portal built with Astro 4 and island architecture, delivering perfect 100/100 Google Lighthouse scores across performance, accessibility, and SEO with zero unnecessary client JavaScript.",
+    technicalNote: "Leveraged Astro's partial hydration architecture to deliver static HTML with zero JavaScript bundle overhead for informational pages.",
+    longDescription: "A showcase web portal built using Astro 4.x. Designed for extreme loading speeds and search engine optimization, it renders static HTML pages at build time while selectively hydrating interactive UI elements only when needed.",
+    tags: ["dev"],
+    techStack: ["Astro", "TypeScript", "HTML5", "CSS3", "Vercel"],
+    image: "/images/projects/zgc-2.svg",
+    repoUrl: "https://github.com/Muhammadkhalid123/ZGC-2",
+    liveUrl: "https://zgc-2.vercel.app",
+    featured: false,
+    highlights: [
+      "100/100 Google Lighthouse performance score",
+      "Zero client JavaScript footprint by default",
+      "Structured SEO metadata and automated sitemap generation",
+      "Rapid build time and minimal memory consumption"
+    ],
+    architecture: [
+      "Astro island components compiled to static HTML",
+      "Zero runtime dependency for static content blocks",
+      "Scoped CSS ensuring no style collisions",
+      "Vercel static hosting pipeline"
+    ]
+  },
+  {
+    slug: "ufwf",
+    title: "UFWF Modern Web Platform",
+    description: "A production responsive web application built with TypeScript and Next.js, featuring elegant visual components, interactive navigation, and automated deployment.",
+    technicalNote: "Developed with modular component composition and strict TypeScript typing for reliable maintainability.",
+    longDescription: "A production web platform built using TypeScript and Next.js. Features responsive layout architecture, smooth micro-interactions, clean visual styling, and continuous delivery on Vercel.",
+    tags: ["dev"],
+    techStack: ["TypeScript", "Next.js", "React", "Tailwind CSS", "Vercel"],
+    image: "/images/projects/ufwf.svg",
+    repoUrl: "https://github.com/Muhammadkhalid123/UFWF",
+    liveUrl: "https://ufwf-pink.vercel.app",
+    featured: false,
+    highlights: [
+      "Clean TypeScript architecture with reusable UI components",
+      "Mobile-first responsive layout with fluid breakpoints",
+      "Optimized asset loading and core web vitals",
+      "Production deployment on Vercel"
+    ],
+    architecture: [
+      "Next.js App Router architecture",
+      "Tailwind CSS utility styling",
+      "TypeScript interfaces for strict data integrity",
+      "Vercel Edge deployment"
+    ]
+  },
+  {
+    slug: "text-summarizer",
+    title: "AI Text Summarizer & Synthesizer",
+    description: "Takes long documents and produces summaries at different lengths — quick skim vs. detailed. Built on transformer models (BART/T5) with a FastAPI backend so the summarization runs as its own service.",
+    technicalNote: "Wrapped Hugging Face BART/T5 models in a standalone FastAPI service to keep heavy model inference decoupled from the frontend.",
+    longDescription: "A natural language processing application that summarizes long-form documents into concise briefings. Users can toggle between concise bullet summaries and detailed abstractive overviews. Heavy transformer computation is encapsulated in a dedicated FastAPI service with token tracking.",
+    tags: ["ai"],
+    techStack: ["Python", "PyTorch", "Hugging Face", "FastAPI", "React", "Tailwind CSS"],
+    image: "/images/projects/text-summarizer.svg",
+    repoUrl: "https://github.com/Muhammadkhalid123/text-summarizer",
+    featured: false,
+    highlights: [
+      "Abstractive summarization using fine-tuned BART and T5 transformer architectures",
+      "FastAPI inference backend handling chunked tokenization for longer inputs",
+      "Interactive frontend showing side-by-side comparison of source text and generated summary",
+      "Lightweight containerization enabling deployment on modest compute instances"
+    ],
+    architecture: [
+      "React front-end with clean typography and summary length controls",
+      "FastAPI API layer receiving document payloads and managing inference requests",
+      "Hugging Face pipeline tokenizing text and running forward passes through transformer weights",
+      "Structured JSON responses containing synthesized text and metadata"
+    ]
+  },
+  {
+    slug: "simple-tts-system",
+    title: "Lightweight Web Text-to-Speech (gTTS)",
+    description: "Lightweight web-based Text-to-Speech system built with Python using Google's gTTS. Converts text inputs into clear, natural voice audio with browser playback and export.",
+    technicalNote: "Leverages Google's gTTS engine integrated with an asynchronous web layer to generate and stream audio blobs directly to the HTML5 Audio API.",
+    longDescription: "A lightweight, responsive web-based Text-to-Speech (TTS) application developed using Python and Google's gTTS library. Converts user-submitted text into smooth, clear spoken audio in real time with audio file download and in-browser playback controls.",
+    tags: ["ai"],
+    techStack: ["Python", "Google gTTS", "FastAPI", "HTML5 Audio", "JavaScript", "Docker"],
+    image: "/images/projects/simple-tts-system.svg",
+    repoUrl: "https://github.com/Muhammadkhalid123/simple-tts-system",
+    featured: false,
+    highlights: [
+      "Real-time speech synthesis using Google's gTTS engine",
+      "Lightweight web interface with live audio waveform and playback controls",
+      "Instant MP3 generation and audio download streaming",
+      "Asynchronous Python web server optimized for fast audio file serving"
+    ],
+    architecture: [
+      "Interactive web interface featuring text area and HTML5 audio player controls",
+      "FastAPI / Python endpoint converting text payloads to audio buffers via gTTS",
+      "In-memory audio caching and streaming response delivery",
+      "Dockerized lightweight service ready for instant container deployment"
+    ]
+  },
+  {
     slug: "leads-generating-bot",
     title: "Automated Lead-Generation Bot",
     description: "An automated bot for scraping, filtering, and qualifying sales leads and business contact info into structured datasets for outreach pipelines.",
@@ -156,7 +257,7 @@ export const projects: Project[] = [
     techStack: ["Python", "FastAPI", "Playwright", "BeautifulSoup", "Pandas", "PostgreSQL", "Docker"],
     image: "/images/projects/leads-generating-bot.svg",
     repoUrl: "https://github.com/Muhammadkhalid123/leads-generating-bot",
-    featured: true,
+    featured: false,
     highlights: [
       "Automated extraction of business contact details, emails, and company metadata",
       "Custom lead filtering, scoring, and duplicate elimination heuristics",
@@ -204,7 +305,7 @@ export const projects: Project[] = [
     techStack: ["Docker", "GitHub Actions", "AWS EC2", "Nginx", "Linux", "Bash", "Let's Encrypt"],
     image: "/images/projects/ec2-docker-cicd.svg",
     repoUrl: "https://github.com/Muhammadkhalid123/portfolio",
-    liveUrl: "https://khalid.dev",
+    liveUrl: "https://portfolio-swart-tau-74.vercel.app",
     featured: false,
     highlights: [
       "Automated CI/CD with GitHub Actions: linting, typechecking, and container build",

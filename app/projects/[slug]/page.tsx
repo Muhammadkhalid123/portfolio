@@ -5,25 +5,11 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { PersonaTagBadge, Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
-import { LiquidBackground } from "@/components/ui/LiquidBackground";
 import {
   getProjectBySlug,
   getAllProjectSlugs,
   getAdjacentProjects,
 } from "@/lib/getProjectsByPersona";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Github,
-  ExternalLink,
-  Layers,
-  Server,
-  ShieldCheck,
-  CheckCircle2,
-  Code2,
-} from "lucide-react";
 
 interface ProjectPageProps {
   params: {
@@ -48,10 +34,10 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   }
 
   return {
-    title: `${project.title} — Case Study | Muhammad Khalid`,
+    title: `${project.title} — Muhammad Khalid`,
     description: project.description,
     openGraph: {
-      title: `${project.title} — Case Study | Muhammad Khalid`,
+      title: `${project.title} — Muhammad Khalid`,
       description: project.description,
       type: "article",
     },
@@ -65,136 +51,113 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  const { prev, next } = getAdjacentProjects(params.slug);
-  const isDevOps = project.tags.includes("devops");
-  const isAI = project.tags.includes("ai");
-  const pagePersona = isDevOps ? "dev" : isAI ? "ai" : "personal";
+  const { next } = getAdjacentProjects(params.slug);
+
+  const categoryLabel = project.tags.includes("ai") && project.tags.includes("dev")
+    ? "AI & ML, Dev"
+    : project.tags.includes("ai")
+    ? "AI & ML"
+    : project.tags.includes("devops")
+    ? "DevOps & Cloud"
+    : "Dev";
+
+  const yearStr = project.slug.includes("summarizer") || project.slug.includes("crm") || project.slug.includes("smm")
+    ? "2023 to 2024"
+    : "2024 to present";
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FAFAFA] text-[#0F0F0F] relative">
-      <LiquidBackground persona={pagePersona} />
-      <Header persona={pagePersona} />
+    <div className="flex flex-col min-h-screen bg-[var(--paper)] text-[var(--ink)]">
+      <Header />
 
-      <main className="flex-1 pt-28 pb-24 relative z-10">
-        {/* Breadcrumb & Navigation */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-[#808080] hover:text-[#0F0F0F] transition-colors px-3.5 py-1.5 rounded-full butter-pill w-max"
-          >
-            <ArrowLeft className="w-4 h-4 text-[#00FFD0]" />
-            <span>Back to All Projects</span>
-          </Link>
-        </div>
+      <main className="flex-1 pt-12 md:pt-16 pb-24">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 space-y-12 md:space-y-16">
+          
+          {/* Top Metadata Bar: ← Work and Year */}
+          <div className="flex items-center justify-between mono text-[13px] text-[var(--muted)] pb-4 border-b border-[var(--rule)]">
+            <Link
+              href="/#work"
+              className="text-[var(--ink)] font-bold hover:opacity-60 transition-opacity"
+            >
+              &larr; Work
+            </Link>
+            <span>{yearStr}</span>
+          </div>
 
-        {/* Project Hero Header */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-          <div className={
-            pagePersona === "dev"
-              ? "p-8 sm:p-12 rounded-3xl liquid-glass-dev overflow-hidden"
-              : pagePersona === "ai"
-              ? "p-8 sm:p-12 rounded-3xl liquid-glass-ai overflow-hidden"
-              : "p-8 sm:p-12 rounded-3xl liquid-glass-personal overflow-hidden"
-          }>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-              <div className={project.image ? "lg:col-span-7" : "lg:col-span-12"}>
-                <div className="flex flex-wrap items-center gap-2 mb-5">
-                  {project.tags.map((tag) => (
-                    <PersonaTagBadge key={tag} tag={tag} />
-                  ))}
-                  {project.featured && (
-                    <Badge variant="outline" size="sm" className="border-[#00FFD0]/60 text-[#00FFD0] bg-[#0F0F0F]/80">
-                      Featured Project
-                    </Badge>
-                  )}
-                </div>
+          {/* Project Title (Display 87px top, line-height 1.0) */}
+          <div className="space-y-4">
+            <h1 className="display text-[44px] sm:text-[62px] md:text-[76px] lg:text-[87px] leading-[1.0] font-bold tracking-tight text-[var(--ink)]">
+              {project.title}
+            </h1>
+            <p className="statement text-[20px] sm:text-[24px] md:text-[28px] text-[var(--muted)] leading-[1.2] max-w-[800px]">
+              {project.description}
+            </p>
+          </div>
 
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#FAFAFA] tracking-tight mb-4">
-                  {project.title}
-                </h1>
+          {/* Metadata Grid (Role, Stack, Links) with Hairline Rules */}
+          <div className="py-6 border-y border-[var(--rule)] grid grid-cols-1 md:grid-cols-12 gap-6 mono text-[13px]">
+            <div className="md:col-span-3 space-y-1">
+              <span className="text-[var(--muted)] block uppercase text-[11px]">Category</span>
+              <span className="text-[var(--ink)] font-bold">{categoryLabel}</span>
+            </div>
 
-                <p className="text-base sm:text-lg text-[#FAFAFA]/85 max-w-3xl leading-relaxed mb-8">
-                  {project.description}
-                </p>
+            <div className="md:col-span-6 space-y-1">
+              <span className="text-[var(--muted)] block uppercase text-[11px]">Stack</span>
+              <span className="text-[var(--ink)]">{project.techStack.join(" · ")}</span>
+            </div>
 
-                {/* Action Buttons */}
-                <div className="flex flex-wrap items-center gap-3 pt-2">
-                  {project.repoUrl && (
-                    <Button
-                      href={project.repoUrl}
-                      external
-                      variant="primary"
-                      size="md"
-                    >
-                      <Github className="w-4 h-4" />
-                      <span>View Repository</span>
-                    </Button>
-                  )}
+            <div className="md:col-span-3 space-y-1 md:text-right">
+              <span className="text-[var(--muted)] block uppercase text-[11px]">Links</span>
+              <div className="flex items-center md:justify-end gap-4 text-[var(--ink)] font-bold">
+                {project.repoUrl && (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-60 transition-opacity"
+                  >
+                    GitHub ↗
+                  </a>
+                )}
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-60 transition-opacity"
+                  >
+                    Live Demo ↗
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
 
-                  {project.liveUrl && (
-                    <Button
-                      href={project.liveUrl}
-                      external
-                      variant="secondary"
-                      size="md"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Live Demonstration</span>
-                    </Button>
-                  )}
-                </div>
+          {/* Featured Image (Full width, zero radius, hairline border) */}
+          {project.image && (
+            <div className="w-full aspect-[16/9] relative bg-[var(--paper)] border border-[var(--rule)] overflow-hidden">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                priority
+                sizes="(max-width: 1440px) 100vw, 1440px"
+                className="object-cover"
+              />
+            </div>
+          )}
+
+          {/* Deep Overview (62ch max-width, 16px body) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-8 space-y-8">
+              <div className="mono text-[12px] text-[var(--muted)] uppercase tracking-wider">
+                // ARCHITECTURE & TECHNICAL DECISIONS
               </div>
 
-              {project.image && (
-                <div className="lg:col-span-5">
-                  <div className="rounded-2xl overflow-hidden border border-white/15 bg-black/50 shadow-2xl relative aspect-[16/10] group">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* Project Case Study Content */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          {/* Tech Stack Matrix */}
-          <div className="p-6 sm:p-8 rounded-3xl liquid-glass">
-            <h2 className="text-xs font-semibold text-[#00FFD0] uppercase tracking-wider mb-4 flex items-center gap-2">
-              <Code2 className="w-4 h-4 text-[#00FFD0]" />
-              <span>Technology & Tooling Stack</span>
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {project.techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1.5 text-xs font-mono font-medium rounded-xl liquid-glass-pill-dark text-[#FAFAFA]"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Deep Overview & Problem Statement */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-7 space-y-6">
-              <div className="p-8 rounded-3xl liquid-glass">
-                <h2 className="text-xl font-bold text-[#FAFAFA] mb-4">
-                  What it does & how it was built
-                </h2>
-                <p className="text-sm sm:text-base text-[#FAFAFA]/85 leading-relaxed mb-4">
-                  {project.longDescription || project.description}
-                </p>
+              <div className="body text-[16px] sm:text-[17px] leading-[1.6] space-y-6 text-[var(--ink)]">
+                <p>{project.longDescription || project.description}</p>
                 {project.technicalNote && (
-                  <div className="p-4 rounded-2xl bg-black/50 border border-[#00FFD0]/30 text-xs text-[#FAFAFA]/80">
-                    <span className="text-[#00FFD0] font-semibold block mb-1">Technical Decision:</span>
+                  <div className="p-6 border-l-2 border-[var(--ink)] bg-[var(--ink)]/5 mono text-[13px] leading-relaxed">
+                    <span className="font-bold block mb-1 uppercase text-[11px]">Core Architectural Note:</span>
                     {project.technicalNote}
                   </div>
                 )}
@@ -202,39 +165,33 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
 
               {/* Key Highlights */}
               {project.highlights && project.highlights.length > 0 && (
-                <div className="p-8 rounded-3xl liquid-glass">
-                  <h2 className="text-xl font-bold text-[#FAFAFA] mb-4">
-                    Key Features & Technical Decisions
-                  </h2>
-                  <div className="space-y-3">
-                    {project.highlights.map((highlight, idx) => (
-                      <div key={idx} className="flex items-start gap-3 text-sm text-[#FAFAFA]/85">
-                        <CheckCircle2 className="w-4 h-4 text-[#00FFD0] shrink-0 mt-0.5" />
-                        <span>{highlight}</span>
-                      </div>
-                    ))}
+                <div className="space-y-4 pt-4 border-t border-[var(--rule)]">
+                  <div className="mono text-[12px] text-[var(--muted)] uppercase tracking-wider">
+                    // KEY HIGHLIGHTS
                   </div>
+                  <ul className="space-y-3 mono text-[13px] text-[var(--ink)]">
+                    {project.highlights.map((highlight, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <span className="font-bold text-[var(--muted)]">—</span>
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
             </div>
 
-            {/* Architecture Flow / System Breakdown */}
-            <div className="lg:col-span-5 space-y-6">
-              {project.architecture && project.architecture.length > 0 && (
-                <div className="p-8 rounded-3xl liquid-glass">
-                  <h2 className="text-xl font-bold text-[#FAFAFA] mb-4 flex items-center gap-2">
-                    <Layers className="w-5 h-5 text-[#00FFD0]" />
-                    <span>System Components</span>
-                  </h2>
-                  <div className="space-y-3">
+            {/* Architecture List / Deployment Specs */}
+            <div className="lg:col-span-4 space-y-8 border-l border-[var(--rule)] pl-0 lg:pl-8">
+              {project.architecture && (
+                <div className="space-y-3">
+                  <div className="mono text-[12px] text-[var(--muted)] uppercase tracking-wider">
+                    // SYSTEM BREAKDOWN
+                  </div>
+                  <div className="divide-y divide-[var(--rule)]">
                     {project.architecture.map((layer, idx) => (
-                      <div
-                        key={idx}
-                        className="p-3.5 rounded-2xl liquid-glass-pill-dark text-xs text-[#FAFAFA]/85 font-mono leading-relaxed"
-                      >
-                        <span className="text-[#00FFD0] font-bold mr-2">
-                          0{idx + 1}.
-                        </span>
+                      <div key={idx} className="py-3 mono text-[12px] text-[var(--ink)]">
+                        <span className="text-[var(--muted)] mr-2">0{idx + 1}.</span>
                         {layer}
                       </div>
                     ))}
@@ -242,108 +199,51 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
                 </div>
               )}
 
-              {/* Quick Specs Card */}
-              <div className="p-6 rounded-3xl liquid-glass text-xs space-y-3">
-                <div className="flex justify-between items-center py-1 border-b border-white/10">
-                  <span className="text-[#808080]">Engineering Team:</span>
-                  <span className="font-semibold text-[#FAFAFA]">AI &amp; Automation Engineering</span>
+              {project.deployment && (
+                <div className="space-y-3 pt-6 border-t border-[var(--rule)]">
+                  <div className="mono text-[12px] text-[var(--muted)] uppercase tracking-wider">
+                    // INFRASTRUCTURE
+                  </div>
+                  <div className="mono text-[12px] space-y-2">
+                    <div className="flex justify-between py-1 border-b border-[var(--rule)]">
+                      <span className="text-[var(--muted)]">Platform:</span>
+                      <span className="text-[var(--ink)] font-bold">{project.deployment.platform}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-[var(--rule)]">
+                      <span className="text-[var(--muted)]">Containers:</span>
+                      <span className="text-[var(--ink)] font-bold">{project.deployment.containerization}</span>
+                    </div>
+                    <div className="flex justify-between py-1">
+                      <span className="text-[var(--muted)]">Proxy / SSL:</span>
+                      <span className="text-[var(--ink)] font-bold">{project.deployment.proxy}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center py-1 border-b border-white/10">
-                  <span className="text-[#808080]">License:</span>
-                  <span className="font-semibold text-[#FAFAFA]">MIT</span>
-                </div>
-                <div className="flex justify-between items-center py-1 border-b border-white/10">
-                  <span className="text-[#808080]">Primary Language:</span>
-                  <span className="font-semibold text-[#FAFAFA]">{project.techStack[0] || "TypeScript"}</span>
-                </div>
-                <div className="flex justify-between items-center py-1">
-                  <span className="text-[#808080]">Status:</span>
-                  <span className="text-[#00FFD0] font-semibold flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00FFD0] animate-pulse" />
-                    Production Ready
-                  </span>
-                </div>
-              </div>
+              )}
             </div>
           </div>
 
-          {/* DevOps Deployment Architecture Section */}
-          {project.deployment && (
-            <div className="p-8 sm:p-10 rounded-3xl liquid-glass-dev">
-              <div className="flex items-center gap-2 mb-3">
-                <Badge variant="dev" size="sm">
-                  DevOps Breakdown
-                </Badge>
-                <span className="text-xs font-mono text-[#00FFD0]">Production Cloud Setup</span>
+          {/* Next Project → */}
+          {next && (
+            <div className="pt-16 md:pt-24 border-t border-[var(--rule)]">
+              <div className="mono text-[12px] text-[var(--muted)] uppercase tracking-wider mb-2">
+                Next Project &rarr;
               </div>
-
-              <h2 className="text-2xl font-extrabold text-[#FAFAFA] mb-6 flex items-center gap-3">
-                <Server className="w-6 h-6 text-[#00FFD0]" />
-                <span>Deployment & Infrastructure Architecture</span>
-              </h2>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                <div className="p-4 rounded-2xl liquid-glass-pill-dark text-xs">
-                  <span className="text-[#808080] block mb-1">Hosting Platform</span>
-                  <span className="font-mono font-bold text-[#00FFD0]">{project.deployment.platform}</span>
+              <Link
+                href={`/projects/${next.slug}`}
+                className="group block"
+              >
+                <div className="text-[32px] sm:text-[48px] md:text-[64px] font-bold leading-tight text-[var(--ink)] group-hover:underline underline-offset-8 decoration-[var(--rule)] transition-all">
+                  {next.title} &rarr;
                 </div>
-                <div className="p-4 rounded-2xl liquid-glass-pill-dark text-xs">
-                  <span className="text-[#808080] block mb-1">Containerization</span>
-                  <span className="font-mono font-bold text-[#00FFD0]">{project.deployment.containerization}</span>
-                </div>
-                <div className="p-4 rounded-2xl liquid-glass-pill-dark text-xs">
-                  <span className="text-[#808080] block mb-1">CI/CD Pipeline</span>
-                  <span className="font-mono font-bold text-[#00FFD0]">{project.deployment.ciCd}</span>
-                </div>
-                <div className="p-4 rounded-2xl liquid-glass-pill-dark text-xs">
-                  <span className="text-[#808080] block mb-1">Edge Reverse Proxy</span>
-                  <span className="font-mono font-bold text-[#00FFD0]">{project.deployment.proxy}</span>
-                </div>
-              </div>
-
-              <div className="space-y-2.5">
-                {project.deployment.details.map((detail, dIdx) => (
-                  <div key={dIdx} className="flex items-start gap-3 text-xs sm:text-sm text-[#FAFAFA]/85">
-                    <ShieldCheck className="w-4 h-4 text-[#00FFD0] shrink-0 mt-0.5" />
-                    <span>{detail}</span>
-                  </div>
-                ))}
-              </div>
+              </Link>
             </div>
           )}
 
-          {/* Adjacent Project Navigation */}
-          <div className="pt-10 border-t border-black/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {prev && (
-              <Link
-                href={`/projects/${prev.slug}`}
-                className="p-4 rounded-2xl liquid-glass hover:border-[#00FFD0]/50 transition-all flex items-center gap-3 group"
-              >
-                <ArrowLeft className="w-4 h-4 text-[#808080] group-hover:text-[#00FFD0] group-hover:-translate-x-1 transition-all" />
-                <div className="min-w-0">
-                  <span className="text-[10px] uppercase font-bold text-[#808080] block">Previous Project</span>
-                  <span className="text-sm font-semibold text-[#FAFAFA] truncate block">{prev.title}</span>
-                </div>
-              </Link>
-            )}
-
-            {next && (
-              <Link
-                href={`/projects/${next.slug}`}
-                className="p-4 rounded-2xl liquid-glass hover:border-[#00FFD0]/50 transition-all flex items-center justify-between sm:justify-end gap-3 group sm:text-right"
-              >
-                <div className="min-w-0">
-                  <span className="text-[10px] uppercase font-bold text-[#808080] block">Next Project</span>
-                  <span className="text-sm font-semibold text-[#FAFAFA] truncate block">{next.title}</span>
-                </div>
-                <ArrowRight className="w-4 h-4 text-[#808080] group-hover:text-[#00FFD0] group-hover:translate-x-1 transition-all" />
-              </Link>
-            )}
-          </div>
-        </section>
+        </div>
       </main>
 
-      <Footer persona={pagePersona} />
+      <Footer />
     </div>
   );
 }

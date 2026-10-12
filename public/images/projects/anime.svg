@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-anime" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19"/>
+      <stop offset="100%" stop-color="#1a1c2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg-anime)" />
+  <rect x="120" y="60" width="560" height="320" rx="6" fill="#111528" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.4" />
+  <rect x="120" y="60" width="560" height="40" fill="#181e38" />
+  <circle cx="145" cy="80" r="4.5" fill="#f43f5e"/>
+  <circle cx="160" cy="80" r="4.5" fill="#f59e0b"/>
+  <circle cx="175" cy="80" r="4.5" fill="#38bdf8"/>
+  <text x="400" y="85" fill="#F9F8F6" font-family="monospace" font-size="12" text-anchor="middle">anime-tau-khaki.vercel.app — Media Discovery</text>
+  
+  <g transform="translate(150, 120)">
+    <rect x="0" y="0" width="140" height="200" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+    <rect x="10" y="10" width="120" height="130" rx="3" fill="#334155" />
+    <text x="70" y="160" fill="#f8fafc" font-family="sans-serif" font-weight="600" font-size="11" text-anchor="middle">Trending Series</text>
+    <text x="70" y="180" fill="#38bdf8" font-family="monospace" font-size="9" text-anchor="middle">Score: 9.4 / 10</text>
+
+    <rect x="160" y="0" width="140" height="200" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+    <rect x="170" y="10" width="120" height="130" rx="3" fill="#334155" />
+    <text x="230" y="160" fill="#f8fafc" font-family="sans-serif" font-weight="600" font-size="11" text-anchor="middle">Top Airing</text>
+    <text x="230" y="180" fill="#38bdf8" font-family="monospace" font-size="9" text-anchor="middle">Score: 9.1 / 10</text>
+
+    <rect x="320" y="0" width="160" height="200" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1" />
+    <text x="335" y="30" fill="#38bdf8" font-family="monospace" font-size="11">// REST API Sync</text>
+    <text x="335" y="60" fill="#94a3b8" font-family="monospace" font-size="10">GET /api/trending</text>
+    <text x="335" y="85" fill="#22c55e" font-family="monospace" font-size="10">Status: 200 OK</text>
+    <text x="335" y="110" fill="#94a3b8" font-family="monospace" font-size="10">Cached: ISR 60s</text>
+    <text x="335" y="135" fill="#94a3b8" font-family="monospace" font-size="10">Filter: Type / Genre</text>
+  </g>
+</svg>

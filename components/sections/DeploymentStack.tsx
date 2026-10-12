@@ -1,167 +1,164 @@
 "use client";
 
-import React, { useState } from "react";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Badge } from "@/components/ui/Badge";
-import {
-  GitBranch,
-  Terminal,
-  Server,
-  Shield,
-  Box,
-  ArrowRight,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+import React, { useState, useEffect } from "react";
+import { GitBranch, Terminal, Box, Server, Shield, ExternalLink, ArrowRight } from "lucide-react";
 
-export interface PipelineStep {
-  id: string;
-  step: string;
-  title: string;
-  icon: React.ElementType;
-  codeSnippet: string;
+export interface DeploymentStackProps {
+  persona?: "personal" | "dev" | "ai";
 }
 
-export function DeploymentStack({ persona = "dev" }: { persona?: "personal" | "dev" | "ai" }) {
-  const [activeStep, setActiveStep] = useState<number>(0);
+export function DeploymentStack({ persona = "dev" }: DeploymentStackProps = {}) {
+  const [activeStep, setActiveStep] = useState(0);
 
-  const steps: PipelineStep[] = [
+  const steps = [
     {
-      id: "git",
       step: "01",
       title: "Push to main",
       icon: GitBranch,
-      codeSnippet: `git add .
-git commit -m "feat: ship update"
-git push origin main`,
+      description: "Local commit pushed to GitHub repository branch",
+      code: `git add .\ngit commit -m "feat: ship production update"\ngit push origin main`,
+      details: "Triggers automated GitHub Actions webhook pipeline securely via repository secrets.",
     },
     {
-      id: "ci",
       step: "02",
       title: "GitHub Actions",
       icon: Terminal,
-      codeSnippet: `jobs:
-  validate-and-build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: npm ci
-      - run: npm run typecheck
-      - run: npm run build`,
+      description: "Automated linting, typechecking, and build validation",
+      code: `jobs:\n  validate-and-build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: npm ci\n      - run: npm run typecheck\n      - run: npm run build`,
+      details: "Ensures zero type regressions or syntax issues before containerizing code.",
     },
     {
-      id: "docker",
       step: "03",
       title: "Docker build",
       icon: Box,
-      codeSnippet: `FROM node:20-alpine AS runner
-WORKDIR /app
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-EXPOSE 3000
-CMD ["node", "server.js"]`,
+      description: "Multi-stage Alpine container packaging",
+      code: `FROM node:20-alpine AS runner\nWORKDIR /app\nCOPY --from=builder /app/.next/standalone ./\nCOPY --from=builder /app/.next/static ./.next/static\nEXPOSE 3000\nCMD ["node", "server.js"]`,
+      details: "Produces a minimal production image under 120MB published to GitHub Container Registry.",
     },
     {
-      id: "ec2",
       step: "04",
       title: "EC2 deploy",
       icon: Server,
-      codeSnippet: `ssh -i $SSH_PRIVATE_KEY $SSH_USER@$SSH_HOST << 'EOF'
-  cd /var/www/portfolio
-  docker compose pull
-  docker compose up -d --remove-orphans
-EOF`,
+      description: "Zero-downtime SSH container pull & restart",
+      code: `ssh -i $SSH_PRIVATE_KEY $SSH_USER@$SSH_HOST << 'EOF'\n  cd /var/www/portfolio\n  docker compose pull\n  docker compose up -d --remove-orphans\nEOF`,
+      details: "Atomic container swap executing on AWS EC2 instance without expensive load balancer overhead.",
     },
     {
-      id: "nginx",
       step: "05",
-      title: "Nginx (SSL)",
+      title: "Nginx SSL",
       icon: Shield,
-      codeSnippet: `server {
-  listen 443 ssl http2;
-  server_name khalid.dev;
-  location / {
-    proxy_pass http://portfolio_app:3000;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-  }
-}`,
+      description: "Reverse proxy edge routing with automated TLS",
+      code: `server {\n  listen 443 ssl http2;\n  server_name khalid.dev;\n  location / {\n    proxy_pass http://portfolio_app:3000;\n    proxy_set_header Host $host;\n    proxy_set_header X-Real-IP $remote_addr;\n  }\n}`,
+      details: "Hardened security headers, gzip compression, and automated Let's Encrypt certificate renewal.",
     },
   ];
 
   const current = steps[activeStep];
 
   return (
-    <section id="deployment" className="py-24 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading
-          badge="DevOps Architecture"
-          badgeVariant="devops"
-          title="How It Gets to"
-          highlightedTitle="Production"
-          gradientClass="from-[#0F0F0F] via-[#009b7d] to-[#00FFD0]"
-          description="A clean, automated deployment pipeline from local git commit to live AWS EC2 instance."
-        />
+    <section
+      id="pipeline"
+      className="bg-[#211E1C] text-[#F9F8F6] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 border-b border-white/[0.08]"
+    >
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="pb-16 border-b border-white/[0.12]">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#718698] block mb-3">
+            03 / Infrastructure
+          </span>
+          <h2 className="heading-h1 text-[#F9F8F6]">
+            How code reaches production
+          </h2>
+          <p className="text-base text-[#718698] mt-4 max-w-xl font-normal leading-relaxed">
+            A real, automated CI/CD deployment pipeline from local git commit to live AWS EC2 instance.
+          </p>
+        </div>
 
-        {/* Clean Linear Pipeline Diagram */}
-        <div className="p-3.5 sm:p-5 rounded-3xl liquid-glass mb-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-3">
-            {steps.map((s, index) => {
-              const StepIcon = s.icon;
-              const isSelected = activeStep === index;
+        {/* 5-Node Interactive Pipeline Track (Antimetal pattern) */}
+        <div className="pt-16 pb-12">
+          {/* Progress bar line connecting nodes */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 relative mb-12">
+            {steps.map((s, idx) => {
+              const isSelected = activeStep === idx;
+              const Icon = s.icon;
 
               return (
-                <React.Fragment key={s.id}>
-                  <button
-                    onClick={() => setActiveStep(index)}
-                    className={cn(
-                      "flex-1 w-full p-3.5 rounded-2xl border text-center transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5",
-                      isSelected
-                        ? "bg-[#0F0F0F] border-[#00FFD0]/70 text-[#FAFAFA] shadow-[0_4px_25px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl font-bold"
-                        : "liquid-glass-pill-dark text-[#FAFAFA]/70 hover:text-[#00FFD0] hover:bg-[#00FFD0]/10"
-                    )}
-                  >
-                    <StepIcon className={cn("w-4 h-4", isSelected ? "text-[#00FFD0]" : "text-[#FAFAFA]/60")} />
-                    <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">
-                      {s.title}
+                <button
+                  key={s.step}
+                  onClick={() => setActiveStep(idx)}
+                  className={`text-left p-5 border transition-all duration-200 cursor-pointer ${
+                    isSelected
+                      ? "bg-white/[0.08] border-[#A1FFCB] text-[#F9F8F6]"
+                      : "bg-transparent border-white/[0.1] text-[#718698] hover:border-white/30 hover:text-[#F9F8F6]"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span
+                      className={`font-mono text-xs ${
+                        isSelected ? "text-[#A1FFCB]" : "text-[#718698]"
+                      }`}
+                    >
+                      {s.step}
                     </span>
-                  </button>
-
-                  {index < steps.length - 1 && (
-                    <ArrowRight className="hidden md:block w-4 h-4 text-[#00FFD0]/60 shrink-0" />
-                  )}
-                </React.Fragment>
+                    <Icon
+                      className={`w-4 h-4 ${
+                        isSelected ? "text-[#A1FFCB]" : "text-[#718698]"
+                      }`}
+                    />
+                  </div>
+                  <h4 className="text-sm font-normal text-[#F9F8F6] mb-1">
+                    {s.title}
+                  </h4>
+                  <p className="font-mono text-[11px] text-[#718698] line-clamp-1">
+                    {s.description}
+                  </p>
+                </button>
               );
             })}
           </div>
-        </div>
 
-        {/* Code Snippet Viewer */}
-        <div className="rounded-3xl liquid-glass overflow-hidden mb-6">
-          <div className="px-5 py-3 bg-white/[0.04] border-b border-white/10 flex items-center justify-between backdrop-blur-xl">
-            <div className="flex items-center gap-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shadow-[0_0_8px_rgba(244,63,94,0.5)]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#00FFD0] shadow-[0_0_8px_rgba(0,255,208,0.6)]" />
-              <span className="ml-2 text-xs font-mono text-[#FAFAFA]">
-                {current.title} — configuration
+          {/* Active Step Terminal Code Panel */}
+          <div className="border border-white/[0.12] bg-black/40 overflow-hidden">
+            <div className="px-6 py-3.5 border-b border-white/[0.1] flex items-center justify-between bg-white/[0.02]">
+              <div className="flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-[#A1FFCB]" />
+                <span className="font-mono text-xs text-[#F9F8F6]">
+                  Step {current.step} — {current.title}
+                </span>
+              </div>
+              <span className="font-mono text-xs text-[#718698]">
+                {current.description}
               </span>
             </div>
-            <span className="text-[11px] font-mono text-[#00FFD0] font-semibold px-2.5 py-0.5 rounded-full bg-[#00FFD0]/15 border border-[#00FFD0]/40">
-              Step {current.step} / 05
-            </span>
-          </div>
 
-          <div className="p-6 font-mono text-xs text-[#FAFAFA] overflow-x-auto bg-black/50 leading-relaxed backdrop-blur-xl">
-            <pre>
-              <code>{current.codeSnippet}</code>
-            </pre>
+            <div className="p-6 sm:p-8 font-mono text-xs sm:text-sm text-[#F9F8F6] overflow-x-auto leading-relaxed bg-[#191715]">
+              <pre className="text-[#A1FFCB]/90">
+                <code>{current.code}</code>
+              </pre>
+            </div>
+
+            <div className="px-6 py-4 border-t border-white/[0.08] bg-white/[0.01] flex items-center justify-between text-xs font-mono text-[#718698]">
+              <span>{current.details}</span>
+              <span className="text-[#A1FFCB]">Live on AWS</span>
+            </div>
           </div>
         </div>
 
-        {/* Direct One-Sentence Statement */}
-        <p className="text-center text-sm text-[#808080] font-medium">
-          This is the actual pipeline behind every project on this site — including this portfolio.
-        </p>
+        {/* Signature Honesty Statement (Section 6.4) */}
+        <div className="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <p className="text-sm text-[#F9F8F6]/85 font-normal">
+            "This is the actual pipeline behind every project on this site, including this portfolio."
+          </p>
+          <a
+            href="https://github.com/Muhammadkhalid123/portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-mono text-xs text-[#A1FFCB] hover:underline shrink-0"
+          >
+            <span>View source on GitHub</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
       </div>
     </section>
   );

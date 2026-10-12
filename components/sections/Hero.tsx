@@ -1,84 +1,99 @@
-import React from "react";
-import { personas } from "@/content/personas";
-import { Button } from "@/components/ui/Button";
-import {
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
-import { CenterRollingHeadline, RollingParagraph } from "@/components/ui/RollingText";
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { DepthPortrait } from "@/components/ui/DepthPortrait";
 
 export interface HeroProps {
-  persona?: "personal" | "dev" | "ai";
+  persona?: string;
 }
 
-export function Hero({ persona = "ai" }: HeroProps) {
-  const personaConfig = personas[persona] || personas.ai;
+export function Hero({ persona }: HeroProps = {}) {
+  const heroRef = useRef<HTMLElement>(null);
+  const titleLine1Ref = useRef<HTMLSpanElement>(null);
+  const titleLine2Ref = useRef<HTMLSpanElement>(null);
+  const afterRef = useRef<HTMLDivElement>(null);
 
-  const headlineItems = [
-    { text: "We build practical AI systems" },
-    {
-      text: "that deliver real results.",
-      gradient: true,
-      gradientClass: "bg-gradient-to-r from-[#0F0F0F] via-[#009b7d] to-[#00FFD0] bg-clip-text text-transparent",
-    },
-  ];
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+
+      // Title lines rise through mask (0.9s, expo.out, 0.09s stagger)
+      tl.from([titleLine1Ref.current, titleLine2Ref.current], {
+        yPercent: 110,
+        duration: 0.9,
+        ease: "expo.out",
+        stagger: 0.09,
+      })
+      // The one-liner, intro and availability fade in with 0.3s duration and 0.6s delay (HAOQI token)
+      .from(afterRef.current, {
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.out",
+      }, ">-0.3+0.6");
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="top" className="relative min-h-[75vh] flex items-center justify-center pt-24 sm:pt-32 pb-16 overflow-hidden">
-      {/* Dynamic Ambient Electric Glows */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#00FFD0]/10 blur-[130px] rounded-full" />
-        <div className="absolute top-1/3 right-1/4 w-[450px] h-[300px] bg-[#00FFD0]/6 blur-[110px] rounded-full" />
-      </div>
+    <section
+      ref={heroRef}
+      className="relative w-full pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden border-b border-[var(--rule)]"
+    >
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          
+          {/* Left Column: Giant Tight Display Title + Explanatory Copy */}
+          <div className="lg:col-span-8 z-10">
+            {/* Title with screen reader label and masked visual spans */}
+            <h1
+              className="display tracking-[-0.03em] select-none"
+              aria-label="AI and Full-Stack Engineering"
+            >
+              <div className="overflow-hidden">
+                <span ref={titleLine1Ref} className="block" aria-hidden="true">
+                  AI &amp; Full-Stack
+                </span>
+              </div>
+              <div className="overflow-hidden mt-1 sm:mt-2">
+                <span ref={titleLine2Ref} className="block" aria-hidden="true">
+                  Engineering
+                </span>
+              </div>
+            </h1>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        {/* Top Tag & Status */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full butter-pill mb-8 backdrop-blur-2xl">
-          <Sparkles className="w-4 h-4 text-[#00FFD0]" />
-          <span className="text-xs font-semibold text-[#0F0F0F]">
-            {personaConfig.badgeText}
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00FFD0] animate-pulse" />
-          <span className="text-[11px] text-[#009b7d] font-semibold">Available</span>
-        </div>
+            {/* After Content: One-line, Intro, Availability */}
+            <div ref={afterRef} className="mt-8 md:mt-12 space-y-6 max-w-[62ch]">
+              <p className="statement text-[22px] sm:text-[28px] md:text-[32px] text-[var(--ink)] leading-[1.15]">
+                We build practical AI systems that deliver real results.
+              </p>
 
-        {/* Hero Headline with Center-to-Edge Staggered Rolling Text Animation */}
-        <CenterRollingHeadline
-          items={headlineItems}
-          className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-[60px] font-black tracking-[-0.038em] text-[#0F0F0F] mb-6 leading-[1.14] max-w-4xl mx-auto"
-          staggerDelay={0.04}
-          baseDelay={0.08}
-          duration={0.7}
-        />
+              <p className="body text-[var(--muted)] text-[16px] leading-[1.5]">
+                We specialize in production-ready AI systems: RAG chatbots, multi-tenant conversational platforms, document summarization, lightweight speech synthesis, and autonomous lead-generation bots.
+              </p>
 
-        {/* Subheadline with Rolling Paragraph Animation */}
-        <RollingParagraph
-          text={personaConfig.subheadline}
-          className="max-w-3xl mx-auto text-base sm:text-lg lg:text-xl text-[#808080] font-normal leading-[1.7] tracking-[-0.01em] mb-10"
-          staggerDelay={0.02}
-          baseDelay={0.28}
-          duration={0.6}
-        />
+              <div className="pt-2 flex items-center gap-3 mono text-[13px] text-[var(--muted)]">
+                <span className="inline-block w-2 h-2 bg-[var(--ink)]" aria-hidden="true" />
+                <span>Available worldwide / remote. Available for projects and contracts.</span>
+              </div>
+            </div>
+          </div>
 
-        {/* CTAs */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-4">
-          <Button
-            href="#projects"
-            size="lg"
-            variant="primary"
-            className="group"
-          >
-            <span>{personaConfig.ctaPrimaryText}</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </Button>
+          {/* Right Column: 3D Depth Portrait Character Overlapping Hero */}
+          <div className="lg:col-span-4 relative mt-4 lg:mt-0 flex justify-start lg:justify-end">
+            <div className="w-full max-w-[320px] sm:max-w-[360px] aspect-[3/4] relative bg-[var(--paper)] border border-[var(--rule)]">
+              <DepthPortrait
+                imageSrc="/images/khalid_portrait.jpg"
+                depthSrc="/images/khalid_depth.jpg"
+                className="w-full h-full"
+              />
+            </div>
+          </div>
 
-          <Button
-            href="#contact"
-            size="lg"
-            variant="secondary"
-          >
-            <span>{personaConfig.ctaSecondaryText}</span>
-          </Button>
         </div>
       </div>
     </section>

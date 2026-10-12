@@ -1,32 +1,32 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Outfit, JetBrains_Mono } from "next/font/google";
+import { Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { generatePersonaMetadata } from "@/lib/theme";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
-import StyledComponentsRegistry from "@/components/ui/StyledComponentsRegistry";
 
-const plusJakarta = Plus_Jakarta_Sans({
+const sans = Hanken_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "700"],
 });
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400"],
 });
 
-export const metadata: Metadata = generatePersonaMetadata("personal");
+export const metadata: Metadata = {
+  title: "Muhammad Khalid — AI & Full-Stack Engineering",
+  description:
+    "We build practical AI systems that deliver real results: RAG chatbots, multi-tenant platforms, text summarization, and autonomous pipelines.",
+  openGraph: {
+    title: "Muhammad Khalid — AI & Full-Stack Engineering",
+    description: "Thinking in systems. Building practical AI systems that deliver real results.",
+    type: "website",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -34,16 +34,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${plusJakarta.variable} ${outfit.variable} ${jetbrainsMono.variable}`}
-    >
-      <body className="min-h-screen bg-[#FAFAFA] text-[#0F0F0F] font-sans antialiased selection:bg-[#00FFD0] selection:text-[#0F0F0F]">
-        <StyledComponentsRegistry>
-          <SmoothScrollProvider>
-            {children}
-          </SmoothScrollProvider>
-        </StyledComponentsRegistry>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+      <body className="min-h-screen bg-[var(--paper)] text-[var(--ink)] font-sans antialiased selection:bg-[var(--ink)] selection:text-[var(--paper)]">
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );
