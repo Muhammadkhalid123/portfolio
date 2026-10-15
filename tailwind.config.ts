@@ -12,6 +12,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        aura: {
+          bg: "#FFFFFF",
+          primary: "#171717",
+          border: "#E6E6E6",
+          light: "#D4D4D4",
+          muted: "#737373",
+        },
         charcoal: "#211E1C",
         chalk: "#F9F8F6",
         smoke: "#E0E0E0",
@@ -104,6 +111,8 @@ const config: Config = {
         "space-19": "140px",
       },
       borderRadius: {
+        "aura": "12px",
+        "radius-sm": "12px",
         "scoop": "0px 0px 60px 60px",
         "butter-md": "5px",
         "butter-lg": "8px",
@@ -111,7 +120,12 @@ const config: Config = {
         "butter-pill": "16px",
         "butter-6": "32px",
       },
+      boxShadow: {
+        "aura": "rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 4px 0px, rgba(0, 0, 0, 0.15) 0px 10px 10px 0px, rgba(0, 0, 0, 0.1) 0px -1px 0px 0px inset",
+        "aura-sm": "rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 4px 0px, rgba(0, 0, 0, 0.15) 0px 10px 10px 0px, rgba(0, 0, 0, 0.1) 0px -1px 0px 0px inset",
+      },
       transitionTimingFunction: {
+        "aura": "cubic-bezier(0.4, 0, 0.2, 1)",
         "butter-fast": "cubic-bezier(0.835, 0.12, 0.225, 0.77)",
         "butter-smooth": "cubic-bezier(0.2, 0.715, 0.205, 0.99)",
         "butter-decel": "cubic-bezier(0, 0, 0, 1)",

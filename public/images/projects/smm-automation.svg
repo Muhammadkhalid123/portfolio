@@ -1,68 +1,247 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0b1120"/>
-      <stop offset="100%" stop-color="#020617"/>
+    <linearGradient id="smm-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E0D0B"/>
+      <stop offset="50%" stop-color="#090807"/>
+      <stop offset="100%" stop-color="#050403"/>
     </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
+    <radialGradient id="smm-glow" cx="80%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="rgba(245, 158, 11, 0.15)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <linearGradient id="smm-chart" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(245, 158, 11, 0.25)"/>
+      <stop offset="100%" stop-color="rgba(245, 158, 11, 0.0)"/>
     </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="450" fill="url(#bg)" />
-  
-  <!-- Subtle Grid -->
-  <g opacity="0.08" stroke="#ffffff" stroke-width="1">
-    <line x1="0" y1="90" x2="800" y2="90"/>
-    <line x1="0" y1="180" x2="800" y2="180"/>
-    <line x1="0" y1="270" x2="800" y2="270"/>
-    <line x1="0" y1="360" x2="800" y2="360"/>
-    <line x1="160" y1="0" x2="160" y2="450"/>
-    <line x1="320" y1="0" x2="320" y2="450"/>
-    <line x1="480" y1="0" x2="480" y2="450"/>
-    <line x1="640" y1="0" x2="640" y2="450"/>
+  <rect width="1600" height="900" fill="url(#smm-bg)"/>
+  <rect width="1600" height="900" fill="url(#smm-glow)"/>
+
+  <!-- Hairline Grid -->
+  <g stroke="#211E1A" stroke-width="0.75" opacity="0.4">
+    <line x1="60" y1="0" x2="60" y2="900"/>
+    <line x1="500" y1="0" x2="500" y2="900"/>
+    <line x1="1100" y1="0" x2="1100" y2="900"/>
+    <line x1="1540" y1="0" x2="1540" y2="900"/>
+    <line x1="0" y1="80" x2="1600" y2="80"/>
+    <line x1="0" y1="185" x2="1600" y2="185"/>
   </g>
 
-  <!-- Glow Sphere -->
-  <circle cx="400" cy="225" r="140" fill="#06b6d4" opacity="0.12" filter="url(#glow)"/>
+  <!-- Studio Header -->
+  <rect x="0" y="0" width="1600" height="80" fill="#12100E" stroke="#26211C" stroke-width="1"/>
+  <circle cx="50" cy="40" r="14" fill="#FFFFFF"/>
+  <text x="50" y="45" fill="#0E0D0B" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" text-anchor="middle">P</text>
+  <text x="78" y="46" fill="#F4F4F4" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="17" letter-spacing="1">POSTMASTER // ASYNC AUTOMATION</text>
+  <text x="380" y="46" fill="#78716C" font-family="ui-monospace, monospace" font-size="12">SYSTEM 03 // CELERY WORKER POOL &amp; REDIS BROKER</text>
 
-  <!-- Center Card Illustration -->
-  <rect x="180" y="100" width="440" height="250" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
-  
-  <!-- Card Header -->
-  <rect x="180" y="100" width="440" height="40" rx="16" fill="#1e293b" />
-  <circle cx="210" cy="120" r="5" fill="#ef4444"/>
-  <circle cx="226" cy="120" r="5" fill="#f59e0b"/>
-  <circle cx="242" cy="120" r="5" fill="#10b981"/>
-  <text x="400" y="125" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">smm-automation-scheduler.py</text>
+  <!-- Header Nav Pills -->
+  <g transform="translate(860, 24)">
+    <rect width="250" height="32" rx="16" fill="#1C1814" stroke="#332B24" stroke-width="1"/>
+    <rect x="2" y="2" width="120" height="28" rx="14" fill="#F59E0B"/>
+    <text x="62" y="20" fill="#000000" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">CALENDAR</text>
+    <text x="185" y="20" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="11" text-anchor="middle">WORKER QUEUE</text>
+  </g>
 
-  <!-- Automation Diagram Nodes -->
-  <rect x="220" y="170" width="100" height="60" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5" />
-  <text x="270" y="198" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">Redis Queue</text>
-  <text x="270" y="215" fill="#06b6d4" font-family="monospace" font-size="10" text-anchor="middle">Asynchronous</text>
+  <!-- Status Chip -->
+  <circle cx="1380" cy="40" r="4" fill="#10B981"/>
+  <text x="1395" y="44" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="11">8 CELERY WORKERS ACTIVE</text>
+  <rect x="1485" y="24" width="65" height="32" rx="16" fill="#FFFFFF"/>
+  <text x="1517" y="44" fill="#000000" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="11" text-anchor="middle">+ POST</text>
 
-  <line x1="320" y1="200" x2="360" y2="200" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4" />
+  <!-- Metric Strip -->
+  <rect x="50" y="105" width="1500" height="75" rx="12" fill="#14110E" stroke="#2B241D" stroke-width="1"/>
+  <g transform="translate(80, 132)">
+    <text x="0" y="0" fill="#78716C" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">SCHEDULED PIPELINE JOBS</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">1,842 <tspan font-size="13" font-weight="500" fill="#78716C">DISPATCHES</tspan></text>
+  </g>
+  <line x1="380" y1="120" x2="380" y2="165" stroke="#2B241D" stroke-width="1"/>
+  <g transform="translate(410, 132)">
+    <text x="0" y="0" fill="#78716C" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">QUEUE LATENCY (REDIS P99)</text>
+    <text x="0" y="28" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">0.04 s <tspan font-size="13" font-weight="500" fill="#78716C">INSTANT</tspan></text>
+  </g>
+  <line x1="720" y1="120" x2="720" y2="165" stroke="#2B241D" stroke-width="1"/>
+  <g transform="translate(750, 132)">
+    <text x="0" y="0" fill="#78716C" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">DISPATCH SUCCESS RATE</text>
+    <text x="0" y="28" fill="#F59E0B" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">99.98% <tspan font-size="13" font-weight="500" fill="#78716C">RETRY SAFE</tspan></text>
+  </g>
+  <line x1="1050" y1="120" x2="1050" y2="165" stroke="#2B241D" stroke-width="1"/>
+  <g transform="translate(1080, 132)">
+    <text x="0" y="0" fill="#78716C" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">CONNECTED PLATFORMS</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">4 CHANNELS <tspan font-size="13" font-weight="500" fill="#78716C">SYNCED</tspan></text>
+  </g>
 
-  <rect x="360" y="170" width="100" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" />
-  <text x="410" y="198" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">Celery Cluster</text>
-  <text x="410" y="215" fill="#38bdf8" font-family="monospace" font-size="10" text-anchor="middle">Worker Pool</text>
+  <!-- Left Column: Content Calendar Timetable Grid -->
+  <rect x="50" y="205" width="480" height="595" rx="14" fill="#110F0D" stroke="#29231D" stroke-width="1"/>
+  <g transform="translate(75, 238)">
+    <text x="0" y="0" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="12" font-weight="700" letter-spacing="1">DISPATCH SCHEDULE // TIMELINE</text>
+    <text x="0" y="20" fill="#57534E" font-family="ui-monospace, monospace" font-size="10">AUTOMATED UTC CALENDAR MATRIX</text>
+  </g>
 
-  <line x1="460" y1="200" x2="500" y2="200" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4" />
+  <!-- Scheduled Post Cards -->
+  <g transform="translate(75, 280)">
+    <!-- Post 1 (Today) -->
+    <rect width="430" height="95" rx="10" fill="#1A1612" stroke="#443424" stroke-width="1"/>
+    <rect x="18" y="16" width="60" height="20" rx="10" fill="#2E2419" stroke="#684A28" stroke-width="1"/>
+    <text x="48" y="30" fill="#F59E0B" font-family="ui-monospace, monospace" font-size="10" font-weight="700" text-anchor="middle">14:00 UTC</text>
+    <circle cx="95" cy="26" r="4" fill="#38BDF8"/>
+    <text x="106" y="30" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="11">X / TWITTER</text>
+    <text x="18" y="58" fill="#E7E5E4" font-family="system-ui, sans-serif" font-weight="600" font-size="12">"Announcing our async microservice architecture migration..."</text>
+    <text x="18" y="80" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">Job ID: job_7721 · Celery Worker: #03 · Status: QUEUED</text>
 
-  <rect x="500" y="170" width="100" height="60" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
-  <text x="550" y="198" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">SMM APIs</text>
-  <text x="550" y="215" fill="#10b981" font-family="monospace" font-size="10" text-anchor="middle">Dispatched</text>
+    <!-- Post 2 -->
+    <g transform="translate(0, 110)">
+      <rect width="430" height="95" rx="10" fill="#141210" stroke="#29231D" stroke-width="1"/>
+      <rect x="18" y="16" width="60" height="20" rx="10" fill="#1F1A14" stroke="#3D3224" stroke-width="1"/>
+      <text x="48" y="30" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="10" font-weight="700" text-anchor="middle">18:30 UTC</text>
+      <circle cx="95" cy="26" r="4" fill="#0A66C2"/>
+      <text x="106" y="30" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="11">LINKEDIN</text>
+      <text x="18" y="58" fill="#E7E5E4" font-family="system-ui, sans-serif" font-weight="600" font-size="12">"How we eliminated cross-tenant leakage using Postgres RLS..."</text>
+      <text x="18" y="80" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">Job ID: job_7722 · Celery Worker: #01 · Status: SCHEDULED</text>
+    </g>
 
-  <!-- Title Bottom -->
-  <text x="400" y="300" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="16" text-anchor="middle">SMM Automation Suite</text>
-  <text x="400" y="322" fill="#64748b" font-family="monospace" font-size="11" text-anchor="middle">Python • FastAPI • Next.js • Celery • PostgreSQL</text>
+    <!-- Post 3 -->
+    <g transform="translate(0, 220)">
+      <rect width="430" height="95" rx="10" fill="#141210" stroke="#29231D" stroke-width="1"/>
+      <rect x="18" y="16" width="60" height="20" rx="10" fill="#1F1A14" stroke="#3D3224" stroke-width="1"/>
+      <text x="48" y="30" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="10" font-weight="700" text-anchor="middle">TOMORROW</text>
+      <circle cx="95" cy="26" r="4" fill="#E1306C"/>
+      <text x="106" y="30" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="11">INSTAGRAM / CAROUSEL</text>
+      <text x="18" y="58" fill="#E7E5E4" font-family="system-ui, sans-serif" font-weight="600" font-size="12">"Developer Setup &amp; Tokyo/Berlin Studio Design System Breakdown"</text>
+      <text x="18" y="80" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">Job ID: job_7723 · Media: 5 Slides · Status: VALIDATED</text>
+    </g>
+
+    <!-- Celery Node Worker Status Box -->
+    <g transform="translate(0, 330)">
+      <rect width="430" height="155" rx="10" fill="#0D0B0A" stroke="#26211C" stroke-width="1"/>
+      <text x="16" y="24" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="11" font-weight="600">CELERY WORKER NODE CLUSTER</text>
+      
+      <g transform="translate(16, 42)">
+        <circle cx="6" cy="6" r="4" fill="#10B981"/>
+        <text x="18" y="10" fill="#D6D3D1" font-family="ui-monospace, monospace" font-size="11">worker_01: ACTIVE (pid 2011)</text>
+        <text x="280" y="10" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">0.08 load</text>
+      </g>
+      <g transform="translate(16, 68)">
+        <circle cx="6" cy="6" r="4" fill="#10B981"/>
+        <text x="18" y="10" fill="#D6D3D1" font-family="ui-monospace, monospace" font-size="11">worker_02: ACTIVE (pid 2012)</text>
+        <text x="280" y="10" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">0.12 load</text>
+      </g>
+      <g transform="translate(16, 94)">
+        <circle cx="6" cy="6" r="4" fill="#10B981"/>
+        <text x="18" y="10" fill="#D6D3D1" font-family="ui-monospace, monospace" font-size="11">worker_03: ACTIVE (pid 2013)</text>
+        <text x="280" y="10" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">0.05 load</text>
+      </g>
+      <g transform="translate(16, 120)">
+        <circle cx="6" cy="6" r="4" fill="#10B981"/>
+        <text x="18" y="10" fill="#D6D3D1" font-family="ui-monospace, monospace" font-size="11">worker_04: ACTIVE (pid 2014)</text>
+        <text x="280" y="10" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">0.09 load</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Column: Redis Broker Pipeline & Engagement Telemetry -->
+  <rect x="550" y="205" width="1000" height="595" rx="14" fill="#110F0D" stroke="#29231D" stroke-width="1"/>
+
+  <!-- Top Terminal Bar -->
+  <g transform="translate(580, 235)">
+    <circle cx="10" cy="10" r="4" fill="#EF4444"/>
+    <circle cx="26" cy="10" r="4" fill="#F59E0B"/>
+    <circle cx="42" cy="10" r="4" fill="#10B981"/>
+    <text x="70" y="14" fill="#78716C" font-family="ui-monospace, monospace" font-size="11">task_orchestration // celery_beat_scheduler.py</text>
+    <rect x="750" y="0" width="190" height="24" rx="12" fill="#1C1814" stroke="#332B24" stroke-width="1"/>
+    <text x="845" y="16" fill="#F59E0B" font-family="ui-monospace, monospace" font-size="10" text-anchor="middle">REDIS BROKER: CONNECTED</text>
+  </g>
+
+  <!-- Redis Stream Visualizer -->
+  <g transform="translate(580, 275)">
+    <rect width="940" height="150" rx="10" fill="#0E0C0A" stroke="#241E18" stroke-width="1"/>
+    <text x="24" y="26" fill="#78716C" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1">EVENT-DRIVEN DISPATCH FLOW // ZERO BLOCKING</text>
+    
+    <!-- Flow Blocks -->
+    <g transform="translate(24, 45)">
+      <!-- Step 1: Next.js Client -->
+      <rect width="180" height="75" rx="8" fill="#17130F" stroke="#33281E" stroke-width="1"/>
+      <text x="18" y="24" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="10">CLIENT LAYER</text>
+      <text x="18" y="46" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700" font-size="13">Next.js UI</text>
+      <text x="18" y="64" fill="#78716C" font-family="ui-monospace, monospace" font-size="9">POST /api/schedule</text>
+
+      <!-- Arrow 1 -->
+      <line x1="180" y1="37" x2="225" y2="37" stroke="#F59E0B" stroke-width="2"/>
+      <polygon points="225,32 235,37 225,42" fill="#F59E0B"/>
+
+      <!-- Step 2: FastAPI Gateway -->
+      <g transform="translate(240, 0)">
+        <rect width="180" height="75" rx="8" fill="#17130F" stroke="#33281E" stroke-width="1"/>
+        <text x="18" y="24" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="10">INGRESS GATEWAY</text>
+        <text x="18" y="46" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700" font-size="13">FastAPI Router</text>
+        <text x="18" y="64" fill="#F59E0B" font-family="ui-monospace, monospace" font-size="9">Pydantic Schema Check</text>
+      </g>
+
+      <!-- Arrow 2 -->
+      <line x1="420" y1="37" x2="465" y2="37" stroke="#F59E0B" stroke-width="2"/>
+      <polygon points="465,32 475,37 465,42" fill="#F59E0B"/>
+
+      <!-- Step 3: Redis Broker -->
+      <g transform="translate(480, 0)">
+        <rect width="180" height="75" rx="8" fill="#1E160E" stroke="#78350F" stroke-width="1"/>
+        <text x="18" y="24" fill="#F59E0B" font-family="ui-monospace, monospace" font-size="10">TASK BROKER</text>
+        <text x="18" y="46" fill="#FBBF24" font-family="system-ui, sans-serif" font-weight="700" font-size="13">Redis In-Memory</text>
+        <text x="18" y="64" fill="#D97706" font-family="ui-monospace, monospace" font-size="9">FIFO Priority Queue</text>
+      </g>
+
+      <!-- Arrow 3 -->
+      <line x1="660" y1="37" x2="705" y2="37" stroke="#10B981" stroke-width="2"/>
+      <polygon points="705,32 715,37 705,42" fill="#10B981"/>
+
+      <!-- Step 4: Celery Workers -->
+      <g transform="translate(720, 0)">
+        <rect width="180" height="75" rx="8" fill="#101A14" stroke="#166534" stroke-width="1"/>
+        <text x="18" y="24" fill="#10B981" font-family="ui-monospace, monospace" font-size="10">EXECUTION POOL</text>
+        <text x="18" y="46" fill="#4ADE80" font-family="system-ui, sans-serif" font-weight="700" font-size="13">Celery Workers</text>
+        <text x="18" y="64" fill="#22C55E" font-family="ui-monospace, monospace" font-size="9">Async HTTP/2 Post</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Engagement Analytics Wave Chart -->
+  <g transform="translate(580, 445)">
+    <rect width="940" height="330" rx="10" fill="#0E0C0A" stroke="#241E18" stroke-width="1"/>
+    
+    <g transform="translate(24, 25)">
+      <text x="0" y="0" fill="#A8A29E" font-family="ui-monospace, monospace" font-size="11" font-weight="600">AGGREGATE REACH &amp; CONVERSION TELEMETRY (30D)</text>
+      <text x="640" y="0" fill="#F59E0B" font-family="ui-monospace, monospace" font-size="11">+284% AUDIENCE ENGAGEMENT</text>
+    </g>
+
+    <!-- Chart Grid Lines -->
+    <g stroke="#1F1A14" stroke-width="1" opacity="0.6" transform="translate(24, 60)">
+      <line x1="0" y1="0" x2="890" y2="0"/>
+      <line x1="0" y1="50" x2="890" y2="50"/>
+      <line x1="0" y1="100" x2="890" y2="100"/>
+      <line x1="0" y1="150" x2="890" y2="150"/>
+      <line x1="0" y1="200" x2="890" y2="200"/>
+
+      <!-- Filled Area Wave -->
+      <polygon points="0,170 120,150 240,160 360,110 480,90 600,120 720,45 840,30 890,20 890,200 0,200" fill="url(#smm-chart)"/>
+      <polyline points="0,170 120,150 240,160 360,110 480,90 600,120 720,45 840,30 890,20" fill="none" stroke="#F59E0B" stroke-width="2.5"/>
+
+      <!-- Peak Point Marker -->
+      <circle cx="720" cy="45" r="5" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2"/>
+      <rect x="670" y="10" width="100" height="24" rx="12" fill="#2E200F" stroke="#78350F" stroke-width="1"/>
+      <text x="720" y="26" fill="#FBBF24" font-family="ui-monospace, monospace" font-size="10" font-weight="700" text-anchor="middle">48.2K REACH</text>
+
+      <!-- Bottom Months -->
+      <text x="0" y="222" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">WK 01</text>
+      <text x="220" y="222" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">WK 02</text>
+      <text x="440" y="222" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">WK 03</text>
+      <text x="660" y="222" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">WK 04</text>
+      <text x="860" y="222" fill="#78716C" font-family="ui-monospace, monospace" font-size="10">LIVE</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <g transform="translate(50, 840)">
+    <text x="0" y="24" fill="#57534E" font-family="ui-monospace, monospace" font-size="11">TOKYO // BERLIN STUDIO ARCHITECTURE · ASYNCHRONOUS CONTENT ORCHESTRATION</text>
+    <text x="1500" y="24" fill="#78716C" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">CELERY + REDIS DAEMON // RESILIENT RETRIES</text>
+  </g>
 </svg>

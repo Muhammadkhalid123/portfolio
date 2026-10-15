@@ -1,31 +1,244 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
   <defs>
-    <linearGradient id="bg-zgc" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#121214"/>
-      <stop offset="100%" stop-color="#241e17"/>
+    <linearGradient id="zgc-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080C0A"/>
+      <stop offset="50%" stop-color="#050806"/>
+      <stop offset="100%" stop-color="#020403"/>
     </linearGradient>
+    <radialGradient id="zgc-glow" cx="80%" cy="15%" r="55%">
+      <stop offset="0%" stop-color="rgba(16, 185, 129, 0.18)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
   </defs>
-  <rect width="800" height="450" fill="url(#bg-zgc)" />
-  <rect x="120" y="60" width="560" height="320" rx="4" fill="#18181b" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.3" />
-  <rect x="120" y="60" width="560" height="40" fill="#27272a" />
-  <circle cx="145" cy="80" r="4.5" fill="#f43f5e"/>
-  <circle cx="160" cy="80" r="4.5" fill="#f59e0b"/>
-  <circle cx="175" cy="80" r="4.5" fill="#22c55e"/>
-  <text x="400" y="85" fill="#fafafa" font-family="monospace" font-size="12" text-anchor="middle">zgc-2.vercel.app — Astro SSG Portal</text>
 
-  <text x="160" y="145" fill="#f59e0b" font-family="monospace" font-size="12">// ZERO JS RUNTIME BY DEFAULT</text>
-  <text x="160" y="180" fill="#fafafa" font-family="sans-serif" font-weight="700" font-size="22">High-Performance Static Island Architecture</text>
-  <text x="160" y="215" fill="#a1a1aa" font-family="sans-serif" font-size="13">Lighthouse 100/100 score with selective client hydration for interactive components.</text>
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#zgc-bg)"/>
+  <rect width="1600" height="900" fill="url(#zgc-glow)"/>
 
-  <rect x="160" y="250" width="130" height="70" rx="4" fill="#09090b" stroke="#3f3f46" stroke-width="1" />
-  <text x="225" y="280" fill="#22c55e" font-family="sans-serif" font-weight="bold" font-size="20" text-anchor="middle">100</text>
-  <text x="225" y="305" fill="#71717a" font-family="monospace" font-size="10" text-anchor="middle">Performance</text>
+  <!-- Precision Tokyo Grid -->
+  <g stroke="#16221C" stroke-width="0.75" opacity="0.4">
+    <line x1="60" y1="0" x2="60" y2="900"/>
+    <line x1="520" y1="0" x2="520" y2="900"/>
+    <line x1="1080" y1="0" x2="1080" y2="900"/>
+    <line x1="1540" y1="0" x2="1540" y2="900"/>
+    <line x1="0" y1="80" x2="1600" y2="80"/>
+    <line x1="0" y1="185" x2="1600" y2="185"/>
+  </g>
 
-  <rect x="310" y="250" width="130" height="70" rx="4" fill="#09090b" stroke="#3f3f46" stroke-width="1" />
-  <text x="375" y="280" fill="#22c55e" font-family="sans-serif" font-weight="bold" font-size="20" text-anchor="middle">100</text>
-  <text x="375" y="305" fill="#71717a" font-family="monospace" font-size="10" text-anchor="middle">SEO &amp; Best Practices</text>
+  <!-- Header -->
+  <rect x="0" y="0" width="1600" height="80" fill="#0C120E" stroke="#1B2B22" stroke-width="1"/>
+  <circle cx="50" cy="40" r="14" fill="#FFFFFF"/>
+  <text x="50" y="45" fill="#080C0A" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" text-anchor="middle">V</text>
+  <text x="78" y="46" fill="#F4F4F4" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="17" letter-spacing="1">VELOX // ASTRO 4 SPEED ARCHITECTURE</text>
+  <text x="440" y="46" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="12">SYSTEM 07 // ZERO CLIENT JAVASCRIPT HYDRATION</text>
 
-  <rect x="460" y="250" width="180" height="70" rx="4" fill="#09090b" stroke="#3f3f46" stroke-width="1" />
-  <text x="550" y="280" fill="#f59e0b" font-family="monospace" font-size="13" text-anchor="middle">Astro 4.x</text>
-  <text x="550" y="305" fill="#71717a" font-family="monospace" font-size="10" text-anchor="middle">Static Generation</text>
+  <!-- Lighthouse Audit Badge Group in Header -->
+  <g transform="translate(940, 24)">
+    <rect width="180" height="32" rx="16" fill="#13241A" stroke="#22422F" stroke-width="1"/>
+    <circle cx="20" cy="16" r="5" fill="#10B981"/>
+    <text x="35" y="20" fill="#34D399" font-family="ui-monospace, monospace" font-size="11" font-weight="700">LIGHTHOUSE: 100/100</text>
+  </g>
+
+  <!-- Status Chip -->
+  <circle cx="1380" cy="40" r="4" fill="#10B981"/>
+  <text x="1395" y="44" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">0.0 KB JS // EDGE COMPILED</text>
+  <rect x="1485" y="24" width="65" height="32" rx="16" fill="#FFFFFF"/>
+  <text x="1517" y="44" fill="#080C0A" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="11" text-anchor="middle">AUDIT</text>
+
+  <!-- Metric Strip -->
+  <rect x="50" y="105" width="1500" height="75" rx="12" fill="#0E1612" stroke="#1D3025" stroke-width="1"/>
+  <g transform="translate(80, 132)">
+    <text x="0" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">FIRST CONTENTFUL PAINT (FCP)</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">0.18 s <tspan font-size="13" font-weight="500" fill="#6EE7B7">INSTANT</tspan></text>
+  </g>
+  <line x1="380" y1="120" x2="380" y2="165" stroke="#1D3025" stroke-width="1"/>
+  <g transform="translate(410, 132)">
+    <text x="0" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">CLIENT RUNTIME JAVASCRIPT</text>
+    <text x="0" y="28" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">0.00 KB <tspan font-size="13" font-weight="500" fill="#6EE7B7">ZERO BUNDLE</tspan></text>
+  </g>
+  <line x1="720" y1="120" x2="720" y2="165" stroke="#1D3025" stroke-width="1"/>
+  <g transform="translate(750, 132)">
+    <text x="0" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">CUMULATIVE LAYOUT SHIFT (CLS)</text>
+    <text x="0" y="28" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">0.000 <tspan font-size="13" font-weight="500" fill="#6EE7B7">ZERO JANK</tspan></text>
+  </g>
+  <line x1="1050" y1="120" x2="1050" y2="165" stroke="#1D3025" stroke-width="1"/>
+  <g transform="translate(1080, 132)">
+    <text x="0" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">GOOGLE CORE WEB VITALS</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">PASS 100% <tspan font-size="13" font-weight="500" fill="#6EE7B7">ALL 3</tspan></text>
+  </g>
+
+  <!-- Left: Lighthouse Audit Report Circles -->
+  <rect x="50" y="205" width="460" height="595" rx="14" fill="#0C120E" stroke="#1D3025" stroke-width="1"/>
+  <g transform="translate(75, 238)">
+    <text x="0" y="0" fill="#A7F3D0" font-family="ui-monospace, monospace" font-size="12" font-weight="700" letter-spacing="1">GOOGLE LIGHTHOUSE 10.0 REPORT</text>
+    <text x="0" y="20" fill="#4B7A60" font-family="ui-monospace, monospace" font-size="10">PRODUCTION AUDIT RUN // EMULATED MOTO G4</text>
+  </g>
+
+  <!-- 4 Perfect Audit Circular Gauges -->
+  <g transform="translate(75, 280)">
+    <!-- Gauge 1: Performance -->
+    <g transform="translate(25, 25)">
+      <circle cx="50" cy="50" r="45" stroke="#16291E" stroke-width="6" fill="none"/>
+      <circle cx="50" cy="50" r="45" stroke="#10B981" stroke-width="6" stroke-dasharray="283" stroke-dashoffset="0" fill="none"/>
+      <text x="50" y="56" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" text-anchor="middle">100</text>
+      <text x="50" y="115" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">PERFORMANCE</text>
+    </g>
+
+    <!-- Gauge 2: Accessibility -->
+    <g transform="translate(245, 25)">
+      <circle cx="50" cy="50" r="45" stroke="#16291E" stroke-width="6" fill="none"/>
+      <circle cx="50" cy="50" r="45" stroke="#10B981" stroke-width="6" stroke-dasharray="283" stroke-dashoffset="0" fill="none"/>
+      <text x="50" y="56" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" text-anchor="middle">100</text>
+      <text x="50" y="115" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">ACCESSIBILITY</text>
+    </g>
+
+    <!-- Gauge 3: Best Practices -->
+    <g transform="translate(25, 170)">
+      <circle cx="50" cy="50" r="45" stroke="#16291E" stroke-width="6" fill="none"/>
+      <circle cx="50" cy="50" r="45" stroke="#10B981" stroke-width="6" stroke-dasharray="283" stroke-dashoffset="0" fill="none"/>
+      <text x="50" y="56" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" text-anchor="middle">100</text>
+      <text x="50" y="115" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">BEST PRACTICES</text>
+    </g>
+
+    <!-- Gauge 4: SEO -->
+    <g transform="translate(245, 170)">
+      <circle cx="50" cy="50" r="45" stroke="#16291E" stroke-width="6" fill="none"/>
+      <circle cx="50" cy="50" r="45" stroke="#10B981" stroke-width="6" stroke-dasharray="283" stroke-dashoffset="0" fill="none"/>
+      <text x="50" y="56" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" text-anchor="middle">100</text>
+      <text x="50" y="115" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">SEO</text>
+    </g>
+
+    <!-- Technical Specs Box -->
+    <g transform="translate(0, 315)">
+      <rect width="410" height="165" rx="10" fill="#080C0A" stroke="#192A20" stroke-width="1"/>
+      <text x="18" y="24" fill="#A7F3D0" font-family="ui-monospace, monospace" font-size="11" font-weight="600">ISLAND HYDRATION PARAMETERS</text>
+      
+      <g transform="translate(18, 48)">
+        <text x="0" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">SSR Island Directive:</text>
+        <text x="220" y="0" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="11">client:visible</text>
+      </g>
+      <g transform="translate(18, 76)">
+        <text x="0" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">Initial HTML Size:</text>
+        <text x="220" y="0" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">4.2 KB (Gzipped)</text>
+      </g>
+      <g transform="translate(18, 104)">
+        <text x="0" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">Hydration Penalty:</text>
+        <text x="220" y="0" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">0.00ms (Static)</text>
+      </g>
+      <g transform="translate(18, 132)">
+        <text x="0" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">DOM Tree Nodes:</text>
+        <text x="220" y="0" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11">214 (Minimal)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right: Chrome DevTools Waterfall & Island Architecture Visualizer -->
+  <rect x="530" y="205" width="1020" height="595" rx="14" fill="#0C120E" stroke="#1D3025" stroke-width="1"/>
+  
+  <g transform="translate(560, 238)">
+    <circle cx="10" cy="10" r="4" fill="#10B981"/>
+    <text x="24" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="11" font-weight="700">CHROME DEVTOOLS NETWORK &amp; PERFORMANCE WATERFALL</text>
+    <text x="800" y="14" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="10">TOTAL LOAD: 180ms</text>
+  </g>
+
+  <!-- DevTools Network Timeline View -->
+  <g transform="translate(560, 275)">
+    <rect width="960" height="500" rx="10" fill="#080C0A" stroke="#192A20" stroke-width="1"/>
+
+    <!-- Network Waterfall Rows -->
+    <g transform="translate(24, 25)">
+      <!-- Header row -->
+      <text x="0" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">RESOURCE / ASSET</text>
+      <text x="240" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">STATUS</text>
+      <text x="340" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">TYPE</text>
+      <text x="440" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">SIZE</text>
+      <text x="560" y="0" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">TIMELINE WATERFALL (0 - 200ms)</text>
+
+      <line x1="0" y1="15" x2="910" y2="15" stroke="#182A1F" stroke-width="1"/>
+
+      <!-- Row 1: document -->
+      <g transform="translate(0, 35)">
+        <text x="0" y="14" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="11">index.html (Astro SSG)</text>
+        <text x="240" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">200 OK</text>
+        <text x="340" y="14" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11">document</text>
+        <text x="440" y="14" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11">4.2 KB</text>
+        
+        <!-- Waterfall bar -->
+        <rect x="560" y="4" width="70" height="14" rx="2" fill="#10B981"/>
+        <text x="640" y="14" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="10">24ms</text>
+      </g>
+
+      <!-- Row 2: styles.css -->
+      <g transform="translate(0, 70)">
+        <text x="0" y="14" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="11">_astro/index.css</text>
+        <text x="240" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">200 OK</text>
+        <text x="340" y="14" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11">stylesheet</text>
+        <text x="440" y="14" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11">2.1 KB</text>
+        
+        <rect x="630" y="4" width="40" height="14" rx="2" fill="#38BDF8"/>
+        <text x="680" y="14" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="10">14ms</text>
+      </g>
+
+      <!-- Row 3: font.woff2 -->
+      <g transform="translate(0, 105)">
+        <text x="0" y="14" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="11">inter-latin-var.woff2</text>
+        <text x="240" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">200 OK</text>
+        <text x="340" y="14" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11">font</text>
+        <text x="440" y="14" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11">18.4 KB</text>
+        
+        <rect x="650" y="4" width="60" height="14" rx="2" fill="#F59E0B"/>
+        <text x="720" y="14" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="10">28ms</text>
+      </g>
+
+      <!-- Row 4: Client JS Bundle? NO JS! -->
+      <g transform="translate(0, 140)">
+        <text x="0" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">bundle.js (Client runtime)</text>
+        <text x="240" y="14" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">NONE</text>
+        <text x="340" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">ZERO_JS</text>
+        <text x="440" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">0.00 KB</text>
+        
+        <text x="560" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="10">✓ ELIMINATED BY ASTRO ISLAND COMPILER</text>
+      </g>
+    </g>
+
+    <!-- Visual Architecture Diagram: Island Hydration -->
+    <g transform="translate(24, 215)">
+      <rect width="910" height="250" rx="8" fill="#0C140F" stroke="#1D3025" stroke-width="1"/>
+      <text x="20" y="26" fill="#A7F3D0" font-family="ui-monospace, monospace" font-size="11" font-weight="700">ASTRO 4 ISLAND ARCHITECTURE TOPOLOGY</text>
+
+      <!-- Static HTML Foundation -->
+      <g transform="translate(20, 50)">
+        <rect width="870" height="175" rx="6" fill="#080E0A" stroke="#1A2D21" stroke-width="1"/>
+        <text x="20" y="24" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11">PURE STATIC HTML5 &amp; CSS CONTAINER (ZERO RUNTIME SCRIPT)</text>
+
+        <!-- Static Header Island -->
+        <g transform="translate(20, 40)">
+          <rect width="830" height="35" rx="4" fill="#101C14" stroke="#223E2C" stroke-width="1"/>
+          <text x="16" y="22" fill="#E2E8F0" font-family="system-ui, sans-serif" font-size="12">Static Header &amp; Semantic Navigation Elements [HTML Build-Time Rendered]</text>
+        </g>
+
+        <!-- Main Body with Selective Hydrated Island -->
+        <g transform="translate(20, 85)">
+          <rect width="520" height="75" rx="4" fill="#101C14" stroke="#223E2C" stroke-width="1"/>
+          <text x="16" y="24" fill="#E2E8F0" font-family="system-ui, sans-serif" font-size="12">Informational Content &amp; Case Study Grid</text>
+          <text x="16" y="48" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="10">Zero JavaScript overhead · Perfect Accessibility</text>
+
+          <!-- The Only Client Island -->
+          <g transform="translate(535, 0)">
+            <rect width="295" height="75" rx="4" fill="#162B1E" stroke="#10B981" stroke-width="1.5"/>
+            <circle cx="16" cy="20" r="4" fill="#10B981"/>
+            <text x="28" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700" font-size="12">Interactive Filter Island</text>
+            <text x="16" y="44" fill="#A7F3D0" font-family="ui-monospace, monospace" font-size="10">client:visible Hydration Directive</text>
+            <text x="16" y="60" fill="#34D399" font-family="ui-monospace, monospace" font-size="10">Hydrates ONLY when viewport intersects</text>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <g transform="translate(50, 840)">
+    <text x="0" y="24" fill="#2E523E" font-family="ui-monospace, monospace" font-size="11">TOKYO // BERLIN STUDIO ARCHITECTURE · ASTRO 4 HIGH-SPEED STATIC PORTAL</text>
+    <text x="1500" y="24" fill="#6EE7B7" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">100/100 LIGHTHOUSE · ZERO CLIENT JS OVERHEAD</text>
+  </g>
 </svg>

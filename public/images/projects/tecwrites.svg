@@ -1,30 +1,201 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
   <defs>
-    <linearGradient id="bg-tec" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#141416"/>
-      <stop offset="100%" stop-color="#211E1C"/>
+    <linearGradient id="tw-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0D0F"/>
+      <stop offset="50%" stop-color="#07080A"/>
+      <stop offset="100%" stop-color="#040506"/>
+    </linearGradient>
+    <radialGradient id="tw-glow" cx="20%" cy="15%" r="55%">
+      <stop offset="0%" stop-color="rgba(56, 189, 248, 0.12)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <linearGradient id="tw-rule" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
     </linearGradient>
   </defs>
-  <rect width="800" height="450" fill="url(#bg-tec)" />
-  <rect x="120" y="60" width="560" height="320" rx="4" fill="#181716" stroke="#A1FFCB" stroke-width="1.2" stroke-opacity="0.3" />
-  <rect x="120" y="60" width="560" height="40" fill="#211E1C" />
-  <circle cx="145" cy="80" r="4.5" fill="#f43f5e"/>
-  <circle cx="160" cy="80" r="4.5" fill="#f59e0b"/>
-  <circle cx="175" cy="80" r="4.5" fill="#A1FFCB"/>
-  <text x="400" y="85" fill="#F9F8F6" font-family="monospace" font-size="12" text-anchor="middle">tecwrites.vercel.app — Technical Editorial</text>
+
+  <!-- Background Canvas -->
+  <rect width="1600" height="900" fill="url(#tw-bg)"/>
+  <rect width="1600" height="900" fill="url(#tw-glow)"/>
+
+  <!-- Architectural Hairline Grid -->
+  <g stroke="#182026" stroke-width="0.75" opacity="0.5">
+    <line x1="60" y1="0" x2="60" y2="900"/>
+    <line x1="480" y1="0" x2="480" y2="900"/>
+    <line x1="1080" y1="0" x2="1080" y2="900"/>
+    <line x1="1540" y1="0" x2="1540" y2="900"/>
+    <line x1="0" y1="80" x2="1600" y2="80"/>
+    <line x1="0" y1="185" x2="1600" y2="185"/>
+  </g>
+
+  <!-- Studio Header -->
+  <rect x="0" y="0" width="1600" height="80" fill="#0E1216" stroke="#1E2730" stroke-width="1"/>
+  <circle cx="50" cy="40" r="14" fill="#FFFFFF"/>
+  <text x="50" y="45" fill="#0B0D0F" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" text-anchor="middle">T</text>
+  <text x="78" y="46" fill="#F4F4F4" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="17" letter-spacing="1">TECW RITES // EDITORIAL ARCHIVE</text>
+  <text x="380" y="46" fill="#64748B" font-family="ui-monospace, monospace" font-size="12">SYSTEM 05 // HIGH-FIDELITY MDX &amp; ISR PUBLICATION</text>
+
+  <!-- Nav Pills -->
+  <g transform="translate(860, 24)">
+    <rect width="250" height="32" rx="16" fill="#141C24" stroke="#253545" stroke-width="1"/>
+    <rect x="2" y="2" width="120" height="28" rx="14" fill="#FFFFFF"/>
+    <text x="62" y="20" fill="#0B0D0F" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">ESSAYS</text>
+    <text x="185" y="20" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11" text-anchor="middle">COMPILER</text>
+  </g>
+
+  <!-- Status Chip -->
+  <circle cx="1380" cy="40" r="4" fill="#10B981"/>
+  <text x="1395" y="44" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">VERCEL EDGE // 100/100 SPEED</text>
+  <rect x="1485" y="24" width="65" height="32" rx="16" fill="#FFFFFF"/>
+  <text x="1517" y="44" fill="#0B0D0F" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="11" text-anchor="middle">READ</text>
+
+  <!-- Metric Strip -->
+  <rect x="50" y="105" width="1500" height="75" rx="12" fill="#10151B" stroke="#202A35" stroke-width="1"/>
+  <g transform="translate(80, 132)">
+    <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">TIME TO FIRST BYTE (TTFB)</text>
+    <text x="0" y="28" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">38 ms <tspan font-size="13" font-weight="500" fill="#64748B">EDGE CACHED</tspan></text>
+  </g>
+  <line x1="380" y1="120" x2="380" y2="165" stroke="#202A35" stroke-width="1"/>
+  <g transform="translate(410, 132)">
+    <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">LIGHTHOUSE AUDIT RATING</text>
+    <text x="0" y="28" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">100 / 100 <tspan font-size="13" font-weight="500" fill="#64748B">PERFECT</tspan></text>
+  </g>
+  <line x1="720" y1="120" x2="720" y2="165" stroke="#202A35" stroke-width="1"/>
+  <g transform="translate(750, 132)">
+    <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">ISR REVALIDATION TIMEOUT</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">60 SEC <tspan font-size="13" font-weight="500" fill="#64748B">ON-DEMAND</tspan></text>
+  </g>
+  <line x1="1050" y1="120" x2="1050" y2="165" stroke="#202A35" stroke-width="1"/>
+  <g transform="translate(1080, 132)">
+    <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">MDX SYNTAX COMPILATION</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">ZERO CLS <tspan font-size="13" font-weight="500" fill="#64748B">STABLE</tspan></text>
+  </g>
+
+  <!-- Left Column: MDX Compiler Pipeline & AST Inspector -->
+  <rect x="50" y="205" width="460" height="595" rx="14" fill="#0D1117" stroke="#1D2631" stroke-width="1"/>
+  <g transform="translate(75, 238)">
+    <text x="0" y="0" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="12" font-weight="700" letter-spacing="1">MDX SOURCE COMPILATION</text>
+    <text x="0" y="20" fill="#475569" font-family="ui-monospace, monospace" font-size="10">REMARK · REHYPE · SHIKI SYNTAX HIGHLIGHTER</text>
+  </g>
+
+  <!-- Code Snippet Box -->
+  <g transform="translate(75, 280)">
+    <rect width="410" height="320" rx="10" fill="#090D12" stroke="#1A232E" stroke-width="1"/>
+    
+    <!-- Code Window Title -->
+    <rect width="410" height="34" rx="10" fill="#131B24"/>
+    <circle cx="18" cy="17" r="4" fill="#EF4444"/>
+    <circle cx="32" cy="17" r="4" fill="#F59E0B"/>
+    <circle cx="46" cy="17" r="4" fill="#10B981"/>
+    <text x="70" y="21" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">content/articles/zero-downtime.mdx</text>
+
+    <!-- Syntax Code lines -->
+    <g transform="translate(20, 55)" font-family="ui-monospace, monospace" font-size="11">
+      <text x="0" y="0" fill="#64748B">---</text>
+      <text x="0" y="20" fill="#38BDF8">title: <tspan fill="#F8FAFC">"Zero-Downtime Container Swaps"</tspan></text>
+      <text x="0" y="40" fill="#38BDF8">date: <tspan fill="#F8FAFC">"2024-10-14"</tspan></text>
+      <text x="0" y="60" fill="#38BDF8">tags: <tspan fill="#F8FAFC">["DevOps", "Docker", "Nginx"]</tspan></text>
+      <text x="0" y="80" fill="#64748B">---</text>
+      
+      <text x="0" y="115" fill="#F43F5E">import <tspan fill="#F8FAFC">{ ArchitectureDiagram }</tspan> <tspan fill="#F43F5E">from</tspan> <tspan fill="#34D399">'@/components'</tspan></text>
+      
+      <text x="0" y="150" fill="#94A3B8">### 1. Ingress Proxy Configuration</text>
+      <text x="0" y="175" fill="#64748B">```nginx</text>
+      <text x="0" y="195" fill="#38BDF8">upstream backend_cluster {</text>
+      <text x="16" y="215" fill="#E2E8F0">server 127.0.0.1:3000 max_fails=2;</text>
+      <text x="16" y="235" fill="#E2E8F0">keepalive 32;</text>
+      <text x="0" y="255" fill="#38BDF8">}</text>
+    </g>
+
+    <!-- MDX Plugins Active -->
+    <g transform="translate(0, 335)">
+      <rect width="410" height="150" rx="10" fill="#0A0E13" stroke="#1A232E" stroke-width="1"/>
+      <text x="16" y="24" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11" font-weight="600">COMPILER PLUGINS // TELEMETRY</text>
+      
+      <g transform="translate(16, 45)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">remark-gfm</text>
+        <text x="240" y="0" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">PASS (0.02ms)</text>
+      </g>
+      <g transform="translate(16, 75)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">rehype-slug</text>
+        <text x="240" y="0" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">PASS (0.01ms)</text>
+      </g>
+      <g transform="translate(16, 105)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">shiki-syntax-highlighter</text>
+        <text x="240" y="0" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="11">TOKYO NIGHT</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Column: Editorial Reading Layout Preview -->
+  <rect x="530" y="205" width="1020" height="595" rx="14" fill="#0D1117" stroke="#1D2631" stroke-width="1"/>
   
-  <text x="160" y="145" fill="#A1FFCB" font-family="monospace" font-size="12">// FEATURED ARTICLE</text>
-  <text x="160" y="180" fill="#F9F8F6" font-family="sans-serif" font-weight="700" font-size="22">Deep Dive: Scalable Vector Embeddings &amp; Systems</text>
-  <text x="160" y="215" fill="#888888" font-family="sans-serif" font-size="13">Designing low-latency retrieval pipelines with semantic re-ranking and chunk partitioning.</text>
+  <g transform="translate(560, 238)">
+    <circle cx="10" cy="10" r="4" fill="#10B981"/>
+    <text x="24" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="11" font-weight="700">LIVE EDITORIAL PREVIEW // SWISS TYPOGRAPHIC LAYOUT</text>
+    <text x="800" y="14" fill="#64748B" font-family="ui-monospace, monospace" font-size="10">READING TIME: 4 MIN</text>
+  </g>
 
-  <rect x="160" y="245" width="80" height="24" rx="999" fill="#2A281F" stroke="#A1FFCB" stroke-width="0.8" />
-  <text x="200" y="261" fill="#A1FFCB" font-family="monospace" font-size="10" text-anchor="middle">Next.js</text>
-  <rect x="250" y="245" width="85" height="24" rx="999" fill="#2A281F" stroke="#A1FFCB" stroke-width="0.8" />
-  <text x="292.5" y="261" fill="#A1FFCB" font-family="monospace" font-size="10" text-anchor="middle">TypeScript</text>
-  <rect x="345" y="245" width="70" height="24" rx="999" fill="#2A281F" stroke="#A1FFCB" stroke-width="0.8" />
-  <text x="380" y="261" fill="#A1FFCB" font-family="monospace" font-size="10" text-anchor="middle">MDX</text>
+  <!-- Editorial Article Sheet -->
+  <g transform="translate(560, 275)">
+    <rect width="960" height="500" rx="10" fill="#090D12" stroke="#1A232E" stroke-width="1"/>
 
-  <rect x="160" y="295" width="480" height="48" fill="#141416" stroke="#333333" stroke-width="1" />
-  <text x="180" y="324" fill="#A1FFCB" font-family="monospace" font-size="11">$ npm run build &amp;&amp; vercel --prod</text>
-  <text x="560" y="324" fill="#22c55e" font-family="monospace" font-size="11">✓ Deployed</text>
+    <!-- Reading Progress Bar -->
+    <rect width="960" height="3" fill="#1E293B"/>
+    <rect width="380" height="3" fill="url(#tw-rule)"/>
+
+    <g transform="translate(50, 45)">
+      <!-- Article Tag & Date -->
+      <text x="0" y="0" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="11" font-weight="700" letter-spacing="1">DEVOPS ARCHITECTURE · OCTOBER 2024</text>
+      
+      <!-- Article Title (Display) -->
+      <text x="0" y="38" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="30" letter-spacing="-0.5">
+        Achieving Zero-Downtime Container Swaps on Single-Instance VPS
+      </text>
+
+      <text x="0" y="70" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-style="italic">
+        An engineering retrospective on decoupling proxy routing, healthchecks, and ephemeral blue/green containers.
+      </text>
+
+      <line x1="0" y1="95" x2="860" y2="95" stroke="#1E293B" stroke-width="1"/>
+
+      <!-- Article Body Layout -->
+      <g transform="translate(0, 125)">
+        <text x="0" y="0" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="14" leading-relaxed>
+          When deploying microservice architectures to modest compute instances like AWS t3.micro or Hetzner VPS nodes,
+        </text>
+        <text x="0" y="24" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="14">
+          relying on managed load balancers often introduces disproportionate monthly infrastructure costs. To resolve this,
+        </text>
+        <text x="0" y="48" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="14">
+          we orchestrated an automated dual-container rotation technique powered by local Nginx upstream reloading.
+        </text>
+
+        <!-- Callout Quote Box -->
+        <g transform="translate(0, 80)">
+          <rect width="860" height="75" rx="8" fill="#101720" stroke="#1D2A3A" stroke-width="1"/>
+          <rect width="4" height="75" fill="#38BDF8"/>
+          <text x="24" y="28" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="11" font-weight="700">CORE ARCHITECTURAL INSIGHT</text>
+          <text x="24" y="52" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="13">
+            "By executing <tspan font-family="ui-monospace, monospace" fill="#34D399">nginx -s reload</tspan> only after the incoming container passes HTTP 200 health verification, packet drops fall to zero."
+          </text>
+        </g>
+
+        <!-- Code Callout -->
+        <g transform="translate(0, 175)">
+          <rect width="860" height="90" rx="8" fill="#0A0E13" stroke="#17222E" stroke-width="1"/>
+          <text x="20" y="24" fill="#64748B" font-family="ui-monospace, monospace" font-size="10">AUTOMATION SCRIPT // DEPLOY.SH</text>
+          <text x="20" y="48" fill="#F8FAFC" font-family="ui-monospace, monospace" font-size="12">docker compose up -d --no-deps --scale app=2 --no-recreate app</text>
+          <text x="20" y="68" fill="#10B981" font-family="ui-monospace, monospace" font-size="12">curl -f http://localhost:3001/api/health &amp;&amp; docker rm -f old_app</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <g transform="translate(50, 840)">
+    <text x="0" y="24" fill="#475569" font-family="ui-monospace, monospace" font-size="11">TOKYO // BERLIN STUDIO ARCHITECTURE · MODERN TECHNICAL EDITORIAL PLATFORM</text>
+    <text x="1500" y="24" fill="#64748B" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">ISR RENDERING · PERFECT TYPOGRAPHY · LIGHTHOUSE 100</text>
+  </g>
 </svg>

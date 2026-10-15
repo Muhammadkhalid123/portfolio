@@ -1,10 +1,22 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { createContext, useContext, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+interface SmoothScrollContextType {
+  lenis: Lenis | null;
+  scrollTo: (target: string | number | HTMLElement, options?: Record<string, any>) => void;
+}
+
+const SmoothScrollContext = createContext<SmoothScrollContextType>({
+  lenis: null,
+  scrollTo: () => {},
+});
+
+export const useSmoothScroll = () => useContext(SmoothScrollContext);
 
 export interface SmoothScrollProviderProps {
   children: React.ReactNode;
@@ -21,14 +33,19 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       gsap.registerPlugin(ScrollTrigger);
     }
 
+    const htmlEl = document.documentElement;
+    htmlEl.classList.add("lenis", "lenis-smooth");
+
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Butter smooth easeOutExpo
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Buttery smooth easeOutExpo
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      touchMultiplier: 2,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.6,
+      infinite: false,
     });
 
     lenisRef.current = lenis;
@@ -65,7 +82,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
           const targetId = href.substring(1);
           const targetElement = document.getElementById(targetId);
           if (targetElement) {
-            lenis.scrollTo(targetElement, { offset: -80, duration: 1.2 });
+            lenis.scrollTo(targetElement, { offset: -64, duration: 1.2 });
           }
         }
 
@@ -77,24 +94,45 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 
     document.addEventListener("click", handleAnchorClick);
 
+    // Resize recalculation on document layout changes
+    const resizeObserver = new ResizeObserver(() => {
+      lenis.resize();
+    });
+    resizeObserver.observe(document.body);
+
     return () => {
+      htmlEl.classList.remove("lenis", "lenis-smooth");
       document.removeEventListener("click", handleAnchorClick);
+      resizeObserver.disconnect();
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
     };
   }, [pathname]);
 
+  const scrollTo = (target: string | number | HTMLElement, options?: Record<string, any>) => {
+    if (lenisRef.current) {
+      if (typeof target === "string" && !target.startsWith("#") && !target.startsWith(".")) {
+        const el = document.getElementById(target);
+        if (el) {
+          lenisRef.current.scrollTo(el, { duration: 1.2, ...options });
+          return;
+        }
+      }
+      lenisRef.current.scrollTo(target, { duration: 1.2, ...options });
+    }
+  };
+
   return (
-    <>
-      {/* Top Scroll Progress Indicator (Butter Video Electric #00FFD0 Accent) */}
-      <div className="fixed top-0 left-0 right-0 h-[2.5px] z-[9999] pointer-events-none bg-transparent">
+    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current, scrollTo }}>
+      {/* Top Scroll Progress Indicator (Aura Primary Ink Accent) */}
+      <div className="fixed top-0 left-0 right-0 h-[2px] z-[9999] pointer-events-none bg-transparent">
         <div
           ref={progressBarRef}
-          className="h-full bg-[#00FFD0] shadow-[0_0_14px_rgba(0,255,208,0.9)] transition-all duration-75 ease-out"
+          className="h-full bg-[var(--ink)] opacity-75 shadow-sm transition-all duration-75 ease-out"
           style={{ width: "0%" }}
         />
       </div>
       {children}
-    </>
+    </SmoothScrollContext.Provider>
   );
 }

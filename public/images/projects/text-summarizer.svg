@@ -1,47 +1,204 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
   <defs>
-    <linearGradient id="bg-ai" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0e0720"/>
-      <stop offset="100%" stop-color="#03000a"/>
+    <linearGradient id="sum-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0C0B0E"/>
+      <stop offset="50%" stop-color="#080709"/>
+      <stop offset="100%" stop-color="#040305"/>
     </linearGradient>
-    <filter id="glow-ai">
-      <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <radialGradient id="sum-glow" cx="80%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="rgba(168, 85, 247, 0.15)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <linearGradient id="bar-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#C084FC"/>
+    </linearGradient>
   </defs>
 
-  <rect width="800" height="450" fill="url(#bg-ai)" />
-  <circle cx="400" cy="225" r="160" fill="#a855f7" opacity="0.12" filter="url(#glow-ai)"/>
+  <!-- Background Canvas -->
+  <rect width="1600" height="900" fill="url(#sum-bg)"/>
+  <rect width="1600" height="900" fill="url(#sum-glow)"/>
 
-  <!-- Center Transformer Visual -->
-  <rect x="180" y="100" width="440" height="250" rx="16" fill="#17102e" stroke="#2e1d54" stroke-width="2" />
-  
-  <rect x="180" y="100" width="440" height="40" rx="16" fill="#241544" />
-  <circle cx="210" cy="120" r="5" fill="#ec4899"/>
-  <circle cx="226" cy="120" r="5" fill="#a855f7"/>
-  <circle cx="242" cy="120" r="5" fill="#06b6d4"/>
-  <text x="400" y="125" fill="#c084fc" font-family="monospace" font-size="12" text-anchor="middle">nlp_transformer_pipeline.py</text>
+  <!-- Precision Studio Lines -->
+  <g stroke="#1D1924" stroke-width="0.75" opacity="0.4">
+    <line x1="70" y1="0" x2="70" y2="900"/>
+    <line x1="760" y1="0" x2="760" y2="900"/>
+    <line x1="1530" y1="0" x2="1530" y2="900"/>
+    <line x1="0" y1="80" x2="1600" y2="80"/>
+    <line x1="0" y1="185" x2="1600" y2="185"/>
+  </g>
 
-  <!-- Flow Boxes -->
-  <rect x="220" y="165" width="90" height="65" rx="8" fill="#241544" stroke="#a855f7" stroke-width="1.5" />
-  <text x="265" y="195" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">Raw Text</text>
-  <text x="265" y="212" fill="#c084fc" font-family="monospace" font-size="9" text-anchor="middle">5,000+ words</text>
+  <!-- Studio Header -->
+  <rect x="0" y="0" width="1600" height="80" fill="#100E14" stroke="#221C2B" stroke-width="1"/>
+  <circle cx="50" cy="40" r="14" fill="#FFFFFF"/>
+  <text x="50" y="45" fill="#0C0B0E" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" text-anchor="middle">N</text>
+  <text x="78" y="46" fill="#F4F4F4" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="17" letter-spacing="1">NEXUS // ABSTRACTIVE SYNTHESIZER</text>
+  <text x="390" y="46" fill="#71717A" font-family="ui-monospace, monospace" font-size="12">SYSTEM 08 // HUGGING FACE TRANSFORMERS · BART &amp; T5-LARGE</text>
 
-  <line x1="310" y1="198" x2="355" y2="198" stroke="#d946ef" stroke-width="2" stroke-dasharray="3" />
+  <!-- Control Mode Toggle -->
+  <g transform="translate(860, 24)">
+    <rect width="280" height="32" rx="16" fill="#1B1724" stroke="#2E263D" stroke-width="1"/>
+    <rect x="2" y="2" width="138" height="28" rx="14" fill="#8B5CF6"/>
+    <text x="71" y="20" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">EXECUTIVE BRIEF</text>
+    <text x="209" y="20" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11" text-anchor="middle">DEEP KEYNOTES</text>
+  </g>
 
-  <rect x="355" y="165" width="90" height="65" rx="8" fill="#241544" stroke="#d946ef" stroke-width="1.5" />
-  <text x="400" y="195" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">BART / T5</text>
-  <text x="400" y="212" fill="#e879f9" font-family="monospace" font-size="9" text-anchor="middle">Attention Layer</text>
+  <!-- Status Chip -->
+  <circle cx="1380" cy="40" r="4" fill="#10B981"/>
+  <text x="1395" y="44" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11">PYTORCH // GPU ACCELERATED</text>
+  <rect x="1485" y="24" width="65" height="32" rx="16" fill="#FFFFFF"/>
+  <text x="1517" y="44" fill="#0C0B0E" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="11" text-anchor="middle">SYNTH</text>
 
-  <line x1="445" y1="198" x2="490" y2="198" stroke="#06b6d4" stroke-width="2" stroke-dasharray="3" />
+  <!-- Metric Strip -->
+  <rect x="50" y="105" width="1500" height="75" rx="12" fill="#120F17" stroke="#251E30" stroke-width="1"/>
+  <g transform="translate(80, 132)">
+    <text x="0" y="0" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">CONTENT COMPRESSION RATIO</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">78.4% <tspan font-size="13" font-weight="500" fill="#A1A1AA">CONDENSED</tspan></text>
+  </g>
+  <line x1="380" y1="120" x2="380" y2="165" stroke="#251E30" stroke-width="1"/>
+  <g transform="translate(410, 132)">
+    <text x="0" y="0" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">ROUGE-L RETENTION SCORE</text>
+    <text x="0" y="28" fill="#C084FC" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">0.442 <tspan font-size="13" font-weight="500" fill="#A1A1AA">STATE OF ART</tspan></text>
+  </g>
+  <line x1="720" y1="120" x2="720" y2="165" stroke="#251E30" stroke-width="1"/>
+  <g transform="translate(750, 132)">
+    <text x="0" y="0" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">INFERENCE DURATION (P95)</text>
+    <text x="0" y="28" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">142 ms <tspan font-size="13" font-weight="500" fill="#A1A1AA">PER PASS</tspan></text>
+  </g>
+  <line x1="1050" y1="120" x2="1050" y2="165" stroke="#251E30" stroke-width="1"/>
+  <g transform="translate(1080, 132)">
+    <text x="0" y="0" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">TOKEN CONTEXT WINDOW</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">16,384 <tspan font-size="13" font-weight="500" fill="#A1A1AA">TOKENS</tspan></text>
+  </g>
 
-  <rect x="490" y="165" width="90" height="65" rx="8" fill="#241544" stroke="#06b6d4" stroke-width="1.5" />
-  <text x="535" y="195" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">Abstractive</text>
-  <text x="535" y="212" fill="#67e8f9" font-family="monospace" font-size="9" text-anchor="middle">Executive Brief</text>
+  <!-- Left Side: Source Document Payload -->
+  <rect x="50" y="205" width="690" height="595" rx="14" fill="#110E17" stroke="#251E30" stroke-width="1"/>
+  <g transform="translate(80, 238)">
+    <circle cx="10" cy="10" r="4" fill="#EF4444"/>
+    <circle cx="26" cy="10" r="4" fill="#F59E0B"/>
+    <circle cx="42" cy="10" r="4" fill="#10B981"/>
+    <text x="70" y="14" fill="#71717A" font-family="ui-monospace, monospace" font-size="11">source_stream // quarterly_engineering_audit.md</text>
+    <text x="500" y="14" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="10">8,420 WORDS · 14 PAGES</text>
+  </g>
 
-  <text x="400" y="295" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="16" text-anchor="middle">AI Text Summarizer & Synthesizer</text>
-  <text x="400" y="318" fill="#a855f7" font-family="monospace" font-size="11" text-anchor="middle">Hugging Face • PyTorch • LangChain • FastAPI</text>
+  <!-- Source Text Inspection View -->
+  <g transform="translate(80, 275)">
+    <rect width="630" height="500" rx="10" fill="#0D0A12" stroke="#1F1929" stroke-width="1"/>
+    <text x="24" y="32" fill="#71717A" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">ORIGINAL UNPROCESSED CORPUS (RAW INPUT)</text>
+    
+    <g transform="translate(24, 60)">
+      <rect width="582" height="24" rx="4" fill="#251C33"/>
+      <text x="10" y="17" fill="#C084FC" font-family="system-ui, sans-serif" font-size="12">Section 1.0: Infrastructure Migration &amp; Microservice Decentralization Analysis</text>
+    </g>
+
+    <text x="24" y="115" fill="#A1A1AA" font-family="system-ui, sans-serif" font-size="13" leading-relaxed>
+      "During the Q3 infrastructure review, the engineering division conducted an exhaustive evaluation
+    </text>
+    <text x="24" y="138" fill="#A1A1AA" font-family="system-ui, sans-serif" font-size="13">
+      of monolithic compute bottlenecks across our primary ingress cluster. System profiling revealed
+    </text>
+    <text x="24" y="161" fill="#A1A1AA" font-family="system-ui, sans-serif" font-size="13">
+      that 74% of latency spikes occurred during unindexed cross-table relational joins within the primary
+    </text>
+    <text x="24" y="184" fill="#A1A1AA" font-family="system-ui, sans-serif" font-size="13">
+      PostgreSQL database instance, exacerbating connection pool exhaustion under sustained loads..."
+    </text>
+
+    <!-- Highlighted passage -->
+    <g transform="translate(24, 210)">
+      <rect width="582" height="60" rx="6" fill="#1C142B" stroke="#3D295C" stroke-width="1"/>
+      <text x="12" y="24" fill="#E4E4E7" font-family="system-ui, sans-serif" font-size="12">
+        "Core Resolution: The team decoupled user authorization into a lightweight stateless microservice,
+      </text>
+      <text x="12" y="46" fill="#E4E4E7" font-family="system-ui, sans-serif" font-size="12">
+        migrated caching to an in-memory Redis cluster, and implemented asynchronous worker queues."
+      </text>
+    </g>
+
+    <text x="24" y="300" fill="#71717A" font-family="system-ui, sans-serif" font-size="13">
+      "Following deployment of the isolated container nodes, aggregate 99th percentile response time
+    </text>
+    <text x="24" y="323" fill="#71717A" font-family="system-ui, sans-serif" font-size="13">
+      dropped from 1,240ms to 48ms, reducing compute infrastructure expenditure by $42,000 monthly..."
+    </text>
+
+    <!-- Token Compression Gauge -->
+    <g transform="translate(24, 380)">
+      <rect width="582" height="90" rx="8" fill="#15101E" stroke="#281F38" stroke-width="1"/>
+      <text x="16" y="24" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="10">TOKEN CHUNKING &amp; ATTENTION SLICING</text>
+      
+      <rect x="16" y="40" width="550" height="10" rx="5" fill="#251C33"/>
+      <rect x="16" y="40" width="430" height="10" rx="5" fill="url(#bar-grad)"/>
+      
+      <text x="16" y="70" fill="#C084FC" font-family="ui-monospace, monospace" font-size="11">Input: 4,820 Tokens</text>
+      <text x="460" y="70" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">Synthesized: 180 Tokens</text>
+    </g>
+  </g>
+
+  <!-- Right Side: Synthesized Executive Briefing -->
+  <rect x="760" y="205" width="790" height="595" rx="14" fill="#110E17" stroke="#251E30" stroke-width="1"/>
+  <g transform="translate(790, 238)">
+    <circle cx="10" cy="10" r="4" fill="#10B981"/>
+    <text x="24" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="11" font-weight="700">SYNTHESIS OUTPUT // EXECUTIVE BRIEFING (BART FINE-TUNED)</text>
+    <text x="590" y="14" fill="#71717A" font-family="ui-monospace, monospace" font-size="10">CONFIDENCE: 98.6%</text>
+  </g>
+
+  <!-- Executive Summary Card -->
+  <g transform="translate(790, 275)">
+    <rect width="730" height="500" rx="10" fill="#0D0A12" stroke="#1F1929" stroke-width="1"/>
+    
+    <g transform="translate(24, 28)">
+      <rect width="210" height="24" rx="12" fill="#231738" stroke="#4C2E7D" stroke-width="1"/>
+      <text x="105" y="16" fill="#C084FC" font-family="ui-monospace, monospace" font-size="10" font-weight="700" text-anchor="middle">SYNTHESIZED ABSTRACT</text>
+    </g>
+
+    <!-- Key Takeaway 1 -->
+    <g transform="translate(24, 75)">
+      <rect width="682" height="85" rx="8" fill="#171121" stroke="#2D2042" stroke-width="1"/>
+      <circle cx="20" cy="22" r="5" fill="#C084FC"/>
+      <text x="35" y="26" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700" font-size="13">Bottleneck Root Cause</text>
+      <text x="35" y="48" fill="#A1A1AA" font-family="system-ui, sans-serif" font-size="12">Monolithic PostgreSQL unindexed joins accounted for 74% of latency spikes during peak loads.</text>
+      <text x="35" y="70" fill="#71717A" font-family="ui-monospace, monospace" font-size="10">Entity Extracted: [Database: PostgreSQL] · Severity: HIGH</text>
+    </g>
+
+    <!-- Key Takeaway 2 -->
+    <g transform="translate(24, 175)">
+      <rect width="682" height="85" rx="8" fill="#171121" stroke="#2D2042" stroke-width="1"/>
+      <circle cx="20" cy="22" r="5" fill="#10B981"/>
+      <text x="35" y="26" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700" font-size="13">Architectural Modernization</text>
+      <text x="35" y="48" fill="#A1A1AA" font-family="system-ui, sans-serif" font-size="12">Decoupled authentication into stateless service + Redis cache + asynchronous Celery queues.</text>
+      <text x="35" y="70" fill="#71717A" font-family="ui-monospace, monospace" font-size="10">Components: [Auth Microservice, Redis Cache, Celery Queue]</text>
+    </g>
+
+    <!-- Key Takeaway 3 -->
+    <g transform="translate(24, 275)">
+      <rect width="682" height="85" rx="8" fill="#171121" stroke="#2D2042" stroke-width="1"/>
+      <circle cx="20" cy="22" r="5" fill="#38BDF8"/>
+      <text x="35" y="26" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700" font-size="13">Empirical Business Impact</text>
+      <text x="35" y="48" fill="#A1A1AA" font-family="system-ui, sans-serif" font-size="12">P99 response time decreased from 1,240ms to 48ms (-96%) with $42K monthly savings.</text>
+      <text x="35" y="70" fill="#71717A" font-family="ui-monospace, monospace" font-size="10">Impact: 96% Latency Reduction · $42,000 / month Cost Savings</text>
+    </g>
+
+    <!-- Export & Webhook Controls -->
+    <g transform="translate(24, 385)">
+      <rect width="682" height="90" rx="8" fill="#130E1A" stroke="#221830" stroke-width="1"/>
+      <text x="20" y="28" fill="#71717A" font-family="ui-monospace, monospace" font-size="10">SYNTHESIS API DISPATCH</text>
+      
+      <g transform="translate(20, 44)">
+        <rect width="140" height="30" rx="15" fill="#FFFFFF"/>
+        <text x="70" y="20" fill="#0C0B0E" font-family="system-ui, sans-serif" font-weight="700" font-size="11" text-anchor="middle">COPY BRIEFING</text>
+
+        <rect x="155" y="0" width="140" height="30" rx="15" fill="#241938" stroke="#3D295C" stroke-width="1"/>
+        <text x="225" y="20" fill="#C084FC" font-family="ui-monospace, monospace" font-size="11" text-anchor="middle">EXPORT JSON</text>
+
+        <text x="330" y="20" fill="#71717A" font-family="ui-monospace, monospace" font-size="11">FASTAPI REST HOOK: 200 OK (0.14s)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Studio Footer -->
+  <g transform="translate(50, 840)">
+    <text x="0" y="24" fill="#584D6B" font-family="ui-monospace, monospace" font-size="11">TOKYO // BERLIN STUDIO ARCHITECTURE · NATURAL LANGUAGE SYNTHESIS ENGINE</text>
+    <text x="1500" y="24" fill="#71717A" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">TRANSFORMER WEIGHTS: BART-LARGE-CNN · ZERO HALLUCINATION</text>
+  </g>
 </svg>

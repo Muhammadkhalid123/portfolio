@@ -16,8 +16,7 @@ export function ClarityDesignBadge({ label, status = "info" }: ClarityDesignBadg
   };
 
   return (
-    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold border backdrop-blur-md transition-all">
-      <span className="w-1.5 h-1.5 rounded-full bg-[#00FFD0] animate-pulse" />
+    <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-mono font-semibold border backdrop-blur-md transition-all">
       <span className={statusClasses[status] ? "" : ""}>{label}</span>
     </div>
   );

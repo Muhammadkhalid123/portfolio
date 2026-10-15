@@ -1,55 +1,202 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
   <defs>
-    <linearGradient id="bg-rag-chat" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0F0F0F"/>
-      <stop offset="50%" stop-color="#181818"/>
-      <stop offset="100%" stop-color="#0A0A0A"/>
+    <linearGradient id="rag-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0D0B"/>
+      <stop offset="50%" stop-color="#070807"/>
+      <stop offset="100%" stop-color="#040504"/>
     </linearGradient>
-    <linearGradient id="bubble-user" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00FFD0"/>
-      <stop offset="100%" stop-color="#00CCA6"/>
+    <radialGradient id="rag-glow" cx="80%" cy="15%" r="55%">
+      <stop offset="0%" stop-color="rgba(16, 185, 129, 0.18)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <linearGradient id="card-surface" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141714"/>
+      <stop offset="100%" stop-color="#0D0F0D"/>
     </linearGradient>
-    <linearGradient id="bubble-ai" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1A1A1A"/>
-      <stop offset="100%" stop-color="#242424"/>
+    <linearGradient id="accent-stream" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="50%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
     </linearGradient>
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="450" fill="url(#bg-rag-chat)" />
+  <rect width="1600" height="900" fill="url(#rag-bg)"/>
+  <rect width="1600" height="900" fill="url(#rag-glow)"/>
 
-  <!-- Terminal Window Frame -->
-  <rect x="150" y="65" width="500" height="310" rx="16" fill="#141414" stroke="#00FFD0" stroke-width="1.5" stroke-opacity="0.4" />
-  <rect x="150" y="65" width="500" height="42" rx="16" fill="#1E1E1E" />
-  <circle cx="180" cy="86" r="5" fill="#f43f5e"/>
-  <circle cx="196" cy="86" r="5" fill="#f59e0b"/>
-  <circle cx="212" cy="86" r="5" fill="#00FFD0"/>
-  <text x="400" y="91" fill="#FAFAFA" font-family="monospace" font-size="12" text-anchor="middle">my-rag-based-chatbot // index.html</text>
+  <!-- Subtle Studio Grid -->
+  <g stroke="#1F241F" stroke-width="0.75" opacity="0.4">
+    <line x1="80" y1="0" x2="80" y2="900"/>
+    <line x1="480" y1="0" x2="480" y2="900"/>
+    <line x1="1080" y1="0" x2="1080" y2="900"/>
+    <line x1="1520" y1="0" x2="1520" y2="900"/>
+    <line x1="0" y1="80" x2="1600" y2="80"/>
+    <line x1="0" y1="190" x2="1600" y2="190"/>
+    <line x1="0" y1="820" x2="1600" y2="820"/>
+  </g>
 
-  <!-- Chat Messages -->
-  <!-- User Message -->
-  <rect x="360" y="125" width="260" height="42" rx="12" fill="url(#bubble-user)" />
-  <text x="375" y="151" fill="#0F0F0F" font-family="sans-serif" font-weight="bold" font-size="12">What does Section 4 of the manual state?</text>
+  <!-- Studio Header Navigation Bar -->
+  <rect x="0" y="0" width="1600" height="80" fill="#0F120F" stroke="#1F241F" stroke-width="1"/>
+  <circle cx="50" cy="40" r="14" fill="#FFFFFF"/>
+  <text x="50" y="45" fill="#0C0D0C" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" text-anchor="middle">R</text>
+  <text x="78" y="46" fill="#F4F4F4" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="17" letter-spacing="1">RAG // INTEL ENGINE</text>
+  <text x="310" y="46" fill="#71717A" font-family="ui-monospace, monospace" font-size="12">SYSTEM 01 // VECTOR SIMILARITY &amp; CITATION PIPELINE</text>
 
-  <!-- Retrieval / RAG Step Indicator -->
-  <rect x="180" y="180" width="340" height="34" rx="8" fill="#1E1E1E" stroke="#00FFD0" stroke-width="1" stroke-dasharray="4" />
-  <circle cx="200" cy="197" r="4" fill="#00FFD0" />
-  <text x="215" y="201" fill="#00FFD0" font-family="monospace" font-size="10">RAG Ingestion: Retrieved 3 vector chunks (Qdrant)</text>
+  <!-- Tokyo/Berlin Header Nav Badges -->
+  <rect x="740" y="24" width="105" height="32" rx="16" fill="#1C221C" stroke="#2A322A" stroke-width="1"/>
+  <text x="792" y="45" fill="#E4E4E7" font-family="ui-monospace, monospace" font-size="11" font-weight="600" text-anchor="middle">RETRIEVAL</text>
+  <text x="895" y="45" fill="#71717A" font-family="ui-monospace, monospace" font-size="11" text-anchor="middle">EMBEDDINGS</text>
+  <text x="995" y="45" fill="#71717A" font-family="ui-monospace, monospace" font-size="11" text-anchor="middle">CHUNKS</text>
+  <text x="1085" y="45" fill="#71717A" font-family="ui-monospace, monospace" font-size="11" text-anchor="middle">TELEMETRY</text>
 
-  <!-- Bot Response with Citation -->
-  <rect x="180" y="225" width="410" height="68" rx="12" fill="url(#bubble-ai)" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
-  <text x="198" y="250" fill="#FAFAFA" font-family="sans-serif" font-size="12">According to [Doc 4.2], system failovers trigger</text>
-  <text x="198" y="268" fill="#FAFAFA" font-family="sans-serif" font-size="12">redundant nodes automatically within 250ms.</text>
-  <rect x="198" y="275" width="105" height="14" rx="4" fill="#00FFD0" />
-  <text x="250" y="285" fill="#0F0F0F" font-family="monospace" font-weight="bold" font-size="9" text-anchor="middle">Source: Manual_v2.pdf</text>
+  <!-- Live Status Chip -->
+  <circle cx="1390" cy="40" r="4" fill="#10B981"/>
+  <text x="1405" y="44" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11">FASTAPI // LANGCHAIN ACTIVE</text>
+  <rect x="1490" y="24" width="60" height="32" rx="16" fill="#FFFFFF"/>
+  <text x="1520" y="44" fill="#0A0A0A" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="11" text-anchor="middle">QUERY</text>
 
-  <!-- Input Field -->
-  <rect x="175" y="310" width="450" height="42" rx="10" fill="#0F0F0F" stroke="#00FFD0" stroke-width="1.5" stroke-opacity="0.5" />
-  <text x="195" y="336" fill="#808080" font-family="monospace" font-size="12">Type a prompt to query knowledge base...</text>
-  <rect x="580" y="318" width="35" height="26" rx="6" fill="#00FFD0" />
-  <polygon points="593,327 603,331 593,335" fill="#0F0F0F" />
+  <!-- Metric Strip Ribbon -->
+  <rect x="50" y="105" width="1500" height="75" rx="12" fill="#111411" stroke="#222822" stroke-width="1"/>
+  <g transform="translate(80, 132)">
+    <text x="0" y="0" fill="#71717A" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">INDEXED DOCUMENT CHUNKS</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">142,850 <tspan font-size="13" font-weight="500" fill="#71717A">VECTORS</tspan></text>
+  </g>
+  <line x1="380" y1="120" x2="380" y2="165" stroke="#222822" stroke-width="1"/>
+  <g transform="translate(410, 132)">
+    <text x="0" y="0" fill="#71717A" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">COSINE SIMILARITY THRESHOLD</text>
+    <text x="0" y="28" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">0.842 <tspan font-size="13" font-weight="500" fill="#71717A">OPTIMAL</tspan></text>
+  </g>
+  <line x1="720" y1="120" x2="720" y2="165" stroke="#222822" stroke-width="1"/>
+  <g transform="translate(750, 132)">
+    <text x="0" y="0" fill="#71717A" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">RETRIEVAL LATENCY (P95)</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">18.4 ms</text>
+  </g>
+  <line x1="1050" y1="120" x2="1050" y2="165" stroke="#222822" stroke-width="1"/>
+  <g transform="translate(1080, 132)">
+    <text x="0" y="0" fill="#71717A" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">HALLUCINATION RESISTANCE</text>
+    <text x="0" y="28" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">99.8% <tspan font-size="13" font-weight="500" fill="#71717A">GROUNDED</tspan></text>
+  </g>
 
-  <!-- Subtitle -->
-  <text x="400" y="405" fill="#FAFAFA" font-family="sans-serif" font-weight="bold" font-size="15" text-anchor="middle">RAG-Based Intelligent Conversational Assistant</text>
-  <text x="400" y="425" fill="#00FFD0" font-family="monospace" font-size="11" text-anchor="middle">HTML • JavaScript • Python • LangChain • Vector RAG</text>
+  <!-- Left Column: Document Chunk Ingestion Pipeline -->
+  <rect x="50" y="205" width="450" height="595" rx="14" fill="#0F120F" stroke="#222822" stroke-width="1"/>
+  <g transform="translate(80, 240)">
+    <text x="0" y="0" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="12" font-weight="700" letter-spacing="1">01 // INGESTION &amp; VECTORIZATION</text>
+    <text x="0" y="20" fill="#52525B" font-family="ui-monospace, monospace" font-size="10">RECURSIVE TOKEN CHUNKER · EMBEDDING DIMS: 1536</text>
+  </g>
+
+  <!-- Chunk Cards in Pipeline -->
+  <g transform="translate(80, 285)">
+    <!-- Chunk 01 -->
+    <rect width="390" height="95" rx="10" fill="#151915" stroke="#262E26" stroke-width="1"/>
+    <circle cx="20" cy="22" r="5" fill="#10B981"/>
+    <text x="35" y="25" fill="#E4E4E7" font-family="ui-monospace, monospace" font-size="11" font-weight="600">CHUNK_4019 · ARCHITECTURE_SPECS.MD</text>
+    <text x="35" y="48" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="11">"FastAPI handles async streaming tokens over HTTP/2..."</text>
+    <text x="35" y="75" fill="#71717A" font-family="ui-monospace, monospace" font-size="10">Tokens: 384 · Cosine: 0.891 · Vector Partition: #04</text>
+
+    <!-- Chunk 02 -->
+    <g transform="translate(0, 110)">
+      <rect width="390" height="95" rx="10" fill="#151915" stroke="#262E26" stroke-width="1"/>
+      <circle cx="20" cy="22" r="5" fill="#10B981"/>
+      <text x="35" y="25" fill="#E4E4E7" font-family="ui-monospace, monospace" font-size="11" font-weight="600">CHUNK_4020 · CONTAINER_DEPLOY.YAML</text>
+      <text x="35" y="48" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="11">"Isolated Docker instances running with strict cgroup limits..."</text>
+      <text x="35" y="75" fill="#71717A" font-family="ui-monospace, monospace" font-size="10">Tokens: 412 · Cosine: 0.865 · Vector Partition: #04</text>
+    </g>
+
+    <!-- Chunk 03 -->
+    <g transform="translate(0, 220)">
+      <rect width="390" height="95" rx="10" fill="#151915" stroke="#262E26" stroke-width="1"/>
+      <circle cx="20" cy="22" r="5" fill="#71717A"/>
+      <text x="35" y="25" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11" font-weight="600">CHUNK_4021 · SECURITY_CONTROLS.TXT</text>
+      <text x="35" y="48" fill="#71717A" font-family="system-ui, -apple-system, sans-serif" font-size="11">"Row-level security enforcement with cryptographic tokens..."</text>
+      <text x="35" y="75" fill="#52525B" font-family="ui-monospace, monospace" font-size="10">Tokens: 290 · Cosine: 0.781 · Vector Partition: #02</text>
+    </g>
+
+    <!-- Vector Scatter Plot Mini Widget -->
+    <g transform="translate(0, 335)">
+      <rect width="390" height="150" rx="10" fill="#111411" stroke="#262E26" stroke-width="1"/>
+      <text x="16" y="24" fill="#71717A" font-family="ui-monospace, monospace" font-size="10">HIGH-DIMENSIONAL VECTOR CLUSTERING (t-SNE)</text>
+      <!-- Simulated Cluster Points -->
+      <circle cx="80" cy="80" r="4" fill="#10B981"/>
+      <circle cx="95" cy="70" r="3" fill="#10B981" opacity="0.8"/>
+      <circle cx="70" cy="95" r="3" fill="#10B981" opacity="0.7"/>
+      <circle cx="110" cy="85" r="5" fill="#34D399"/>
+      <circle cx="140" cy="110" r="2" fill="#52525B"/>
+      
+      <circle cx="250" cy="65" r="4" fill="#38BDF8"/>
+      <circle cx="270" cy="75" r="3" fill="#38BDF8" opacity="0.8"/>
+      <circle cx="240" cy="85" r="3" fill="#38BDF8" opacity="0.7"/>
+
+      <circle cx="320" cy="115" r="3" fill="#A1A1AA"/>
+      <circle cx="340" cy="105" r="4" fill="#A1A1AA"/>
+
+      <!-- Distance boundary ring -->
+      <circle cx="95" cy="80" r="45" stroke="#10B981" stroke-width="1" stroke-dasharray="3,3" fill="none" opacity="0.4"/>
+      <text x="16" y="132" fill="#10B981" font-family="ui-monospace, monospace" font-size="10">Active Cluster: 48 Nearest Neighbors Identified</text>
+    </g>
+  </g>
+
+  <!-- Center & Right: Conversational RAG Inference Stream -->
+  <rect x="520" y="205" width="1030" height="595" rx="14" fill="#0F120F" stroke="#222822" stroke-width="1"/>
+  
+  <!-- Terminal Top Bar -->
+  <g transform="translate(550, 235)">
+    <circle cx="10" cy="10" r="4" fill="#EF4444"/>
+    <circle cx="26" cy="10" r="4" fill="#F59E0B"/>
+    <circle cx="42" cy="10" r="4" fill="#10B981"/>
+    <text x="70" y="14" fill="#71717A" font-family="ui-monospace, monospace" font-size="11">rag_inference_session // prompt_grounding_v2.ts</text>
+    <rect x="750" y="0" width="180" height="22" rx="11" fill="#161B16" stroke="#262E26" stroke-width="1"/>
+    <text x="840" y="14" fill="#10B981" font-family="ui-monospace, monospace" font-size="10" text-anchor="middle">TOKEN STREAM: 84 T/S</text>
+  </g>
+
+  <!-- User Query Block -->
+  <g transform="translate(550, 275)">
+    <rect width="970" height="70" rx="10" fill="#131713" stroke="#242B24" stroke-width="1"/>
+    <text x="24" y="26" fill="#71717A" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1">PROMPT // USER QUERY</text>
+    <text x="24" y="50" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="15">"How does the system ensure zero data leakage between different organizations?"</text>
+  </g>
+
+  <!-- Retrieved Context Injected Banner -->
+  <g transform="translate(550, 360)">
+    <rect width="970" height="85" rx="10" fill="#0D1410" stroke="#1B3828" stroke-width="1"/>
+    <circle cx="24" cy="24" r="4" fill="#10B981"/>
+    <text x="40" y="28" fill="#10B981" font-family="ui-monospace, monospace" font-size="11" font-weight="700">RETRIEVED CONTEXT INJECTION (TOP-2 VECTOR MATCHES)</text>
+    <text x="40" y="48" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11">[Source 01: docs/security.md#L45] "PostgreSQL Row-Level Security (RLS) policies filter by org_id on every query."</text>
+    <text x="40" y="68" fill="#A1A1AA" font-family="ui-monospace, monospace" font-size="11">[Source 02: src/auth/jwt.py#L90] "Cryptographic tenant tokens validate permissions before retrieval execution."</text>
+  </g>
+
+  <!-- Synthesized Grounded Response -->
+  <g transform="translate(550, 460)">
+    <rect width="970" height="315" rx="10" fill="#141714" stroke="#262E26" stroke-width="1"/>
+    <text x="24" y="30" fill="#10B981" font-family="ui-monospace, monospace" font-size="11" font-weight="700">GROUNDED RESPONSE // LLM SYNTHESIS</text>
+    
+    <text x="24" y="65" fill="#E4E4E7" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="400">The architecture enforces strict tenant isolation through two independent containment layers:</text>
+
+    <!-- Point 1 -->
+    <circle cx="34" cy="100" r="3" fill="#10B981"/>
+    <text x="50" y="104" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="13">1. Database Layer: Row-Level Security (RLS)</text>
+    <text x="50" y="125" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="13">Every database connection executes under a specific tenant context. Postgres automatically attaches a <tspan font-family="ui-monospace, monospace" fill="#34D399">WHERE org_id = current_setting(&apos;app.current_org&apos;)</tspan> clause to all queries, making cross-tenant record leakage mathematically impossible.</text>
+
+    <!-- Point 2 -->
+    <circle cx="34" cy="165" r="3" fill="#10B981"/>
+    <text x="50" y="169" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="13">2. Vector Partitioning &amp; Query Guardrails</text>
+    <text x="50" y="190" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="13">Vector embeddings are stored in distinct metadata-partitioned indexes. Before computing cosine similarity, the vector engine pre-filters candidates by the tenant's namespace ID.</text>
+
+    <!-- Citation Chips -->
+    <g transform="translate(50, 235)">
+      <rect width="180" height="28" rx="14" fill="#1C241D" stroke="#2D4432" stroke-width="1"/>
+      <text x="90" y="18" fill="#34D399" font-family="ui-monospace, monospace" font-size="10" text-anchor="middle">CITATIONS: docs/security.md</text>
+
+      <rect x="195" y="0" width="160" height="28" rx="14" fill="#1C241D" stroke="#2D4432" stroke-width="1"/>
+      <text x="275" y="18" fill="#34D399" font-family="ui-monospace, monospace" font-size="10" text-anchor="middle">VERIFIED // 0.89 SIMILARITY</text>
+    </g>
+
+    <line x1="24" y1="285" x2="946" y2="285" stroke="#222822" stroke-width="1"/>
+    <text x="24" y="302" fill="#71717A" font-family="ui-monospace, monospace" font-size="10">MODEL: CLAUDE 3.5 SONNET · INFERENCE LATENCY: 312ms · TOTAL TOKENS: 640</text>
+  </g>
+
+  <!-- Bottom Architectural Footer Bar -->
+  <g transform="translate(50, 840)">
+    <text x="0" y="24" fill="#52525B" font-family="ui-monospace, monospace" font-size="11">TOKYO // BERLIN STUDIO ARCHITECTURE · RAG-DRIVEN INTELLIGENCE INFRASTRUCTURE</text>
+    <text x="1500" y="24" fill="#71717A" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">SHA-256: 4F92B10A // ZERO DATA LEAKAGE VERIFIED</text>
+  </g>
 </svg>

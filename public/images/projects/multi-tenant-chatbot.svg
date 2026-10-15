@@ -1,74 +1,213 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
   <defs>
-    <linearGradient id="bg-multi" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0F0F0F"/>
-      <stop offset="50%" stop-color="#181818"/>
-      <stop offset="100%" stop-color="#0A0A0A"/>
+    <linearGradient id="mt-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090B0D"/>
+      <stop offset="50%" stop-color="#060709"/>
+      <stop offset="100%" stop-color="#030405"/>
     </linearGradient>
-    <linearGradient id="tenant-a" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#141414"/>
-      <stop offset="100%" stop-color="#1E1E1E"/>
-    </linearGradient>
-    <linearGradient id="tenant-b" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#141414"/>
-      <stop offset="100%" stop-color="#1E1E1E"/>
-    </linearGradient>
-    <linearGradient id="core-gateway" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00FFD0"/>
-      <stop offset="100%" stop-color="#00CCA6"/>
+    <radialGradient id="mt-glow" cx="20%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="rgba(14, 165, 233, 0.15)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <linearGradient id="meter-fill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
     </linearGradient>
   </defs>
 
-  <!-- Background -->
-  <rect width="800" height="450" fill="url(#bg-multi)" />
+  <!-- Canvas -->
+  <rect width="1600" height="900" fill="url(#mt-bg)"/>
+  <rect width="1600" height="900" fill="url(#mt-glow)"/>
 
-  <!-- Architecture Main Frame -->
-  <rect x="120" y="60" width="560" height="315" rx="16" fill="#141414" stroke="#00FFD0" stroke-width="1.5" stroke-opacity="0.4" />
-  <rect x="120" y="60" width="560" height="38" rx="16" fill="#1E1E1E" />
-  <circle cx="148" cy="79" r="5" fill="#f43f5e"/>
-  <circle cx="164" cy="79" r="5" fill="#f59e0b"/>
-  <circle cx="180" cy="79" r="5" fill="#00FFD0"/>
-  <text x="400" y="84" fill="#00FFD0" font-family="monospace" font-size="12" text-anchor="middle">multi_tenant_orchestrator.py</text>
+  <!-- Hairline Grid -->
+  <g stroke="#171D22" stroke-width="0.75" opacity="0.5">
+    <line x1="60" y1="0" x2="60" y2="900"/>
+    <line x1="420" y1="0" x2="420" y2="900"/>
+    <line x1="1120" y1="0" x2="1120" y2="900"/>
+    <line x1="1540" y1="0" x2="1540" y2="900"/>
+    <line x1="0" y1="80" x2="1600" y2="80"/>
+    <line x1="0" y1="185" x2="1600" y2="185"/>
+  </g>
 
-  <!-- Tenant A Box -->
-  <rect x="150" y="120" width="150" height="100" rx="10" fill="url(#tenant-a)" stroke="#00FFD0" stroke-width="1.5" stroke-opacity="0.6" />
-  <text x="225" y="145" fill="#00FFD0" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">Tenant Organization 1</text>
-  <rect x="165" y="158" width="120" height="22" rx="4" fill="#0F0F0F" />
-  <text x="225" y="173" fill="#FAFAFA" font-family="monospace" font-size="9" text-anchor="middle">Workspace: Support-Bot</text>
-  <rect x="165" y="185" width="120" height="22" rx="4" fill="#0F0F0F" />
-  <text x="225" y="200" fill="#FAFAFA" font-family="monospace" font-size="9" text-anchor="middle">KB: /tenants/org_1/docs</text>
+  <!-- Studio Top Navigation -->
+  <rect x="0" y="0" width="1600" height="80" fill="#0C1014" stroke="#1A222A" stroke-width="1"/>
+  <circle cx="50" cy="40" r="14" fill="#FFFFFF"/>
+  <text x="50" y="45" fill="#090B0D" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" text-anchor="middle">K</text>
+  <text x="78" y="46" fill="#F4F4F4" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="17" letter-spacing="1">KRAKEN // MULTI-TENANT AI</text>
+  <text x="340" y="46" fill="#64748B" font-family="ui-monospace, monospace" font-size="12">SYSTEM 02 // ISOLATED WORKSPACE ARCHITECTURE</text>
 
-  <!-- Tenant B Box -->
-  <rect x="150" y="240" width="150" height="100" rx="10" fill="url(#tenant-b)" stroke="#00FFD0" stroke-width="1.5" stroke-opacity="0.6" />
-  <text x="225" y="265" fill="#00FFD0" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">Tenant Organization 2</text>
-  <rect x="165" y="278" width="120" height="22" rx="4" fill="#0F0F0F" />
-  <text x="225" y="293" fill="#FAFAFA" font-family="monospace" font-size="9" text-anchor="middle">Workspace: Sales-Agent</text>
-  <rect x="165" y="305" width="120" height="22" rx="4" fill="#0F0F0F" />
-  <text x="225" y="320" fill="#FAFAFA" font-family="monospace" font-size="9" text-anchor="middle">KB: /tenants/org_2/docs</text>
+  <!-- Workspace Switcher in Header -->
+  <g transform="translate(700, 24)">
+    <rect width="260" height="32" rx="16" fill="#141C24" stroke="#253545" stroke-width="1"/>
+    <circle cx="20" cy="16" r="4" fill="#38BDF8"/>
+    <text x="35" y="20" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="600">WORKSPACE: ACME CORP (ID: #409)</text>
+    <text x="242" y="20" fill="#64748B" font-family="system-ui, sans-serif" font-size="10">▼</text>
+  </g>
 
-  <!-- Routing arrows -->
-  <path d="M 300 170 L 370 215" stroke="#00FFD0" stroke-width="2" stroke-dasharray="4" fill="none" />
-  <path d="M 300 290 L 370 245" stroke="#00FFD0" stroke-width="2" stroke-dasharray="4" fill="none" />
+  <!-- Status Chip -->
+  <circle cx="1380" cy="40" r="4" fill="#10B981"/>
+  <text x="1395" y="44" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">RLS ENFORCED // 0 DATA LEAKS</text>
+  <rect x="1485" y="24" width="65" height="32" rx="16" fill="#FFFFFF"/>
+  <text x="1517" y="44" fill="#0A0A0A" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="11" text-anchor="middle">+ ORG</text>
 
-  <!-- Multi-Tenant Gateway -->
-  <rect x="370" y="195" width="130" height="70" rx="12" fill="url(#core-gateway)" />
-  <text x="435" y="225" fill="#0F0F0F" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">Tenant Gateway</text>
-  <text x="435" y="242" fill="#0F0F0F" font-family="monospace" font-weight="bold" font-size="9" text-anchor="middle">Auth &amp; Isolation Filter</text>
+  <!-- Metric Strip -->
+  <rect x="50" y="105" width="1500" height="75" rx="12" fill="#0E1318" stroke="#1D2732" stroke-width="1"/>
+  <g transform="translate(80, 132)">
+    <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">PROVISIONED ORGANIZATIONS</text>
+    <text x="0" y="28" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">32 TENANTS <tspan font-size="13" font-weight="500" fill="#64748B">ACTIVE</tspan></text>
+  </g>
+  <line x1="380" y1="120" x2="380" y2="165" stroke="#1D2732" stroke-width="1"/>
+  <g transform="translate(410, 132)">
+    <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">AGGREGATE REQUESTS / MIN</text>
+    <text x="0" y="28" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">1,840 RPS <tspan font-size="13" font-weight="500" fill="#64748B">BALANCED</tspan></text>
+  </g>
+  <line x1="720" y1="120" x2="720" y2="165" stroke="#1D2732" stroke-width="1"/>
+  <g transform="translate(750, 132)">
+    <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">TENANT ISOLATION GUARANTEE</text>
+    <text x="0" y="28" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">100.0% <tspan font-size="13" font-weight="500" fill="#64748B">RLS VERIFIED</tspan></text>
+  </g>
+  <line x1="1050" y1="120" x2="1050" y2="165" stroke="#1D2732" stroke-width="1"/>
+  <g transform="translate(1080, 132)">
+    <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1">INFERENCE QUOTA CONSUMPTION</text>
+    <text x="0" y="28" fill="#F59E0B" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="22">64.2% <tspan font-size="13" font-weight="500" fill="#64748B">TIER 1 USAGE</tspan></text>
+  </g>
 
-  <!-- Output Arrow -->
-  <path d="M 500 230 L 535 230" stroke="#00FFD0" stroke-width="2" fill="none" />
+  <!-- Left Column: Tenant Directory & Hierarchy -->
+  <rect x="50" y="205" width="420" height="595" rx="14" fill="#0C1015" stroke="#1E2833" stroke-width="1"/>
+  <g transform="translate(75, 238)">
+    <text x="0" y="0" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="12" font-weight="700" letter-spacing="1">ORGANIZATION PARTITIONS</text>
+    <text x="0" y="20" fill="#475569" font-family="ui-monospace, monospace" font-size="10">ROW-LEVEL DATABASE POLICIES ENFORCED</text>
+  </g>
 
-  <!-- LLM & DB Isolation Store -->
-  <rect x="535" y="160" width="125" height="140" rx="10" fill="#141414" stroke="#00FFD0" stroke-width="1.5" stroke-opacity="0.6" />
-  <text x="597" y="185" fill="#00FFD0" font-family="sans-serif" font-weight="bold" font-size="11" text-anchor="middle">Segregated Engine</text>
-  <rect x="545" y="198" width="105" height="26" rx="5" fill="#0F0F0F" />
-  <text x="597" y="215" fill="#FAFAFA" font-family="monospace" font-size="9" text-anchor="middle">Isolated DB Vectors</text>
-  <rect x="545" y="232" width="105" height="26" rx="5" fill="#0F0F0F" />
-  <text x="597" y="249" fill="#FAFAFA" font-family="monospace" font-size="9" text-anchor="middle">Custom Prompts</text>
-  <rect x="545" y="266" width="105" height="24" rx="5" fill="#0F0F0F" />
-  <text x="597" y="282" fill="#00FFD0" font-family="monospace" font-size="8" text-anchor="middle">LLM Inference</text>
+  <!-- Tenant List Items -->
+  <g transform="translate(75, 280)">
+    <!-- Active Tenant Item -->
+    <rect width="370" height="85" rx="10" fill="#141E28" stroke="#0284C7" stroke-width="1.5"/>
+    <circle cx="20" cy="22" r="5" fill="#38BDF8"/>
+    <text x="35" y="26" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700" font-size="13">Acme Enterprise Inc.</text>
+    <text x="35" y="46" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">ID: org_001 · Schema: acme_prod</text>
+    <rect x="35" y="58" width="180" height="6" rx="3" fill="#1E293B"/>
+    <rect x="35" y="58" width="130" height="6" rx="3" fill="#38BDF8"/>
+    <text x="225" y="65" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="10">72% QUOTA</text>
 
-  <!-- Title & Tech -->
-  <text x="400" y="405" fill="#FAFAFA" font-family="sans-serif" font-weight="bold" font-size="15" text-anchor="middle">Multi-Tenant AI Chatbot Platform</text>
-  <text x="400" y="425" fill="#00FFD0" font-family="monospace" font-size="11" text-anchor="middle">HTML • JavaScript • Python • Multi-Tenancy • LLM APIs</text>
+    <!-- Tenant 2 -->
+    <g transform="translate(0, 100)">
+      <rect width="370" height="85" rx="10" fill="#0F141B" stroke="#1E2833" stroke-width="1"/>
+      <circle cx="20" cy="22" r="5" fill="#10B981"/>
+      <text x="35" y="26" fill="#CBD5E1" font-family="system-ui, sans-serif" font-weight="700" font-size="13">Nova Therapeutics</text>
+      <text x="35" y="46" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">ID: org_002 · Schema: nova_secure</text>
+      <rect x="35" y="58" width="180" height="6" rx="3" fill="#1E293B"/>
+      <rect x="35" y="58" width="70" height="6" rx="3" fill="#10B981"/>
+      <text x="225" y="65" fill="#10B981" font-family="ui-monospace, monospace" font-size="10">39% QUOTA</text>
+    </g>
+
+    <!-- Tenant 3 -->
+    <g transform="translate(0, 200)">
+      <rect width="370" height="85" rx="10" fill="#0F141B" stroke="#1E2833" stroke-width="1"/>
+      <circle cx="20" cy="22" r="5" fill="#F59E0B"/>
+      <text x="35" y="26" fill="#CBD5E1" font-family="system-ui, sans-serif" font-weight="700" font-size="13">Kestrel Autonomous</text>
+      <text x="35" y="46" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">ID: org_003 · Schema: kestrel_ai</text>
+      <rect x="35" y="58" width="180" height="6" rx="3" fill="#1E293B"/>
+      <rect x="35" y="58" width="165" height="6" rx="3" fill="#F59E0B"/>
+      <text x="225" y="65" fill="#F59E0B" font-family="ui-monospace, monospace" font-size="10">92% QUOTA</text>
+    </g>
+
+    <!-- Isolation Security Specs Widget -->
+    <g transform="translate(0, 310)">
+      <rect width="370" height="175" rx="10" fill="#0A0E13" stroke="#1E2833" stroke-width="1"/>
+      <text x="16" y="24" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11" font-weight="600">ISOLATION VERIFICATION MATRIX</text>
+      
+      <g transform="translate(16, 45)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">POSTGRES RLS CHECK:</text>
+        <text x="220" y="0" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">PASS (0.00ms)</text>
+      </g>
+      <g transform="translate(16, 75)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">VECTOR NAMESPACE:</text>
+        <text x="220" y="0" fill="#10B981" font-family="ui-monospace, monospace" font-size="11">SEGREGATED</text>
+      </g>
+      <g transform="translate(16, 105)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">TOKEN RATE LIMITER:</text>
+        <text x="220" y="0" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="11">REDIS CLUSTER</text>
+      </g>
+      <g transform="translate(16, 135)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">JWT AUDIENCE CLAIM:</text>
+        <text x="220" y="0" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11">SIGNATURE OK</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right: Tenant Bot Configuration & Custom Prompt Sandbox -->
+  <rect x="490" y="205" width="1060" height="595" rx="14" fill="#0C1015" stroke="#1E2833" stroke-width="1"/>
+
+  <!-- Configuration Bar -->
+  <g transform="translate(520, 235)">
+    <circle cx="10" cy="10" r="4" fill="#EF4444"/>
+    <circle cx="26" cy="10" r="4" fill="#F59E0B"/>
+    <circle cx="42" cy="10" r="4" fill="#10B981"/>
+    <text x="70" y="14" fill="#64748B" font-family="ui-monospace, monospace" font-size="11">tenant_runtime // acme_enterprise_config.json</text>
+    <rect x="790" y="0" width="190" height="24" rx="12" fill="#141E28" stroke="#253545" stroke-width="1"/>
+    <text x="885" y="16" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="10" text-anchor="middle">ORGANIZATION SESSION: ACTIVE</text>
+  </g>
+
+  <!-- Custom Prompt Injection Panel -->
+  <g transform="translate(520, 275)">
+    <rect width="1000" height="145" rx="10" fill="#10151C" stroke="#222E3C" stroke-width="1"/>
+    <text x="24" y="26" fill="#64748B" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1">TENANT-SPECIFIC SYSTEM PROMPT DIRECTIVE</text>
+    <rect x="24" y="38" width="950" height="85" rx="6" fill="#0A0D11" stroke="#1E2833" stroke-width="1"/>
+    <text x="40" y="65" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="12">system: "You are the specialized AI Consultant for Acme Enterprise. You must strictly limit</text>
+    <text x="40" y="85" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="12">answers to internal engineering blueprints stored in knowledge partition: acme_kb_v2.</text>
+    <text x="40" y="105" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="12">Refuse any inquiries outside corporate scope with standard error code: REF_ERR_403."</text>
+  </g>
+
+  <!-- Interactive Bot Simulator -->
+  <g transform="translate(520, 440)">
+    <rect width="1000" height="335" rx="10" fill="#10151C" stroke="#222E3C" stroke-width="1"/>
+    
+    <!-- User Input Simulation -->
+    <g transform="translate(24, 25)">
+      <rect width="600" height="50" rx="8" fill="#1A2430" stroke="#2D3E52" stroke-width="1"/>
+      <text x="16" y="20" fill="#64748B" font-family="ui-monospace, monospace" font-size="10">USER (ORG_MEMBER @ ACME.COM)</text>
+      <text x="16" y="38" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13">"Can I view the billing records of competitor Nova Therapeutics?"</text>
+    </g>
+
+    <!-- Bot Response with Tenant Guardrail -->
+    <g transform="translate(24, 95)">
+      <rect width="950" height="120" rx="8" fill="#0D1217" stroke="#334155" stroke-width="1"/>
+      <circle cx="20" cy="22" r="5" fill="#EF4444"/>
+      <text x="35" y="26" fill="#F87171" font-family="ui-monospace, monospace" font-size="11" font-weight="700">GUARDRAIL INTERCEPT: CROSS-TENANT ACCESS ATTEMPT REJECTED</text>
+      <text x="35" y="52" fill="#E2E8F0" font-family="system-ui, sans-serif" font-size="13">"Access Denied: Tenant isolation protocols strictly prohibit cross-organizational data queries.</text>
+      <text x="35" y="74" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="13">Your session token (org_001) has zero permissions to query schema or vectors belonging to org_002."</text>
+      <text x="35" y="102" fill="#64748B" font-family="ui-monospace, monospace" font-size="10">AUDIT LOG: SECURITY_EVENT_9921 DISPATCHED TO SIEM WEBHOOK · TIME: 0.04ms</text>
+    </g>
+
+    <!-- Live Telemetry Stream Bottom -->
+    <g transform="translate(24, 235)">
+      <rect width="950" height="75" rx="8" fill="#0A0E13" stroke="#1E2833" stroke-width="1"/>
+      <g transform="translate(20, 25)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="10">FASTAPI GATEWAY</text>
+        <text x="0" y="24" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="13" font-weight="700">0.02% ERR</text>
+      </g>
+      <line x1="220" y1="15" x2="220" y2="60" stroke="#1E2833" stroke-width="1"/>
+      <g transform="translate(250, 25)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="10">REDIS TOKEN BUCKET</text>
+        <text x="0" y="24" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="13" font-weight="700">20,000 / HR</text>
+      </g>
+      <line x1="480" y1="15" x2="480" y2="60" stroke="#1E2833" stroke-width="1"/>
+      <g transform="translate(510, 25)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="10">STORAGE SHARDING</text>
+        <text x="0" y="24" fill="#10B981" font-family="ui-monospace, monospace" font-size="13" font-weight="700">POSTGRES 16 + RLS</text>
+      </g>
+      <line x1="740" y1="15" x2="740" y2="60" stroke="#1E2833" stroke-width="1"/>
+      <g transform="translate(770, 25)">
+        <text x="0" y="0" fill="#64748B" font-family="ui-monospace, monospace" font-size="10">INFERENCE ENGINE</text>
+        <text x="0" y="24" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="13" font-weight="700">HYBRID LLM ROUTER</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <g transform="translate(50, 840)">
+    <text x="0" y="24" fill="#475569" font-family="ui-monospace, monospace" font-size="11">TOKYO // BERLIN STUDIO ARCHITECTURE · ENTERPRISE MULTI-TENANCY PLATFORM</text>
+    <text x="1500" y="24" fill="#64748B" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">ISOLATION AUDIT: SOC2 TYPE II COMPLIANT · HIGH PERFORMANCE</text>
+  </g>
 </svg>

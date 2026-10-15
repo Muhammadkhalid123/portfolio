@@ -12,25 +12,27 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", href, external, children, disabled, ...props }, ref) => {
+    // High-End Studio sizing with refined geometry
     const sizeClasses = {
-      sm: "px-3.5 py-1.5 text-xs font-semibold rounded-xl gap-1.5",
-      md: "px-5 py-2.5 text-sm font-semibold rounded-2xl gap-2",
-      lg: "px-6 py-3.5 text-sm sm:text-base font-bold rounded-2xl gap-2.5",
+      sm: "px-3 py-1.5 text-xs font-mono font-medium tracking-wider uppercase gap-1.5 rounded-full",
+      md: "px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-sans font-semibold tracking-tight gap-2 rounded-full",
+      lg: "px-6 py-3 text-sm sm:text-base font-sans font-bold tracking-tight gap-2.5 rounded-full",
     };
 
+    // Architectural Tokyo/Berlin Studio button variants
     const variantClasses = {
-      primary: "bg-[#00FFD0] hover:bg-[#33FFDA] text-[#0F0F0F] border border-[#00FFD0] shadow-[0_4px_20px_rgba(0,255,208,0.35)] hover:shadow-[0_6px_25px_rgba(0,255,208,0.5)] active:scale-[0.98] font-bold",
-      secondary: "bg-[#0F0F0F] text-[#FAFAFA] hover:bg-[#181818] hover:text-[#00FFD0] border border-[#0F0F0F] hover:border-[#00FFD0]/60 shadow-[0_4px_20px_rgba(15,15,15,0.25)] active:scale-[0.98] font-bold",
-      "liquid-glass": "liquid-glass text-[#FAFAFA] hover:text-[#00FFD0] border-white/10 hover:border-[#00FFD0]/50 active:scale-[0.98]",
-      outline: "border-2 border-[#0F0F0F] hover:border-[#00FFD0] bg-transparent text-[#0F0F0F] hover:bg-[#00FFD0] hover:text-[#0F0F0F] backdrop-blur-md active:scale-[0.98] font-bold",
-      ghost: "text-[#0F0F0F] hover:text-[#0F0F0F] hover:bg-[#00FFD0]/15 font-bold",
-      cyan: "bg-[#00FFD0] hover:bg-[#33FFDA] text-[#0F0F0F] border border-[#00FFD0] shadow-[0_4px_20px_rgba(0,255,208,0.35)] active:scale-[0.98] font-bold",
-      purple: "bg-[#00FFD0] hover:bg-[#33FFDA] text-[#0F0F0F] border border-[#00FFD0] shadow-[0_4px_20px_rgba(0,255,208,0.35)] active:scale-[0.98] font-bold",
-      amber: "bg-[#0F0F0F] hover:bg-[#181818] text-[#FAFAFA] hover:text-[#00FFD0] border border-[#0F0F0F] hover:border-[#00FFD0]/60 shadow-[0_4px_20px_rgba(15,15,15,0.25)] active:scale-[0.98] font-bold",
+      primary: "bg-[#111211] text-white dark:bg-white dark:text-[#111211] hover:bg-neutral-800 dark:hover:bg-neutral-200 shadow-sm active:scale-[0.98] transition-all",
+      secondary: "bg-neutral-100 dark:bg-neutral-900 text-[var(--ink)] border border-[var(--rule)] hover:bg-neutral-200/80 dark:hover:bg-neutral-800/80 active:scale-[0.98] transition-all",
+      outline: "bg-transparent text-[var(--ink)] border border-[var(--rule)] hover:bg-[var(--ink)]/5 active:scale-[0.98] transition-all",
+      ghost: "text-[var(--ink)] hover:bg-[var(--ink)]/5 active:scale-[0.98] transition-all",
+      "liquid-glass": "bg-white/80 dark:bg-black/60 backdrop-blur-md border border-black/10 dark:border-white/10 text-[var(--ink)] hover:bg-white dark:hover:bg-black/80 shadow-sm active:scale-[0.98] transition-all",
+      cyan: "bg-[#111211] text-white hover:bg-neutral-800 active:scale-[0.98] transition-all",
+      purple: "bg-[#111211] text-white hover:bg-neutral-800 active:scale-[0.98] transition-all",
+      amber: "bg-neutral-100 dark:bg-neutral-900 text-[var(--ink)] border border-[var(--rule)] hover:bg-neutral-200 active:scale-[0.98] transition-all",
     };
 
     const baseClass = cn(
-      "magnetic-hover inline-flex items-center justify-center transition-all duration-200 ease-[cubic-bezier(0.2,0.715,0.205,0.99)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00FFD0] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer",
+      "inline-flex items-center justify-center transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink)] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer select-none",
       sizeClasses[size],
       variantClasses[variant],
       className
@@ -57,7 +59,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <button ref={ref} className={baseClass} disabled={disabled} {...props}>
+      <button ref={ref} disabled={disabled} className={baseClass} {...props}>
         {children}
       </button>
     );

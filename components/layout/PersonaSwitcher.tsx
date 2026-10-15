@@ -72,9 +72,6 @@ export function PersonaSwitcher({ currentPersona }: { currentPersona?: "personal
               <Icon className={cn("w-3.5 h-3.5", isActive ? "text-[#00FFD0]" : "text-[#808080] group-hover:text-[#0F0F0F]")} />
               <span className="hidden sm:inline">{item.label}</span>
               <span className="sm:hidden">{item.shortLabel}</span>
-              {isActive && (
-                <span className={cn("w-1.5 h-1.5 rounded-full animate-ping inline-block", item.dotColor)} />
-              )}
             </Link>
           );
         })}

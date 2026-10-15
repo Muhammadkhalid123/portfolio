@@ -121,7 +121,6 @@ export function DeploymentStack({ persona = "dev" }: DeploymentStackProps = {}) 
           <div className="border border-white/[0.12] bg-black/40 overflow-hidden">
             <div className="px-6 py-3.5 border-b border-white/[0.1] flex items-center justify-between bg-white/[0.02]">
               <div className="flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-[#A1FFCB]" />
                 <span className="font-mono text-xs text-[#F9F8F6]">
                   Step {current.step} — {current.title}
                 </span>
