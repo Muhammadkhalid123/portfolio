@@ -63,7 +63,7 @@ export function About({ persona = "personal" }: AboutProps = {}) {
           {/* Left Column: Direct First-Person Copy */}
           <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-[#2A281F]/90 font-normal leading-relaxed max-w-2xl">
             <p className="text-xl sm:text-2xl text-[#2A281F] font-light leading-snug">
-              I'm Khalid. I build RAG chatbots, automation bots and the deployment pipelines behind them. I work alone, so you talk directly to the person who writes the code.
+              I&apos;m Khalid. I build RAG chatbots, automation bots and the deployment pipelines behind them. I work alone, so you talk directly to the person who writes the code.
             </p>
             <p className="text-[#718698]">
               My focus is turning language models, vector embeddings, and background worker queues into resilient services that operate reliably in production — not fragile prototypes or toy scripts.

@@ -132,7 +132,7 @@ export function StackRows() {
                   <div className="border-b border-neutral-200 dark:border-neutral-800 px-6 py-4 bg-neutral-50/50 dark:bg-neutral-900/40 flex items-center justify-between font-mono text-xs uppercase tracking-wider text-neutral-500">
                     <span className="flex items-center gap-2 font-medium text-neutral-900 dark:text-neutral-100">
                       <Icon className="w-4 h-4" />
-                      <span>{group.index} // ARCHITECTURE</span>
+                      <span>{group.index} {"//"} ARCHITECTURE</span>
                     </span>
                     <span className="px-2 py-0.5 rounded-full bg-neutral-200/80 dark:bg-neutral-800 text-[10px] text-neutral-700 dark:text-neutral-300 font-medium">
                       VERIFIED

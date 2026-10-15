@@ -219,7 +219,7 @@ export function WorkIndex() {
                     {/* Top Overlay Badges */}
                     <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
                       <span className="px-2.5 py-0.5 rounded-full bg-neutral-950/80 backdrop-blur-md text-white font-mono text-[11px] font-medium border border-white/15 shadow-sm">
-                        {indexStr} // {categoryLabel}
+                        {indexStr} {"//"} {categoryLabel}
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full bg-neutral-950/80 backdrop-blur-md text-neutral-300 font-mono text-[10px] border border-white/10">
                         {project.slug.includes("summarizer") ||

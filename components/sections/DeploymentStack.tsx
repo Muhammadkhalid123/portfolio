@@ -146,7 +146,7 @@ export function DeploymentStack({ persona = "dev" }: DeploymentStackProps = {}) 
         {/* Signature Honesty Statement (Section 6.4) */}
         <div className="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <p className="text-sm text-[#F9F8F6]/85 font-normal">
-            "This is the actual pipeline behind every project on this site, including this portfolio."
+            &ldquo;This is the actual pipeline behind every project on this site, including this portfolio.&rdquo;
           </p>
           <a
             href="https://github.com/Muhammadkhalid123/portfolio"

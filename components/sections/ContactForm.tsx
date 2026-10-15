@@ -71,7 +71,7 @@ export function ContactForm({ persona = "personal" }: ContactFormProps = {}) {
             Have an AI project in mind?
           </h2>
           <p className="text-base text-[#718698] mt-4 max-w-xl font-normal leading-relaxed">
-            I'm currently available for contracts and engineering projects. Let's discuss your requirements directly.
+            I&apos;m currently available for contracts and engineering projects. Let&apos;s discuss your requirements directly.
           </p>
         </div>
 

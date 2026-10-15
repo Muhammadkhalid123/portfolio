@@ -150,7 +150,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-8 space-y-8">
               <div className="mono text-[12px] text-[var(--muted)] uppercase tracking-wider">
-                // ARCHITECTURE & TECHNICAL DECISIONS
+                {"// ARCHITECTURE & TECHNICAL DECISIONS"}
               </div>
 
               <div className="body text-[16px] sm:text-[17px] leading-[1.6] space-y-6 text-[var(--ink)]">
@@ -167,7 +167,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
               {project.highlights && project.highlights.length > 0 && (
                 <div className="space-y-4 pt-4 border-t border-[var(--rule)]">
                   <div className="mono text-[12px] text-[var(--muted)] uppercase tracking-wider">
-                    // KEY HIGHLIGHTS
+                    {"// KEY HIGHLIGHTS"}
                   </div>
                   <ul className="space-y-3 mono text-[13px] text-[var(--ink)]">
                     {project.highlights.map((highlight, idx) => (
@@ -186,7 +186,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
               {project.architecture && (
                 <div className="space-y-3">
                   <div className="mono text-[12px] text-[var(--muted)] uppercase tracking-wider">
-                    // SYSTEM BREAKDOWN
+                    {"// SYSTEM BREAKDOWN"}
                   </div>
                   <div className="divide-y divide-[var(--rule)]">
                     {project.architecture.map((layer, idx) => (
@@ -202,7 +202,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
               {project.deployment && (
                 <div className="space-y-3 pt-6 border-t border-[var(--rule)]">
                   <div className="mono text-[12px] text-[var(--muted)] uppercase tracking-wider">
-                    // INFRASTRUCTURE
+                    {"// INFRASTRUCTURE"}
                   </div>
                   <div className="mono text-[12px] space-y-2">
                     <div className="flex justify-between py-1 border-b border-[var(--rule)]">
